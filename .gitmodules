@@ -1,0 +1,3 @@
+[submodule "03_external/Realtime-Anisotropy-SPT-Analysis"]
+	path = 03_external/Realtime-Anisotropy-SPT-Analysis
+	url = https://github.com/YipLab/Realtime-Anisotropy-SPT-Analysis.git
