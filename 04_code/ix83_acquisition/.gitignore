@@ -1,0 +1,5 @@
+.venv-integration/
+recordings/
+# The bundle ignores generic script directories; these are package entrypoints.
+!scripts/
+!scripts/*.py

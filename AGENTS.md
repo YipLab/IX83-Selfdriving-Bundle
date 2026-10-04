@@ -17,13 +17,17 @@ Correct lower-priority summaries when they conflict with the owning plan. Extern
 
 ## Project boundaries
 
-- The bundle owns instrument profiles, wiring, firmware, calibration references, integration/front-end coordination, execution policy and acceptance evidence.
-- Reusable workflow logic is backend independent. Its core must not require RTASPT, Redsun, Pycro-Manager or a particular frontend. Its name and repository location remain undecided.
+- The bundle owns instrument profiles, wiring, firmware, calibration references, integration/front-end coordination, execution policy and acceptance evidence. Camera/XYZ acquisition belongs under `04_code/ix83_acquisition/`; the sample-search host and its device-facing runner belong under `04_code/sample_search/ix83_search_host/`.
+- Begin the acquisition baseline with stage-aware camera and bounded XYZ-stage mocks. The local Pycro-Manager adapter must remain optional and hardware-disconnected until explicitly constructed.
+- Reusable sample-search logic is backend independent. The source under `03_external/sample_search/` publishes recipe descriptors, geometry/calculation helpers, review metadata and hardware-free run/checkpoint records through the provisional `samplescout` import. It does not own orchestration transitions or device calls. The bundle host under `04_code/sample_search/ix83_search_host/` owns runner transitions, action execution, resource arbitration, device bindings, recording/storage coordination and cancellation. Packaging remains deferred.
 - RTASPT owns reusable reconstruction, anisotropy, tracking and analysis. Its processing-package extraction and source-independent live processor remain planned.
 - A listener reports typed observations or proposes actions. The bundle executor owns device calls, resource arbitration and hardware limits. Processing callbacks, scripts, GUIs and agents must use the same execution policy.
 - Keep recipe (versioned executable workflow), skill (discovery/guidance metadata) and run (resolved execution record) distinct. Agent prose must not replace executable configuration.
 - Start with a serial state machine and declared resources. First validate same-objective, two-pass tiled sample search; use baseline/perfusion/anisotropy as a later generalization case.
-- Acquisition frameworks are optional adapters. No RedSun version, new package identity or storage backend is frozen by the reference project's templates.
+- Acquisition frameworks remain outer composition adapters. The current Pycro-Manager host and a prospective RedSun RunEngine host must bind the same framework-neutral recipe, data and processing contracts; `samplescout` and reusable RTASPT processing must not acquire a RedSun dependency.
+- Standardize package imports and inter-package boundaries around installed/editable packages and typed public interfaces. Do not add launcher-specific `sys.path` mutation as a lasting integration mechanism; isolate any local prototype bootstrap and migrate it when package metadata is available.
+- Keep one runtime as the sole physical command authority. Sample search is an imported recipe/calculation library by default, not an independent device-command IOC. Place latency-sensitive RTASPT work in process only where measured needs support it; heavy block processing may use an optional service boundary with typed inputs/results. Process placement and IOC topology remain open pending timing, throughput and lifecycle evidence.
+- RedSun may be selected as the future run host, not merely as a parallel device adapter. The local `redsun-mimir` example (audited 2026-10-04 at commit `2cd53d66a9fd7a5838e2038cf9f5e9630feb4dd3`) uses a plugin manifest, typed protocols and component wiring around a RedSun-owned RunEngine; treat it as a composition reference, not as an adopted dependency or a mandate to make all components IOCs.
 - One application may acquire from a camera at a time; MMStudio Live and napari acquisition must take turns.
 - Preserve typed axes, coordinates, sequence/timestamp semantics, missing-frame policy, target boundaries and calibration context. Generic plane adapters do not mean every current RTASPT consumer supports arbitrary streaming inputs.
 - Do not inherit robotic holotomography, articulated motion or external reconstruction services from copied reference documentation.
@@ -40,6 +44,7 @@ Correct lower-priority summaries when they conflict with the owning plan. Extern
 ## Mermaid conventions
 
 - [Architecture source](02_docs_offline/architecture_flowchart.md) is authoritative; static exports are secondary.
+- Update the authoritative architecture diagram in the same change after any tangible architectural change to component boundaries, ownership, dependency direction or execution flow.
 - Set node and cluster labels to 22px and edge labels to 17px through themeCSS.
 - Use compact layouts, short multiline labels and quoted labels containing punctuation or spaces.
 - Distinguish planned composition from current code; check fences and node/edge references and render when tooling is available.

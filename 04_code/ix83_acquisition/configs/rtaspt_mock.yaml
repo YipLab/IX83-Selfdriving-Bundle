@@ -1,0 +1,15 @@
+# Single-camera baseline. All device access comes from the bundle launcher.
+acquisition:
+  backend: mock
+  channels:
+    - name: Demo
+      exposure_ms: 50
+  channel_group: Channel
+  frames: 3
+  freerun: false
+  interval_s: 0.05
+  image_shape: [96, 96]
+  output_dir: recordings
+  dataset_name: bundle_mock
+detector_config:
+  type: single
