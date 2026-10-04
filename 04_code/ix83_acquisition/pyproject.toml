@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ix83-acquisition"
+version = "0.1.0"
+description = "Minimal camera and XYZ-stage interfaces for IX83-Automation"
+requires-python = ">=3.12,<3.13"
+dependencies = ["numpy==1.26.4"]
+
+[project.scripts]
+ix83-acquire = "ix83_acquisition.__main__:main"
+
+[project.optional-dependencies]
+ome = ["tifffile==2025.1.10"]
+pycromanager = ["pycromanager==1.0.2", "pyjavaz==1.2.8"]
+rtaspt-check = [
+    "tifffile==2025.1.10", "pyyaml==6.0.2",
+    "msgspec>=0.21.1", "psygnal>=0.15.1", "tqdm==4.67.1",
+]
+rtaspt-controller-check = [
+    "ix83-acquisition[rtaspt-check]", "pandas>=2.2,<3",
+    "scipy==1.15.1", "scikit-image==0.25.1", "opencv-python>=4.11.0.86",
+    "matplotlib==3.10.3", "trackpy>=0.7,<0.8",
+    "ruamel.yaml>=0.18", "qtpy>=2.4,<3", "PyQt6>=6.7,<7",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff==0.16.10", "mypy==2.4.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
+
+[[tool.mypy.overrides]]
+module = ["pycromanager"]
+ignore_missing_imports = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ix83_acquisition = ["py.typed"]

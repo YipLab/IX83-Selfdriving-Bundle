@@ -11,7 +11,9 @@ uv sync --locked --extra ome --extra pycromanager
 uv run --locked --extra pycromanager python scripts/demo_zmq_smoke.py
 ```
 
-The project-owned `.venv` was verified on Python 3.10.20, NumPy 1.26.4, Pycro-Manager 1.0.2 and PyJavaZ 1.2.8 on 2026-10-04. The Python bridge expects Java ZMQ protocol 5.1.0, matching the running server. Use this environment for acquisition work; the system Python still contains the older client. Offline mock use requires only NumPy; Pycro-Manager is an optional extra. The package is locally installable and is not published on PyPI.
+The project targets Python 3.12, matching RTASPT. The acquisition runtime stays small: NumPy is required and Pycro-Manager remains an optional extra. RTASPT handoff/controller-check extras mirror its relevant analysis dependencies and constraints. The package is locally installable and is not published on PyPI.
+
+On 2026-10-04, the locked `.venv-integration` Python 3.12.13 environment passed the bounded mixed Ludl/PVCAM plus demo-Z hardware smoke check with Pycro-Manager 1.0.2, PyJavaZ 1.2.8 and NumPy 1.26.4. See the [run record](../../08_session_logs/2026-10-04-mixed-hardware-validation-py312.json); this is limited device-operation evidence, not full instrument acceptance.
 
 ## Ported components
 
