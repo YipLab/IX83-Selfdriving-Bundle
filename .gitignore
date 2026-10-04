@@ -215,3 +215,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Local contributor archives
+08_session_logs/
+09_commit_logs/
