@@ -1,16 +1,20 @@
-# ruff: noqa: E402
 """Hardware-free end-to-end offline review checkpoint validation."""
 from __future__ import annotations
 
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / "03_external/sample_search"), str(ROOT / "04_code/sample_search")]
+from source_bootstrap import enable_source_tree
 
-from ix83_search_host import AcquisitionResult, SampleSearchRunner
+enable_source_tree()
+
+from ix83_search_host import (
+    AcquisitionResult,
+    DataReference,
+    MoveResult,
+    SampleSearchRunner,
+)
 from samplescout import (
     AcquisitionSettings,
     Calibration,
@@ -31,22 +35,26 @@ from samplescout.review import (
 
 
 class MockBackend:
-    capabilities = frozenset()
-    resources = frozenset({"stage", "camera"})
+    capabilities = frozenset({"stage.xy", "camera.snap", "storage.raw"})
+    resources = frozenset({"stage", "camera", "storage"})
+    setting_capabilities = frozenset({"exposure_ms"})
 
     def __init__(self) -> None:
         self.events: list[tuple] = []
 
-    def move_to(self, request_id, position_xyz_um, *, deadline=None):
-        self.events.append(("move", position_xyz_um))
-        return position_xyz_um
+    def move_to(self, request):
+        self.events.append(("move", request.position_xyz_um))
+        return MoveResult(request.request_id, request.position_xyz_um)
 
-    def acquire(self, request_id, settings, *, phase, specimen_id, coordinate_frame,
-                calibration_id, run_id, tile_id, target_id, deadline=None):
-        self.events.append(("acquire", phase, tile_id))
+    def acquire(self, request):
+        self.events.append(("acquire", request.phase, request.tile_id))
         moved = self.events[-2][1]
-        return AcquisitionResult(tile_id, tuple(moved[:2]), datetime.now(timezone.utc),
-                                 f"movie://{phase.value}/{tile_id}")
+        dataset = DataReference(f"memory://{request.tile_id}", "npy-frames", "QYX",
+            (request.settings.frames, 10, 10), "uint8", request.settings.frames,
+            "completed", "0" * 64)
+        return AcquisitionResult(request.request_id, request.run_id, request.specimen_id,
+            request.phase, request.coordinate_frame, request.calibration_id, request.tile_id,
+            request.tile_id, tuple(moved[:2]), datetime.now(timezone.utc), dataset)
 
 
 def main() -> None:

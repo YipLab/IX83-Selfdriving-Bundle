@@ -2,7 +2,7 @@
 
 This composition follows the [setup plan](device_bundle_setup_plan.md) and RTASPT's [sample-search workflow research](../03_external/Realtime-Anisotropy-SPT-Analysis/docs/sample-search-workflow-research.md). The mock-first camera/XYZ-stage package exists at `04_code/ix83_acquisition/`; capture, XYZ movement, finite acquisition and free-run cancellation passed over demo ZMQ on 2026-10-04. RTASPT CLI/GUI/MDA backend-injection hooks now exist, with actual single-detector controller checks passing. See the plan for tested versions and compatibility limits. The `samplescout` library publishes recipe descriptors, calculations and hardware-free records; the bundle CLI/host imports those recipes and owns orchestration transitions and device execution. Seeded and recording/replay checks pass. A six-position 50 x 25 um mechanical scan passed on Pycro-Manager with checksum-verified frames and bounded return to origin; optical calibration and real-specimen targeting remain unverified. The saved-checkpoint review CLI and survey coverage GUI are implemented. The first IX83 recipe now specifies operator-confirmed well corners, IX83 body focus-lock, median channel maps and paired-channel intensity suggestions; corner capture, relative-focus binding, Otsu proposal generation, split-detector calibration and channel-group MDA remain planned. Distribution packaging and broader execution acceptance remain planned.
 
-The planned RedSun direction is a composition alternative, not a second command authority: RedSun's RunEngine would own runs and device policy, importing the same recipe/data/processing contracts. `samplescout` remains a library; a heavy block-processing service is optional and measurement-driven. The current launcher still uses source-path bootstrapping, documented as a cleanup item in the setup plan.
+The planned RedSun direction is a composition alternative, not a second command authority: RedSun's RunEngine would own runs and device policy, importing the same recipe/data/processing contracts. `samplescout` remains a library; a heavy block-processing service is optional and measurement-driven. The single-channel search and stage-scan host now exchange typed execution requests/results, dataset references, declared binding capabilities and cancellation control. RedSun composition and source-path packaging cleanup remain future work.
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"fontSize": "22px"}, "themeCSS": ".nodeLabel { font-size: 22px; } .cluster-label .nodeLabel { font-size: 22px; } .edgeLabel { font-size: 17px; }"}}%%
@@ -27,6 +27,7 @@ flowchart TB
         profiles["Profiles, firmware and calibration<br/>existing artifacts, acceptance planned"]
         cli["Bundle scan CLI<br/>selects mock or Pycro-Manager"]
         host["IX83 search host<br/>runner transitions, cancellation, storage"]
+        seams["Typed requests, results, dataset references<br/>capabilities and execution control"]
         corners["Operator confirms 2/4 well corners<br/>wizard and start gate planned"]
         focuslock["IX83 body relative focus-lock<br/>adapter capability planned; Z-map deferred"]
         reviewcli["Bundle review CLI<br/>launches saved-checkpoint survey GUI"]
@@ -35,7 +36,7 @@ flowchart TB
         pycro["Optional Pycro-Manager Core adapter<br/>client/server protocol 5.1.0 matched"]
         ledger["Run results and action ledger<br/>outcomes, readbacks, provenance"]
         profiles -. binding references .-> executor
-        cli --> host --> executor
+        cli --> host --> seams --> executor
         corners -. confirmed well boundary .-> host
         host -. relative focus-lock capability .-> focuslock
         host -. after survey checkpoint .-> reviewcli
@@ -45,14 +46,16 @@ flowchart TB
     end
     subgraph FUTURE["Prospective RedSun composition (not implemented)"]
         engine["RedSun RunEngine<br/>sole run and command authority"]
+        redsunadapter["RedSun host adapter<br/>maps typed execution and data contracts"]
         realtime["Imported recipe + bounded live processing<br/>framework-neutral contracts"]
         blocksvc["Optional block-processing worker / IOC<br/>typed data references and results"]
         engine -->|run plans and proposals| realtime
+        engine --> redsunadapter
         engine -. measured need only .-> blocksvc
     end
     host -. imports recipe descriptors and pure calculations .-> recipe
     engine -. imports same workflow contracts .-> recipe
-    engine -. binds host adapters at composition edge .-> backend
+    redsunadapter -. binds host adapters at composition edge .-> backend
     processing -. candidate block-service boundary .-> blocksvc
     hardware["IX83 devices<br/>separately authorized access"]
     acceptance["Ludl/PVCAM smoke, 20 fps recording and<br/>six-position mechanical scan passed<br/>optical calibration pending"] -. evidence .-> hardware

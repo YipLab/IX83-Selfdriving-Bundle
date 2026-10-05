@@ -9,7 +9,12 @@ from datetime import datetime, timezone
 from math import hypot
 
 import numpy as np
-from ix83_search_host import AcquisitionResult, SampleSearchRunner
+from ix83_search_host import (
+    AcquisitionResult,
+    DataReference,
+    MoveResult,
+    SampleSearchRunner,
+)
 from samplescout import (
     AcquisitionSettings,
     Calibration,
@@ -40,21 +45,22 @@ OBJECTS = (
 class SeededStageBackend:
     """Render a fixed specimen into the image around the stage readback."""
 
+    capabilities = frozenset({"stage.xy", "camera.snap", "storage.raw"})
+    resources = frozenset({"stage", "camera", "storage"})
+    setting_capabilities = frozenset({"exposure_ms", "channel"})
+
     def __init__(self):
         self.events = []
         self.frames = {}
         self.position = (0.0, 0.0)
 
-    def move_to(self, request_id, position_xyz_um, *, deadline=None):
-        del deadline
-        self.position = (float(position_xyz_um[0]), float(position_xyz_um[1]))
-        self.events.append(("move", request_id, self.position))
-        return (*self.position, float(position_xyz_um[2]))
+    def move_to(self, request):
+        self.position = (float(request.position_xyz_um[0]), float(request.position_xyz_um[1]))
+        self.events.append(("move", request.request_id, self.position))
+        return MoveResult(request.request_id, (*self.position, float(request.position_xyz_um[2])))
 
-    def acquire(self, request_id, settings, *, phase, specimen_id,
-                coordinate_frame, calibration_id, run_id, tile_id, target_id,
-                deadline=None):
-        del specimen_id, coordinate_frame, calibration_id, run_id, deadline
+    def acquire(self, request):
+        settings = request.settings
         h, w = settings.image_shape_yx or (120, 120)
         yy, xx = np.mgrid[:h, :w]
         # Pixel centers are transformed through the same reflected calibration
@@ -69,10 +75,14 @@ class SeededStageBackend:
         # Stable, phase-specific exposure scale preserves geometry while making
         # survey and full acquisition settings observably distinct.
         image *= settings.exposure_ms / 20.0
-        self.frames[request_id] = image.copy()
-        self.events.append(("acquire", phase, settings, tile_id, target_id, self.position))
-        return AcquisitionResult(image, self.position, datetime.now(timezone.utc),
-                                 data_reference=f"memory://{request_id}")
+        self.frames[request.request_id] = image.copy()
+        self.events.append(("acquire", request.phase, settings, request.tile_id,
+                            request.target_id, self.position))
+        dataset = DataReference(f"memory://{request.request_id}", "npy-frames", "QYX",
+            (settings.frames, h, w), str(image.dtype), settings.frames, "completed", "0" * 64)
+        return AcquisitionResult(request.request_id, request.run_id, request.specimen_id,
+            request.phase, request.coordinate_frame, request.calibration_id, request.tile_id,
+            image, self.position, datetime.now(timezone.utc), dataset)
 
 
 def run_seeded_search():

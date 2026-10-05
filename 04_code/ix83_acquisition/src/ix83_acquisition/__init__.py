@@ -7,7 +7,7 @@ from .controller import (
     RunResult,
     SequenceRequest,
 )
-from .interfaces import Camera, Channel, Frame, Position, XYZStage
+from .interfaces import Camera, Channel, DeviceCapabilities, Frame, Position, XYZStage
 from .mock import MockCamera, MockXYZStage
 from .ome_recording import OMERecorder, replay_ome_frames
 from .recording import RunRecorder, replay_frames
@@ -24,6 +24,7 @@ __all__ = [
     "replay_ome_frames",
     "Camera",
     "Channel",
+    "DeviceCapabilities",
     "Frame",
     "Position",
     "XYZStage",

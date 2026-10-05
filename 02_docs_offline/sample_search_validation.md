@@ -45,8 +45,9 @@ The [headless validator](../03_external/sample_search/scripts/validate_imagej_co
 This is segmentation consistency evidence; complete AutoScanJ detector parity and annotation-based recall were not measured.
 The [source/manual audit](../03_external/sample_search/docs/manual_workflow_audit.md) also found no stage positions or explicit physical-size units in those supplied tiles, so they do not establish a verified physical-coordinate montage or overlap test.
 
-The combined runtime suite passes 120 tests across the pure library, IX83 execution host and acquisition baseline. An isolated import check rejects acquisition-host/framework imports while compiling a library recipe. New offline review and image registration checks do not extend hardware acceptance.
+The combined runtime suite passes 127 tests across the pure library, IX83 execution host and acquisition baseline. An isolated import check rejects acquisition-host/framework imports while compiling a library recipe. New offline review and image registration checks do not extend hardware acceptance.
 Ruff passes across the new source, scripts and tests; strict mypy passes across all twelve library/host/adapter source files.
+Typed local dataset resolution verifies the referenced manifest digest and summary metadata; NPY/OME replay verifies the frame ledger and stored pixels. Legacy untyped local paths remain readable without typed-manifest verification.
 Synthetic success is not biological sensitivity, specimen recall or optical calibration evidence.
 
 ## Real-hardware operating envelope

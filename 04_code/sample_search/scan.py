@@ -1,17 +1,15 @@
 """MM2/Pycro-Manager stage-grid or explicit-target acquisition procedure."""
-# ruff: noqa: E402
 from __future__ import annotations
 
 import argparse
 import json
 import signal
-import sys
 import time
 from pathlib import Path
 
-BUNDLE = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"), str(BUNDLE / "04_code/ix83_acquisition/src")]
+from source_bootstrap import enable_source_tree
+
+BUNDLE = enable_source_tree()
 
 from ix83_acquisition import MockCamera, MockXYZStage, replay_frames, replay_ome_frames
 from ix83_acquisition.pycromanager import (
@@ -20,7 +18,11 @@ from ix83_acquisition.pycromanager import (
     connect_core,
 )
 from ix83_search_adapter import IX83SearchExecutor
-from ix83_search_host import StageScanRunner
+from ix83_search_host import (
+    StageScanRunner,
+    dataset_reference_from_record,
+    local_dataset_path,
+)
 from samplescout import AcquisitionSettings, Phase, RunStatus
 from samplescout.scanning import (
     ScanPosition,
@@ -119,7 +121,8 @@ def main() -> None:
         run = runner.run_recipe(recipe, settle_ms=args.settle_ms, timeout_s=args.timeout_s)
         frames = 0
         for recorded in run.positions:
-            reference = Path(recorded["data_reference"])
+            dataset = dataset_reference_from_record(recorded["data_reference"])
+            reference = local_dataset_path(dataset)
             frames += sum(1 for _ in (replay_frames(reference) if args.frames == 1 else replay_ome_frames(reference)))
         if run.status is RunStatus.COMPLETED and frames != len(positions) * args.frames:
             raise RuntimeError("saved frame count does not match planned acquisition")

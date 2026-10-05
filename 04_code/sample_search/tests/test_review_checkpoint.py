@@ -3,7 +3,12 @@ from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 
 import pytest
-from ix83_search_host import AcquisitionResult, SampleSearchRunner
+from ix83_search_host import (
+    AcquisitionResult,
+    DataReference,
+    MoveResult,
+    SampleSearchRunner,
+)
 from samplescout import (
     AcquisitionSettings,
     Calibration,
@@ -20,19 +25,24 @@ from samplescout.review import ReviewContext, create_manifest, make_decision
 
 
 class MockBackend:
-    capabilities = frozenset()
-    resources = frozenset({'stage', 'camera'})
+    capabilities = frozenset({"stage.xy", "camera.snap", "storage.raw"})
+    resources = frozenset({'stage', 'camera', 'storage'})
+    setting_capabilities = frozenset({"exposure_ms"})
     def __init__(self):
         self.events = []
-    def move_to(self, request_id, position_xyz_um, *, deadline=None):
-        self.events.append(('move', position_xyz_um))
-        return position_xyz_um
-    def acquire(self, request_id, settings, *, phase, specimen_id, coordinate_frame,
-                calibration_id, run_id, tile_id, target_id, deadline=None):
-        self.events.append(('acquire', phase, tile_id))
+    def move_to(self, request):
+        self.events.append(('move', request.position_xyz_um))
+        return MoveResult(request.request_id, request.position_xyz_um)
+    def acquire(self, request):
+        self.events.append(('acquire', request.phase, request.tile_id))
         now = datetime.now(timezone.utc)
-        return AcquisitionResult(tile_id, (self.events[-2][1][0], self.events[-2][1][1]), now,
-                                 f'movie://{phase.value}/{tile_id}')
+        position = self.events[-2][1]
+        dataset = DataReference(f"memory://{request.tile_id}", "npy-frames", "QYX",
+            (request.settings.frames, 10, 10), "uint8", request.settings.frames,
+            "completed", "0" * 64)
+        return AcquisitionResult(request.request_id, request.run_id, request.specimen_id,
+            request.phase, request.coordinate_frame, request.calibration_id, request.tile_id,
+            request.tile_id, position[:2], now, dataset)
 
 
 def setup(backend=None, *, clock=None, age=300):
@@ -68,6 +78,7 @@ def test_checkpoint_load_resume_runs_only_revisits_and_keeps_review_record(tmp_p
     path = tmp_path / 'checkpoint.json'
     save_run(path, checkpoint, runner.recipe, runner.calibration, runner.region)
     loaded, recipe, calibration, region, full = load_review_run(path)
+    assert loaded.execution_bindings == checkpoint.execution_bindings
     resumed_backend = MockBackend()
     resumed_runner = SampleSearchRunner(resumed_backend, runner.detector, recipe, calibration, region,
                                        full_calibration=full)
@@ -82,6 +93,25 @@ def test_checkpoint_load_resume_runs_only_revisits_and_keeps_review_record(tmp_p
         resumed_runner.resume_review(result, decision_for(result, resumed_runner))
 
 
+def test_legacy_checkpoint_is_verified_then_normalized_to_named_axes(tmp_path):
+    runner = setup()
+    checkpoint = runner.run(review_only=True)
+    path = tmp_path / "legacy.json"
+    save_run(path, checkpoint, runner.recipe, runner.calibration, runner.region)
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload.pop("payload_sha256")
+    payload["schema"] = "samplescout-run-v1"
+    for observation in payload["observations"]:
+        observation["axes"] = [axis.lower() for axis in observation["axes"]]
+    canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False)
+    import hashlib
+    payload["payload_sha256"] = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    loaded, *_ = load_review_run(path)
+    assert loaded.status is RunStatus.REVIEW_PENDING
+    assert all(o.axes == ("Y", "X") for o in loaded.observations)
+
+
 def test_blank_survey_still_pauses_and_missing_survey_fails():
     runner = setup()
     runner.detector = lambda image, obs: []
@@ -89,9 +119,9 @@ def test_blank_survey_still_pauses_and_missing_survey_fails():
     assert pending.status is RunStatus.REVIEW_PENDING and pending.targets == []
     missing = setup()
     class Missing(MockBackend):
-        def acquire(self, *args, **kwargs):
-            result = super().acquire(*args, **kwargs)
-            return replace(result, image=None, data_reference=None)
+        def acquire(self, request):
+            result = super().acquire(request)
+            return replace(result, image=None, dataset=None)
     missing.backend = Missing()
     assert missing.run(review_only=True).status is RunStatus.FAILED
 

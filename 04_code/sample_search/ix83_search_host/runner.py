@@ -6,6 +6,7 @@ import json
 from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timezone
 from math import isfinite
+from pathlib import Path
 from time import monotonic
 from typing import Any
 
@@ -14,6 +15,7 @@ from samplescout.contracts import (
     ActionRecord,
     ActionStatus,
     DetectedObject,
+    ExecutionBindingSnapshot,
     Phase,
     RunStatus,
     SearchObservation,
@@ -32,7 +34,16 @@ from samplescout.geometry import (
 from samplescout.records import to_record_value
 from samplescout.review import ReviewDecision
 
-from .contracts import AcquisitionResult, SearchBackend
+from .binding import validate_binding
+from .contracts import (
+    AcquireRequest,
+    AcquisitionResult,
+    ExecutionControl,
+    MoveRequest,
+    MoveResult,
+    SearchBackend,
+)
+from .dataset import validate_dataset_reference
 
 Detector = Callable[[Any, SearchObservation], Sequence[Any]]
 Review = Callable[[Sequence[Target]], Sequence[Target]]
@@ -41,7 +52,9 @@ CancelCheck = Callable[[], bool]
 
 
 class SearchCancelled(Exception):
-    pass
+    def __init__(self, message: str = "search cancelled", *, dataset: Any = None) -> None:
+        super().__init__(message)
+        self.dataset = dataset
 
 
 class WorkflowDeadlineExceeded(Exception):
@@ -59,7 +72,8 @@ class SampleSearchRunner:
                  clock: Clock | None = None, deadline_clock: Callable[[], float] | None = None,
                  cancelled: CancelCheck | None = None, review: Review | None = None,
                  max_observation_age_s: float | None = 300.0,
-                 full_calibration: Calibration | None = None):
+                 full_calibration: Calibration | None = None,
+                 action_journal: str | Path | None = None):
         self.backend = backend
         self.detector = detector
         self.recipe = recipe
@@ -73,6 +87,8 @@ class SampleSearchRunner:
         self.cancelled = cancelled or (lambda: False)
         self.review = review
         self.max_observation_age_s = max_observation_age_s
+        self.action_journal = Path(action_journal) if action_journal is not None else None
+        self._journal_initialized = False
         if timeout_s is not None and timeout_s <= 0:
             raise ValueError("timeout_s must be positive")
         if recipe.specimen_id == "" or recipe.coordinate_frame != calibration.coordinate_frame or recipe.calibration_id != calibration.calibration_id:
@@ -109,7 +125,7 @@ class SampleSearchRunner:
         deadline = self.deadline_clock() + self.timeout_s if self.timeout_s is not None else None
         try:
             self._check(deadline)
-            self._preflight()
+            run.execution_bindings = (self._preflight(),)
             survey_shape = self.recipe.survey_settings.image_shape_yx or self.recipe.image_shape_yx
             fw, fh = self.calibration.image_extent_um(survey_shape)
             tiles = plan_tiles(self.region, (fw, fh), self.recipe.overlap)
@@ -248,7 +264,9 @@ class SampleSearchRunner:
             (now - o.acquired_at).total_seconds() > self.max_observation_age_s for o in survey
         ):
             raise ValueError("survey observation is stale for revisit")
-        self._preflight()
+        binding = self._preflight()
+        if binding not in run.execution_bindings:
+            run.execution_bindings = (*run.execution_bindings, binding)
         run.targets = list(result.targets)
         run.review_decision = decision.to_dict()
         run.manual_provenance = tuple({"target_id": p.target_id, "reason": p.reason,
@@ -288,30 +306,16 @@ class SampleSearchRunner:
         if deadline is not None and self.deadline_clock() >= deadline:
             raise WorkflowDeadlineExceeded("workflow deadline exceeded before the next action")
 
-    def _preflight(self) -> None:
-        required_capabilities = set(self.recipe.required_capabilities)
+    def _preflight(self) -> ExecutionBindingSnapshot:
+        if getattr(self.backend, "durable_journal_required", False) and self.action_journal is None:
+            raise RuntimeError("this device backend requires a durable action journal")
+        required_capabilities = {"stage.xy", "camera.snap", "storage.raw"}
+        required_capabilities.update(self.recipe.required_capabilities)
         if self.recipe.survey_settings.frames > 1 or self.recipe.full_settings.frames > 1:
             required_capabilities.add("camera.sequence")
-        available_capabilities = getattr(self.backend, "capabilities", None)
-        if required_capabilities:
-            if available_capabilities is None:
-                raise RuntimeError(
-                    "backend does not declare capabilities required by the recipe: "
-                    + ", ".join(sorted(required_capabilities)))
-            missing = required_capabilities - set(available_capabilities)
-            if missing:
-                raise RuntimeError(f"backend lacks required capabilities: {', '.join(sorted(missing))}")
-
-        required_resources = {requirement.name for requirement in self.recipe.resources}
-        available_resources = getattr(self.backend, "resources", None)
-        default_resources = {"stage", "camera"}
-        if available_resources is None:
-            if required_resources != default_resources:
-                raise RuntimeError("backend does not declare explicitly requested resources")
-            return
-        missing_resources = required_resources - set(available_resources)
-        if missing_resources:
-            raise RuntimeError(f"backend lacks required resources: {', '.join(sorted(missing_resources))}")
+        return validate_binding(self.backend, capabilities=required_capabilities,
+                                resources=self.recipe.resources,
+                                settings=(self.recipe.survey_settings, self.recipe.full_settings))
 
     def _record(self, run: WorkflowRun, action: str, phase: Phase, call: Callable[[], Any], deadline: float | None,
                 request_id: str | None = None, parameters: Mapping[str, Any] | None = None) -> Any:
@@ -319,28 +323,56 @@ class SampleSearchRunner:
         request_id = request_id or new_request_id()
         started = self.clock()
         params = dict(parameters or {})
-        run.actions.append(ActionRecord(request_id, action, ActionStatus.PROPOSED, phase, started, parameters=params))
-        run.actions.append(ActionRecord(request_id, action, ActionStatus.ACCEPTED, phase, started, parameters=params))
-        run.actions.append(ActionRecord(request_id, action, ActionStatus.STARTED, phase, started, parameters=params))
+        self._append_action(run, ActionRecord(request_id, action, ActionStatus.PROPOSED,
+                                               phase, started, parameters=params))
+        self._append_action(run, ActionRecord(request_id, action, ActionStatus.ACCEPTED,
+                                               phase, started, parameters=params))
+        self._append_action(run, ActionRecord(request_id, action, ActionStatus.STARTED,
+                                               phase, started, parameters=params))
         try:
             result = call()
         except TimeoutError as exc:
-            run.actions.append(ActionRecord(request_id, action, ActionStatus.OUTCOME_UNKNOWN, phase, started, self.clock(), parameters=params, error=str(exc)))
+            self._append_action(run, ActionRecord(request_id, action, ActionStatus.OUTCOME_UNKNOWN, phase, started, self.clock(), parameters=params, error=str(exc)))
             raise
-        except SearchCancelled:
-            run.actions.append(ActionRecord(request_id, action, ActionStatus.CANCELLED, phase, started, self.clock(), parameters=params))
+        except SearchCancelled as exc:
+            dataset = exc.dataset
+            readback = ({"dataset": to_record_value(dataset)} if dataset is not None else None)
+            self._append_action(run, ActionRecord(request_id, action, ActionStatus.CANCELLED, phase,
+                started, self.clock(), parameters=params, readback=readback))
             raise
         except Exception as exc:
-            run.actions.append(ActionRecord(request_id, action, ActionStatus.FAILED, phase, started, self.clock(), parameters=params, error=f"{type(exc).__name__}: {exc}"))
+            status = (ActionStatus.OUTCOME_UNKNOWN
+                      if getattr(self.backend, "outcome_uncertain", False)
+                      else ActionStatus.FAILED)
+            self._append_action(run, ActionRecord(request_id, action, status, phase, started,
+                self.clock(), parameters=params, error=f"{type(exc).__name__}: {exc}"))
             raise
         readback = result
         if isinstance(result, AcquisitionResult):
             readback = {"stage_xy_um": result.stage_xy_um, "acquired_at": result.acquired_at.isoformat(),
-                        "data_reference": result.data_reference, "axes": result.axes,
+                        "data_reference": to_record_value(result.dataset),
+                        "axes": result.image_axes,
                         "image_shape": getattr(result.image, "shape", None), "image_present": result.image is not None}
-        run.actions.append(ActionRecord(request_id, action, ActionStatus.COMPLETED, phase, started,
+        self._append_action(run, ActionRecord(request_id, action, ActionStatus.COMPLETED, phase, started,
                                         self.clock(), parameters=params, readback=readback))
         return request_id, result
+
+    def _append_action(self, run: WorkflowRun, action: ActionRecord) -> None:
+        run.actions.append(action)
+        if self.action_journal is None:
+            return
+        self.action_journal.parent.mkdir(parents=True, exist_ok=True)
+        line = json.dumps({"run_id": run.run_id,
+                           "execution_bindings": to_record_value(run.execution_bindings),
+                           "action": to_record_value(action)},
+                          sort_keys=True, allow_nan=False) + "\n"
+        mode = "a" if self._journal_initialized else "x"
+        with self.action_journal.open(mode, encoding="utf-8", newline="\n") as stream:
+            stream.write(line)
+            stream.flush()
+            import os
+            os.fsync(stream.fileno())
+        self._journal_initialized = True
 
     def _acquire(self, run: WorkflowRun, tile: Tile, phase: Phase,
                  settings: AcquisitionSettings, calibration: Calibration,
@@ -350,19 +382,25 @@ class SampleSearchRunner:
         center_offset = calibration.image_to_stage((w - 1) / 2, (h - 1) / 2, (0.0, 0.0))
         requested_stage_xy = tile.x_um - center_offset[0], tile.y_um - center_offset[1]
         request_id = new_request_id()
+        control = ExecutionControl(cancelled=self.cancelled, deadline_monotonic=deadline)
+        move = MoveRequest(request_id, run.run_id, self.recipe.recipe_id, self.recipe.version,
+            self.recipe.specimen_id, phase, calibration.coordinate_frame,
+            calibration.calibration_id, (*requested_stage_xy, self.z_um), tile.tile_id,
+            target_id, control)
         _, readback = self._record(run, "move_to", phase,
-            lambda: self.backend.move_to(request_id, (*requested_stage_xy, self.z_um), deadline=deadline),
+            lambda: self.backend.move_to(move),
             deadline, request_id, {"position_xyz_um": (*requested_stage_xy, self.z_um),
                                    "tile_id": tile.tile_id, "target_id": target_id})
         actual_xy = requested_stage_xy
-        if isinstance(readback, (tuple, list)) and len(readback) >= 2:
-            actual_xy = float(readback[0]), float(readback[1])
+        if not isinstance(readback, MoveResult) or readback.request_id != request_id:
+            raise TypeError("backend.move_to must return a matching MoveResult")
+        actual_xy = readback.stage_xyz_um[:2]
         acquire_id = new_request_id()
+        acquire = AcquireRequest(acquire_id, run.run_id, self.recipe.recipe_id,
+            self.recipe.version, self.recipe.specimen_id, phase, calibration.coordinate_frame,
+            calibration.calibration_id, tile.tile_id, settings, target_id, control)
         actual_id, result = self._record(run, "acquire", phase,
-            lambda: self.backend.acquire(acquire_id, settings, phase=phase,
-                specimen_id=self.recipe.specimen_id, coordinate_frame=calibration.coordinate_frame,
-                calibration_id=calibration.calibration_id, run_id=run.run_id,
-                tile_id=tile.tile_id, target_id=target_id, deadline=deadline), deadline, acquire_id,
+            lambda: self.backend.acquire(acquire), deadline, acquire_id,
             {"exposure_ms": settings.exposure_ms, "frames": settings.frames,
              "channel_id": settings.channel_id, "image_shape_yx": shape_yx,
              "roi_origin": settings.roi_origin or calibration.roi_origin,
@@ -374,10 +412,16 @@ class SampleSearchRunner:
             raise RuntimeError("internal request ID mismatch")
         if not isinstance(result, AcquisitionResult):
             raise TypeError("backend.acquire must return AcquisitionResult")
+        if result.request_id != acquire_id or (
+            result.run_id, result.specimen_id, result.phase, result.coordinate_frame,
+            result.calibration_id, result.tile_id,
+        ) != (run.run_id, self.recipe.specimen_id, phase, calibration.coordinate_frame,
+              calibration.calibration_id, tile.tile_id):
+            raise ValueError("acquisition result context does not match request")
         if len(result.stage_xy_um) != 2 or not all(isfinite(v) for v in result.stage_xy_um):
             raise ValueError("acquisition stage readback must contain finite x/y micrometres")
-        if result.axes.count("x") != 1 or result.axes.count("y") != 1 or len(set(result.axes)) != len(result.axes):
-            raise ValueError("acquisition axes must include unique x and y axes")
+        if result.image_axes != ("Y", "X"):
+            raise ValueError("survey image axes must be YX")
         if result.acquired_at.tzinfo is None:
             raise ValueError("acquired_at must be timezone-aware UTC")
         published_at = self.clock()
@@ -386,10 +430,8 @@ class SampleSearchRunner:
         if self.max_observation_age_s is not None and (published_at - result.acquired_at).total_seconds() > self.max_observation_age_s:
             raise ValueError("acquisition result is stale")
         image_shape = getattr(result.image, "shape", None)
-        if image_shape is not None and len(image_shape) != len(result.axes):
-            raise ValueError("image shape does not match declared axes")
         if image_shape is not None and settings.image_shape_yx is not None:
-            y_size, x_size = image_shape[result.axes.index("y")], image_shape[result.axes.index("x")]
+            y_size, x_size = image_shape[0], image_shape[1]
             if (y_size, x_size) != settings.image_shape_yx:
                 raise ValueError("image y/x dimensions do not match acquisition settings")
         if result.stage_xy_um != actual_xy:
@@ -397,19 +439,20 @@ class SampleSearchRunner:
         actual_xy = result.stage_xy_um
         actual_shape = None
         if image_shape is not None:
-            actual_shape = (int(image_shape[result.axes.index("y")]), int(image_shape[result.axes.index("x")]))
+            actual_shape = (int(image_shape[0]), int(image_shape[1]))
         elif settings.image_shape_yx is not None:
             actual_shape = settings.image_shape_yx
         else:
             actual_shape = shape_yx
         obs = SearchObservation(self.recipe.specimen_id, phase, calibration.coordinate_frame,
             calibration.calibration_id, result.acquired_at, published_at, actual_xy,
-            tile.tile_id, acquire_id, run_id=run.run_id, value=None, axes=result.axes, missing=result.image is None,
-            target_id=target_id, data_reference=result.data_reference,
+            tile.tile_id, acquire_id, run_id=run.run_id, value=None, axes=result.image_axes, missing=result.image is None,
+            target_id=target_id, data_reference=result.dataset,
             channel_id=settings.channel_id, exposure_ms=settings.exposure_ms, image_shape_yx=actual_shape)
         if result.image is None:
             run.observations.append(obs)
             raise MissingAcquisitionData(f"acquisition {acquire_id} completed without image data")
+        validate_dataset_reference(result.dataset, settings, actual_shape)
         return obs, result.image
 
 

@@ -11,7 +11,6 @@ It is not a biological sensitivity or hardware acceptance result.
 from __future__ import annotations
 
 import json
-import sys
 import tempfile
 from math import hypot
 from pathlib import Path
@@ -21,20 +20,19 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
+from source_bootstrap import enable_source_tree
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = enable_source_tree(include_test_support=True)
 PACKAGE_ROOT = ROOT / "03_external" / "sample_search"
-sys.path[:0] = [str(PACKAGE_ROOT), str(ROOT / "04_code/sample_search")]
-sys.path.insert(0, str(ROOT / "04_code/sample_search/tests"))
 
-from samplescout import (  # noqa: E402
+from samplescout import (
     Phase,
     RunStatus,
     load_replay,
     replay_targets,
     save_replay,
 )
-from test_acceptance import CAL, OBJECTS, REGION, run_seeded_search  # noqa: E402
+from test_acceptance import CAL, OBJECTS, REGION, run_seeded_search
 
 
 def main() -> int:

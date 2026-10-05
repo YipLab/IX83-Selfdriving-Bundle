@@ -1,13 +1,27 @@
 # IX83 sample-search execution host
 
 This bundle-owned source tree imports the pure [scan library](../../03_external/sample_search/README.md).
-`ix83_search_host` owns the serial search/scan runners, phase transitions, deadlines,
-cancellation and action journaling. `IX83SearchExecutor` owns actual camera/stage
-calls, resource ownership, limits and NPY/OME recording. The selected real binding
-uses Pycro-Manager/MMCore. Importing either module opens no hardware connection.
+`ix83_search_host` owns typed execution requests/results, serial runner transitions,
+deadlines, cancellation and action journaling. `IX83SearchExecutor` owns camera/stage
+calls, declared binding capabilities, resource ownership, limits and NPY/OME recording.
+Both sample-search and scan runners preflight their exclusive stage, camera and storage
+requirements, supported settings and operations before issuing commands. They persist
+the same typed `ActionRecord` events for proposal, acceptance, start and outcome.
+Run snapshots also record the adapter provider and declared capabilities, resources
+and settings.
+Local launchers share one temporary source-tree bootstrap in `source_bootstrap.py`;
+replace it with editable package dependencies when package ownership and metadata settle.
+Real executor-backed search runs require a durable JSONL action journal. Importing
+either module opens no hardware connection.
 
 The library publishes `WorkflowRecipe` and `StageScanRecipe` descriptors and pure
 geometry/detection/review calculations; it imports no IX83, RedSun or RTASPT host.
+Survey images declare uppercase `YX` axes. Recorded datasets use typed references
+with storage format, named axes, shape, dtype, verified count, terminal state and
+manifest checksum. Survey/revisit and explicit scans use the same host-side dataset
+validator; version 1 checkpoints are verified before legacy-axis conversion.
+The file-storage adapter verifies the typed reference's manifest digest before replay;
+the NPY/OME readers then validate the frame ledger and raw pixel checksums.
 The host resolves the current instrument origin, imports `build_grid_recipe`, and
 interprets the resulting recipe under its own limits and cleanup policy.
 
@@ -39,6 +53,7 @@ Remove-Item Env:PYTHONPATH
 
 See [scan usage](../../03_external/sample_search/docs/scanning_usage.md) for real
 device selection and target lists. This CLI is an acquisition-host launcher.
-The library does not orchestrate the flow; a future parallel RedSun host may
-import the same recipe/calculation contracts through its own execution adapter.
+The library does not orchestrate the flow. Typed host requests and results now define
+the bundle execution seam; a future RedSun host can bind those recipe/data contracts
+through its own adapter while keeping one command authority.
 PV/IOC publishing and RTASPT live-view attachment remain future integrations.

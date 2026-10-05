@@ -75,5 +75,5 @@ Validation on 2026-10-04: six mock positions saved all 18 requested movie frames
 the real column-major 50 x 25 um scan saved and checksum-verified six camera frames
 and returned within the 0.5 um readback tolerance. The real journal is local
 `04_code/sample_search/recordings/scan-1791141072216763100/scan.json`.
-The combined library/host/acquisition suite passes 114 tests after the import-boundary refactor. This is
+The combined library/host/acquisition suite passes 127 tests after the import-boundary and typed-seam updates. This is
 mechanical procedure evidence; calibrated specimen recall remains pending.

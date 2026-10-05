@@ -12,6 +12,21 @@ Image = np.ndarray[Any, np.dtype[Any]]
 
 
 @dataclass(frozen=True)
+class DeviceCapabilities:
+    """Capabilities reported by the selected device binding, not a recipe."""
+
+    operations: frozenset[str]
+    resources: frozenset[str]
+    settings: frozenset[str] = frozenset()
+
+    def __post_init__(self) -> None:
+        if not self.operations or not self.resources:
+            raise ValueError("device binding must declare operations and owned resources")
+        if any(not value for value in (*self.operations, *self.resources, *self.settings)):
+            raise ValueError("capability names must be nonempty")
+
+
+@dataclass(frozen=True)
 class Channel:
     """An optional Micro-Manager-compatible group/preset selection."""
 

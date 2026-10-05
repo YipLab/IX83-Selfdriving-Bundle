@@ -14,7 +14,9 @@ from .contracts import (
     AcquisitionSettings,
     ActionRecord,
     ActionStatus,
+    DatasetReference,
     DetectedObject,
+    ExecutionBindingSnapshot,
     Phase,
     RunStatus,
     SearchObservation,
@@ -28,7 +30,7 @@ from .geometry import Calibration, Region, deduplicate_targets
 def save_replay(path: str | Path, observations: Sequence[SearchObservation]) -> None:
     """Save typed observations/detections for decision replay (images stay referenced)."""
     records = [_observation_record(obs) for obs in observations]
-    Path(path).write_text(json.dumps({"schema": "samplescout-replay-v1", "observations": records}, indent=2), encoding="utf-8")
+    Path(path).write_text(json.dumps({"schema": "samplescout-replay-v3", "observations": records}, indent=2), encoding="utf-8")
 
 
 def _observation_record(obs: SearchObservation) -> dict[str, Any]:
@@ -40,7 +42,7 @@ def _observation_record(obs: SearchObservation) -> dict[str, Any]:
             "stage_xy_um": list(obs.stage_xy_um), "tile_id": obs.tile_id,
             "request_id": obs.request_id, "run_id": obs.run_id, "axes": list(obs.axes),
             "missing": obs.missing, "target_id": obs.target_id,
-            "data_reference": obs.data_reference, "channel_id": obs.channel_id,
+            "data_reference": to_record_value(obs.data_reference), "channel_id": obs.channel_id,
             "exposure_ms": obs.exposure_ms,
             "image_shape_yx": obs.image_shape_yx,
             "detections": [{"x_pixel": float(d.x_pixel), "y_pixel": float(d.y_pixel),
@@ -73,7 +75,7 @@ def save_run(path: str | Path, run: WorkflowRun, recipe: WorkflowRecipe,
              full_calibration: Calibration | None = None) -> None:
     """Write a resolved post-run snapshot with references, decisions, and ledger."""
     payload = {
-        "schema": "samplescout-run-v1",
+        "schema": "samplescout-run-v3",
         "run": {"run_id": run.run_id, "recipe_id": run.recipe_id,
                 "recipe_version": run.recipe_version, "specimen_id": run.specimen_id,
                 "status": run.status.value, "phase": run.phase.value,
@@ -83,6 +85,7 @@ def save_run(path: str | Path, run: WorkflowRun, recipe: WorkflowRecipe,
         "calibration": to_record_value(calibration),
         "full_calibration": to_record_value(full_calibration or calibration),
         "region": to_record_value(region),
+        "execution_bindings": [to_record_value(binding) for binding in run.execution_bindings],
         "actions": [to_record_value(action) for action in run.actions],
         "observations": [_observation_record(obs) for obs in run.observations],
         "targets": [to_record_value(target) for target in run.targets],
@@ -110,7 +113,8 @@ def load_review_run(path: str | Path) -> tuple[WorkflowRun, WorkflowRecipe, Cali
         return result
     payload = json.loads(Path(path).read_text(encoding="utf-8"), parse_constant=reject_constant,
                          object_pairs_hook=reject_duplicate_pairs)
-    if payload.get("schema") != "samplescout-run-v1":
+    schema = payload.get("schema")
+    if schema not in ("samplescout-run-v1", "samplescout-run-v2", "samplescout-run-v3"):
         raise ValueError("unsupported saved run schema")
     digest = payload.pop("payload_sha256", None)
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False)
@@ -152,7 +156,9 @@ def load_review_run(path: str | Path) -> tuple[WorkflowRun, WorkflowRecipe, Cali
                       review_manifest_sha256=review.get("manifest_sha256"),
                       review_fixed_z_um=review.get("fixed_z_um"),
                       review_decision=review.get("decision"),
-                      manual_provenance=tuple(review.get("manual_provenance", ())))
+                      manual_provenance=tuple(review.get("manual_provenance", ())),
+                      execution_bindings=tuple(_binding_from_record(item)
+                                               for item in payload.get("execution_bindings", [])))
     if not run.review_binding_sha256 or not run.review_manifest_sha256:
         raise ValueError("saved review checkpoint is missing binding metadata")
     if any(o.run_id != run.run_id or o.specimen_id != run.specimen_id for o in observations):
@@ -174,6 +180,16 @@ def _calibration_from_record(item: Mapping[str, Any]) -> Calibration:
                        tuple(item.get("roi_origin", (0, 0))), tuple(item.get("binning", (1, 1))))
 
 
+def _binding_from_record(item: Mapping[str, Any]) -> ExecutionBindingSnapshot:
+    return ExecutionBindingSnapshot(
+        provider=str(item["provider"]),
+        capabilities=frozenset(str(value) for value in item["capabilities"]),
+        resources=frozenset(str(value) for value in item["resources"]),
+        settings=frozenset(str(value) for value in item.get("settings", [])),
+        reference=str(item["reference"]) if item.get("reference") is not None else None,
+    )
+
+
 def _recipe_from_record(item: Mapping[str, Any]) -> WorkflowRecipe:
     def settings(x: Mapping[str, Any]) -> AcquisitionSettings:
         return AcquisitionSettings(x["exposure_ms"], x["frames"], x.get("channel_id"),
@@ -186,7 +202,9 @@ def _recipe_from_record(item: Mapping[str, Any]) -> WorkflowRecipe:
                           settings(item["full_settings"]), tuple(item["image_shape_yx"]),
                           item.get("overlap", .2), item.get("deduplication_um", 3), item.get("max_targets"),
                           frozenset(item.get("required_capabilities", [])),
-                          tuple(ResourceRequirement(**r) for r in item.get("resources", [])),
+                          tuple(ResourceRequirement(**r) for r in item.get("resources", [
+                              {"name": "stage"}, {"name": "camera"}, {"name": "storage"}
+                          ])),
                           tuple(item.get("preconditions", [])), tuple(item.get("physical_effects", [])),
                           item.get("completion_condition", ""), item.get("failure_condition", ""),
                           item.get("parameters", {}), tuple(item.get("validation_evidence", [])))
@@ -203,8 +221,9 @@ def _observations_from_records(items: Sequence[Mapping[str, Any]]) -> tuple[Sear
             item["calibration_id"], datetime.fromisoformat(item["acquired_at"]),
             datetime.fromisoformat(item["published_at"]), tuple(item["stage_xy_um"]), item["tile_id"],
             item["request_id"], run_id=item["run_id"], value=detections if detections else None,
-            axes=tuple(item["axes"]), missing=item["missing"], target_id=item.get("target_id"),
-            data_reference=item.get("data_reference"), channel_id=item.get("channel_id"),
+            axes=tuple(axis.upper() for axis in item["axes"]), missing=item["missing"], target_id=item.get("target_id"),
+            data_reference=_dataset_reference_from_record(item.get("data_reference")),
+            channel_id=item.get("channel_id"),
             exposure_ms=item.get("exposure_ms"),
             image_shape_yx=tuple(item["image_shape_yx"]) if item.get("image_shape_yx") else None))
     return tuple(records)
@@ -214,7 +233,7 @@ def load_replay(path: str | Path) -> tuple[SearchObservation, ...]:
     """Load replay-safe detection records without opening hardware or raw data."""
     from .contracts import Phase
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
-    if payload.get("schema") != "samplescout-replay-v1":
+    if payload.get("schema") not in ("samplescout-replay-v1", "samplescout-replay-v2", "samplescout-replay-v3"):
         raise ValueError("unsupported replay schema")
     records = []
     for item in payload["observations"]:
@@ -227,11 +246,26 @@ def load_replay(path: str | Path) -> tuple[SearchObservation, ...]:
             item["calibration_id"], datetime.fromisoformat(item["acquired_at"]),
             datetime.fromisoformat(item["published_at"]), tuple(item["stage_xy_um"]),
             item["tile_id"], item["request_id"], run_id=item["run_id"],
-            value=detections, axes=tuple(item["axes"]), missing=item["missing"],
-            target_id=item.get("target_id"), data_reference=item.get("data_reference"),
+            value=detections, axes=tuple(axis.upper() for axis in item["axes"]), missing=item["missing"],
+            target_id=item.get("target_id"),
+            data_reference=_dataset_reference_from_record(item.get("data_reference")),
             channel_id=item.get("channel_id"), exposure_ms=item.get("exposure_ms"),
             image_shape_yx=tuple(item["image_shape_yx"]) if item.get("image_shape_yx") else None))
     return tuple(records)
+
+
+def _dataset_reference_from_record(value: Any) -> DatasetReference | str | None:
+    if value is None or isinstance(value, str):
+        return value
+    if not isinstance(value, Mapping):
+        raise TypeError("data_reference must be a typed object, URI string or null")
+    return DatasetReference(
+        uri=str(value["uri"]), format=str(value["format"]), axes=str(value["axes"]),
+        shape=tuple(int(size) for size in value["shape"]), dtype=str(value["dtype"]),
+        frames_written=int(value["frames_written"]),
+        terminal_status=str(value["terminal_status"]),
+        manifest_sha256=str(value["manifest_sha256"]),
+    )
 
 
 def replay_targets(observations: Sequence[SearchObservation], calibration: Calibration,

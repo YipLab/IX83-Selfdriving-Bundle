@@ -17,7 +17,7 @@ On 2026-10-04, the locked `.venv-integration` Python 3.12.13 environment passed 
 
 ## Ported components
 
-- `Camera`, `XYZStage`, `Position`, `Channel` and `Frame`: typed device and image contracts. Frames carry request/target/timepoint context, sequence, stage position and host acquisition-call start/end timestamps.
+- `Camera`, `XYZStage`, `Position`, `Channel`, `DeviceCapabilities` and `Frame`: typed device, capability and image contracts. Frames carry request/target/timepoint context, sequence, stage position and host acquisition-call start/end timestamps.
 - `MockXYZStage` and `MockCamera`: absolute XYZ positions with optional limits, and a seeded specimen fixed in XY coordinates. The baseline mock records Z but does not simulate optical defocus or stage timing.
 - `PycroManagerCamera` and `PycroManagerXYZStage`: explicit, caller-owned Core adapters. No connection occurs on import. MMStudio Live must be stopped; adapters do not unload devices on close. Optional finite, ordered XYZ `limits_um` reject out-of-bounds targets before sending motion commands; these are software bounds, not calibrated mechanical limits.
 - `AcquisitionController`: one worker for free run or finite requests, bounded/coalesced preview, complete finite-run callbacks, cancellation and completed/cancelled/failed run results. Callbacks run on the worker, so GUI consumers must route updates onto their own UI thread.

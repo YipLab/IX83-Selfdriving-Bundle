@@ -1,7 +1,6 @@
-import sys
 from pathlib import Path
+from runpy import run_path
 
-BUNDLE = Path(__file__).resolve().parents[3]
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"),
-                str(BUNDLE / "04_code/ix83_acquisition/src")]
+bootstrap_path = Path(__file__).resolve().parents[1] / "source_bootstrap.py"
+bootstrap = run_path(str(bootstrap_path))
+bootstrap["enable_source_tree"]()

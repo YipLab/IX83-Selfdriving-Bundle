@@ -1,25 +1,19 @@
 """Saved survey, offline review, and resumed movies through the bundle executor."""
 # Source-tree bootstrapping is intentional before packaging.
-# ruff: noqa: E402
 from __future__ import annotations
 
 import json
-import sys
 import time
-from pathlib import Path
 
 import numpy as np
+from source_bootstrap import enable_source_tree
 
-BUNDLE = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"),
-                str(BUNDLE / "04_code/ix83_acquisition/src"),
-                str(BUNDLE / "03_external/Realtime-Anisotropy-SPT-Analysis/src")]
+BUNDLE = enable_source_tree(include_processing_source=True)
 
 from ix83_acquisition import MockCamera, MockXYZStage, replay_frames, replay_ome_frames
 from ix83_acquisition.rtaspt_handoff import rtaspt_planes
 from ix83_search_adapter import IX83SearchExecutor
-from ix83_search_host import SampleSearchRunner
+from ix83_search_host import SampleSearchRunner, local_dataset_path
 from samplescout import (
     AcquisitionSettings,
     Calibration,
@@ -67,7 +61,8 @@ def main():
     survey_executor = executor(stage, output / "survey")
     try:
         pending = SampleSearchRunner(survey_executor, detector, recipe, calibration,
-                                    region, timeout_s=30).run(review_only=True)
+                                    region, timeout_s=30,
+                                    action_journal=output / "survey-actions.jsonl").run(review_only=True)
         assert pending.status is RunStatus.REVIEW_PENDING, pending.errors
         survey = [obs for obs in pending.observations if obs.phase is Phase.SURVEY]
         assert len(survey) == 12 and len(pending.targets) == 5
@@ -76,7 +71,7 @@ def main():
         context = ReviewContext(pending.run_id, pending.specimen_id,
                                 calibration.coordinate_frame, calibration.calibration_id)
         manifest = render_review_html(output / "review.html", context, pending.targets, survey,
-            image_loader=lambda obs: next(replay_frames(Path(obs.data_reference))).pixels,
+            image_loader=lambda obs: next(replay_frames(local_dataset_path(obs.data_reference))).pixels,
             calibration=calibration, region=region)
         replacement = pending.targets[-1]
         decision = make_decision(manifest,
@@ -95,21 +90,22 @@ def main():
     try:
         resumed = SampleSearchRunner(resumed_executor, detector, loaded_recipe,
             loaded_calibration, loaded_region, full_calibration=full_calibration,
-            z_um=loaded.review_fixed_z_um, timeout_s=30)
+            z_um=loaded.review_fixed_z_um, timeout_s=30,
+            action_journal=output / "revisit-actions.jsonl")
         run = resumed.resume_review(loaded, decision_from_json(decision_path))
         assert run.status is RunStatus.COMPLETED, run.errors
         revisits = [obs for obs in run.observations if obs.phase is Phase.REVISIT]
         assert len(revisits) == len(run.targets) == 3
         assert len([obs for obs in run.observations if obs.phase is Phase.SURVEY]) == 12
         assert len(run.manual_provenance) == 1 and run.review_decision is not None
-        survey_frames = sum(len(list(replay_frames(Path(obs.data_reference)))) for obs in survey)
-        movie_frames = sum(len(list(replay_ome_frames(Path(obs.data_reference)))) for obs in revisits)
+        survey_frames = sum(len(list(replay_frames(local_dataset_path(obs.data_reference)))) for obs in survey)
+        movie_frames = sum(len(list(replay_ome_frames(local_dataset_path(obs.data_reference)))) for obs in revisits)
         assert survey_frames == 12 and movie_frames == 9
         for target, observed in zip(run.targets, revisits, strict=True):
             assert np.linalg.norm(np.array(observed.stage_xy_um) - (target.x_um, target.y_um)) < 1e-9
-            image = next(replay_ome_frames(Path(observed.data_reference))).pixels
+            image = next(replay_ome_frames(local_dataset_path(observed.data_reference))).pixels
             assert image[38:42, 38:42].max() > 5000
-        plane_count = sum(len(list(rtaspt_planes(Path(obs.data_reference)))) for obs in revisits)
+        plane_count = sum(len(list(rtaspt_planes(local_dataset_path(obs.data_reference)))) for obs in revisits)
         assert plane_count == movie_frames
         save_run(output / "workflow_run.json", run, recipe, calibration, region)
         report = {"status": "passed", "survey_tiles": 12, "candidate_targets": 5,

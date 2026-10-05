@@ -5,6 +5,8 @@ actual instrument preflight are supplied by the hosting application, not a recip
 """
 from __future__ import annotations
 
+import hashlib
+import json
 import threading
 import time
 from collections.abc import Callable
@@ -16,6 +18,7 @@ from typing import Any
 from ix83_acquisition import (
     AcquisitionController,
     CaptureRequest,
+    DeviceCapabilities,
     Frame,
     OMERecorder,
     Position,
@@ -23,8 +26,14 @@ from ix83_acquisition import (
     SequenceRequest,
 )
 from ix83_acquisition.interfaces import Camera, SequenceCamera, XYZStage
-from ix83_search_host import AcquisitionResult
-from samplescout.contracts import AcquisitionSettings, Phase
+from ix83_search_host import (
+    AcquireRequest,
+    AcquisitionResult,
+    DataReference,
+    MoveRequest,
+    MoveResult,
+    SearchCancelled,
+)
 
 
 class IX83SearchExecutor:
@@ -35,8 +44,8 @@ class IX83SearchExecutor:
     An uncertain command forbids subsequent actions and automatic return moves.
     """
 
-    capabilities = frozenset({"stage.xy", "camera.snap", "camera.sequence", "storage.raw"})
-    resources = frozenset({"stage", "camera"})
+    durable_journal_required = True
+
 
     def __init__(
         self, camera: Camera, stage: XYZStage, output: Path, *,
@@ -53,9 +62,15 @@ class IX83SearchExecutor:
         ):
             raise ValueError("finite ordered XY limits required")
         self.camera, self.stage, self.output = camera, stage, output
-        self.capabilities = frozenset({"stage.xy", "camera.snap", "storage.raw"})
+        operations = {"stage.xy", "camera.snap", "storage.raw"}
         if isinstance(camera, SequenceCamera):
-            self.capabilities |= {"camera.sequence"}
+            operations.add("camera.sequence")
+        self.device_capabilities = DeviceCapabilities(
+            frozenset(operations), frozenset({"stage", "camera", "storage"}),
+            frozenset({"exposure_ms"}))
+        self.capabilities = self.device_capabilities.operations
+        self.resources = self.device_capabilities.resources
+        self.setting_capabilities = self.device_capabilities.settings
         self.limits_xy_um, self.fixed_z_um = limits_xy_um, fixed_z_um
         self.tolerance_um, self.preflight, self.monotonic = tolerance_um, preflight, monotonic
         self.controller = AcquisitionController(camera, stage, preview_capacity=1)
@@ -89,10 +104,9 @@ class IX83SearchExecutor:
             raise RuntimeError("external stage movement detected; reconcile readback before continuing")
 
     def move_to(
-        self, request_id: str, position_xyz_um: tuple[float, float, float], *,
-        deadline: float | None = None,
-    ) -> tuple[float, float, float]:
-        del request_id  # The workflow action ledger owns request identity.
+        self, request: MoveRequest,
+    ) -> MoveResult:
+        position_xyz_um = request.position_xyz_um
         target = Position(*position_xyz_um)
         if not all(isfinite(v) for v in position_xyz_um):
             raise ValueError("nonfinite target")
@@ -104,24 +118,25 @@ class IX83SearchExecutor:
         if not self._lock.acquire(blocking=False):
             raise RuntimeError("executor resources are already owned")
         try:
-            self._guard(deadline)
+            if request.control.cancelled():
+                raise SearchCancelled("cancelled before stage command")
+            self._guard(request.control.deadline_monotonic)
             self._uncertain = True
             actual = self.stage.move_to(target)
             if not self._close_to(actual, target):
                 raise RuntimeError("stage readback exceeds centring tolerance")
             self._expected_position = actual
-            if deadline is not None and self.monotonic() > deadline:
+            if request.control.deadline_monotonic is not None and self.monotonic() > request.control.deadline_monotonic:
                 raise TimeoutError("move returned after deadline; no automatic retry")
             self._uncertain = False
-            return actual.x_um, actual.y_um, actual.z_um
+            return MoveResult(request.request_id, (actual.x_um, actual.y_um, actual.z_um))
         finally:
             self._lock.release()
 
     def acquire(
-        self, request_id: str, settings: AcquisitionSettings, *, phase: Phase,
-        specimen_id: str, coordinate_frame: str, calibration_id: str, run_id: str,
-        tile_id: str, target_id: str | None = None, deadline: float | None = None,
+        self, request: AcquireRequest,
     ) -> AcquisitionResult:
+        settings = request.settings
         if settings.channel_id is not None:
             raise ValueError("channel switching is unsupported by the loaded mixed profile")
         if settings.roi_origin is not None or settings.binning is not None:
@@ -133,13 +148,17 @@ class IX83SearchExecutor:
         writer: RunRecorder | OMERecorder | None = None
         result: Any = None
         try:
-            self._guard(deadline)
-            context = {"workflow_run_id": run_id, "specimen_id": specimen_id,
-                       "coordinate_frame": coordinate_frame, "calibration_id": calibration_id,
-                       "phase": phase.value, "tile_id": tile_id, "target_id": target_id,
-                       "request_id": request_id, "settings": dict(settings.metadata)}
-            writer = (OMERecorder(self.output, request_id, context=context)
-                      if settings.frames > 1 else RunRecorder(self.output, request_id, context=context))
+            if request.control.cancelled():
+                raise SearchCancelled("cancelled before acquisition")
+            self._guard(request.control.deadline_monotonic)
+            context = {"workflow_run_id": request.run_id, "recipe_id": request.recipe_id,
+                       "recipe_version": request.recipe_version, "specimen_id": request.specimen_id,
+                       "coordinate_frame": request.coordinate_frame, "calibration_id": request.calibration_id,
+                       "phase": request.phase.value, "tile_id": request.tile_id,
+                       "target_id": request.target_id, "request_id": request.request_id,
+                       "settings": dict(settings.metadata)}
+            writer = (OMERecorder(self.output, request.request_id, context=context)
+                      if settings.frames > 1 else RunRecorder(self.output, request.request_id, context=context))
             self._pending_writer = writer
             self.datasets.append(writer.dataset_dir)
             first: list[Frame] = []
@@ -147,46 +166,94 @@ class IX83SearchExecutor:
             def record(frame: Frame) -> None:
                 if settings.image_shape_yx is not None and frame.pixels.shape != settings.image_shape_yx:
                     raise ValueError("camera output shape differs from recipe binding")
+                if request.control.cancelled():
+                    self.controller.request_stop()
                 writer(frame)
                 if not first:
                     first.append(frame)
 
             if settings.frames > 1:
                 self.controller.start_sequence(SequenceRequest(
-                    settings.frames, settings.exposure_ms, target_id=target_id, request_id=request_id,
+                    settings.frames, settings.exposure_ms, target_id=request.target_id,
+                    request_id=request.request_id,
                 ), on_frame=record)
             else:
                 self.controller.start_finite([CaptureRequest(
-                    exposure_ms=settings.exposure_ms, target_id=target_id, request_id=request_id,
+                    exposure_ms=settings.exposure_ms, target_id=request.target_id,
+                    request_id=request.request_id,
                 )], on_frame=record)
-            timeout = None if deadline is None else max(0, deadline - self.monotonic())
-            try:
-                result = self.controller.wait(timeout)
-            except TimeoutError:
-                self._uncertain = True
-                self.controller.request_stop()
-                raise
+            while True:
+                if request.control.cancelled():
+                    self.controller.request_stop()
+                    result = self.controller.wait()
+                    break
+                deadline = request.control.deadline_monotonic
+                if deadline is not None and self.monotonic() >= deadline:
+                    self.controller.request_stop()
+                    self._uncertain = True
+                    raise TimeoutError("acquisition deadline elapsed; stop requested, outcome requires reconciliation")
+                try:
+                    result = self.controller.wait(0.05)
+                    break
+                except TimeoutError:
+                    continue
+            self._uncertain = result.state != "completed"
             if isinstance(writer, OMERecorder):
                 final = writer.finish(result)
             else:
                 writer.finish(result)
                 final = result
+            dataset = self._dataset_reference(writer, final.state)
+            if final.state == "cancelled":
+                self._uncertain = False
+                raise SearchCancelled("acquisition cancelled after retaining its captured prefix",
+                                       dataset=dataset)
+            if final.state != "completed":
+                raise RuntimeError(final.error or "acquisition did not complete")
+            self._uncertain = False
             if final.state != "completed" or final.frames_acquired != settings.frames or not first:
                 raise RuntimeError(f"incomplete acquisition: {final}")
-            if deadline is not None and self.monotonic() > deadline:
+            if request.control.deadline_monotonic is not None and self.monotonic() > request.control.deadline_monotonic:
                 raise TimeoutError("acquisition/storage completed after deadline")
             frame = first[0]
             return AcquisitionResult(
+                request_id=request.request_id, run_id=request.run_id,
+                specimen_id=request.specimen_id, phase=request.phase,
+                coordinate_frame=request.coordinate_frame, calibration_id=request.calibration_id,
+                tile_id=request.tile_id,
                 image=frame.pixels,
                 stage_xy_um=(frame.stage_position.x_um, frame.stage_position.y_um),
                 acquired_at=datetime.fromtimestamp(frame.acquisition_end_ns / 1e9, timezone.utc),
-                data_reference=str(writer.dataset_dir.resolve()),
+                dataset=dataset,
             )
         finally:
             if writer is not None and result is not None:
                 writer.close()
                 self._pending_writer = None
             self._lock.release()
+
+    @staticmethod
+    def _dataset_reference(writer: RunRecorder | OMERecorder, terminal: str) -> DataReference:
+        metadata_path = writer.dataset_dir / "run_metadata.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        ledger = writer.dataset_dir / "frames.jsonl"
+        with ledger.open(encoding="utf-8") as stream:
+            next(stream)
+            first = json.loads(next(stream)) if metadata["frames_written"] else None
+        is_ome = metadata.get("format") == "ome-tiff"
+        shape = tuple(first["shape"]) if first else (0, 0)
+        if is_ome:
+            axes = "TYX"
+            shape = (metadata["frames_written"], *shape)
+            dtype = first["dtype"] if first else "unknown"
+        else:
+            axes = "QYX"
+            shape = (metadata["frames_written"], *shape)
+            dtype = first["dtype"] if first else "unknown"
+        return DataReference(writer.dataset_dir.resolve().as_uri(),
+            "ome-tiff" if is_ome else "npy-frames", axes, shape, dtype,
+            int(metadata["frames_written"]), terminal,
+            hashlib.sha256(metadata_path.read_bytes()).hexdigest())
 
     def close(self, timeout: float = 15) -> None:
         """Stop/wait before closing a writer; never automatically move hardware."""

@@ -7,6 +7,7 @@ from datetime import datetime
 from enum import Enum
 from math import isfinite
 from typing import Any
+from urllib.parse import urlsplit
 from uuid import uuid4
 
 
@@ -42,6 +43,12 @@ class ResourceRequirement:
     name: str
     mode: str = "exclusive"
 
+    def __post_init__(self) -> None:
+        if not self.name:
+            raise ValueError("resource name is required")
+        if self.mode != "exclusive":
+            raise ValueError("the serial prototype supports exclusive resource requirements only")
+
 
 @dataclass(frozen=True)
 class AcquisitionSettings:
@@ -67,6 +74,43 @@ class AcquisitionSettings:
 
 
 @dataclass(frozen=True)
+class DatasetReference:
+    """Framework-neutral reference to stored, integrity-described image data."""
+
+    uri: str
+    format: str
+    axes: str
+    shape: tuple[int, ...]
+    dtype: str
+    frames_written: int
+    terminal_status: str
+    manifest_sha256: str
+
+    def __post_init__(self) -> None:
+        if not self.uri or not urlsplit(self.uri).scheme:
+            raise ValueError("dataset uri must be an absolute URI with a scheme")
+        if not self.format or not self.dtype:
+            raise ValueError("dataset format and dtype are required")
+        if (not self.axes or len(set(self.axes)) != len(self.axes)
+                or any(not axis.isupper() or not axis.isalpha() for axis in self.axes)
+                or not self.axes.endswith("YX")):
+            raise ValueError("dataset axes must be unique uppercase names ending in YX")
+        if len(self.axes) != len(self.shape) or any(size < 0 for size in self.shape):
+            raise ValueError("dataset axes and nonnegative shape dimensions must agree")
+        if self.frames_written < 0 or self.terminal_status not in {
+            "completed", "cancelled", "failed", "outcome_unknown"
+        }:
+            raise ValueError("invalid dataset frame count or terminal status")
+        if self.frames_written and any(size < 1 for size in self.shape):
+            raise ValueError("nonempty datasets require positive shape dimensions")
+        if self.axes[0] in "QT" and self.frames_written and self.shape[0] != self.frames_written:
+            raise ValueError("sequence/time axis length must match the verified frame count")
+        if (len(self.manifest_sha256) != 64
+                or any(ch not in "0123456789abcdef" for ch in self.manifest_sha256)):
+            raise ValueError("manifest_sha256 must be a lowercase SHA-256 digest")
+
+
+@dataclass(frozen=True)
 class WorkflowRecipe:
     recipe_id: str
     version: str
@@ -80,7 +124,9 @@ class WorkflowRecipe:
     deduplication_um: float = 3.0
     max_targets: int | None = None
     required_capabilities: frozenset[str] = frozenset()
-    resources: tuple[ResourceRequirement, ...] = (ResourceRequirement("stage"), ResourceRequirement("camera"))
+    resources: tuple[ResourceRequirement, ...] = (
+        ResourceRequirement("stage"), ResourceRequirement("camera"), ResourceRequirement("storage")
+    )
     preconditions: tuple[str, ...] = ()
     physical_effects: tuple[str, ...] = ("stage_motion", "image_acquisition")
     completion_condition: str = "all selected revisit acquisitions complete"
@@ -99,6 +145,9 @@ class WorkflowRecipe:
             raise ValueError("deduplication_um must be finite and nonnegative")
         if self.max_targets is not None and (isinstance(self.max_targets, bool) or not isinstance(self.max_targets, int) or self.max_targets < 0):
             raise ValueError("max_targets must be a nonnegative integer")
+        if (not self.resources or any(not isinstance(r, ResourceRequirement) for r in self.resources)
+                or len({r.name for r in self.resources}) != len(self.resources)):
+            raise ValueError("recipe resources must be unique typed requirements")
 
 
 @dataclass(frozen=True)
@@ -114,13 +163,25 @@ class SearchObservation:
     request_id: str
     run_id: str = ""
     value: Any = None
-    axes: tuple[str, ...] = ("y", "x")
+    axes: tuple[str, ...] = ("Y", "X")
     missing: bool = False
     target_id: str | None = None
-    data_reference: str | None = None
+    data_reference: DatasetReference | str | None = None
     channel_id: str | None = None
     exposure_ms: float | None = None
     image_shape_yx: tuple[int, int] | None = None
+
+    def __post_init__(self) -> None:
+        if len(set(self.axes)) != len(self.axes) or not self.axes or any(
+            not axis.isupper() or not axis.isalpha() for axis in self.axes
+        ):
+            raise ValueError("observation axes must be unique uppercase names")
+        if self.axes.count("X") != 1 or self.axes.count("Y") != 1:
+            raise ValueError("observation axes must include X and Y exactly once")
+        if self.image_shape_yx is not None and (
+            len(self.image_shape_yx) != 2 or any(size < 1 for size in self.image_shape_yx)
+        ):
+            raise ValueError("image_shape_yx must contain two positive dimensions")
 
 
 @dataclass(frozen=True)
@@ -158,6 +219,27 @@ class ActionRecord:
     error: str | None = None
 
 
+@dataclass(frozen=True)
+class ExecutionBindingSnapshot:
+    """Framework-neutral adapter declaration; it does not identify physical hardware."""
+
+    provider: str
+    capabilities: frozenset[str]
+    resources: frozenset[str]
+    settings: frozenset[str]
+    reference: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.provider:
+            raise ValueError("execution binding provider is required")
+        if not self.capabilities or not self.resources:
+            raise ValueError("execution binding must declare capabilities and resources")
+        if any(not item for item in (*self.capabilities, *self.resources, *self.settings)):
+            raise ValueError("execution binding declarations must be nonempty strings")
+        if self.reference is not None and not self.reference:
+            raise ValueError("execution binding reference must be nonempty when supplied")
+
+
 @dataclass
 class WorkflowRun:
     run_id: str = field(default_factory=lambda: str(uuid4()))
@@ -178,6 +260,7 @@ class WorkflowRun:
     review_decision: Mapping[str, Any] | None = None
     manual_provenance: tuple[Mapping[str, Any], ...] = ()
     review_resumed_at: datetime | None = None
+    execution_bindings: tuple[ExecutionBindingSnapshot, ...] = ()
 
 
 def new_request_id() -> str:

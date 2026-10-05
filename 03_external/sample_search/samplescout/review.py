@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from .contracts import SearchObservation, Target
+from .contracts import DatasetReference, SearchObservation, Target
 from .geometry import Calibration, Region
 
 
@@ -102,7 +102,9 @@ def _target_record(t: Target) -> dict[str, Any]:
                 "tile_id": o.tile_id,
                 "request_id": o.request_id,
                 "stage_xy_um": o.stage_xy_um,
-                "data_reference": o.data_reference,
+                "data_reference": (vars(o.data_reference)
+                                   if isinstance(o.data_reference, DatasetReference)
+                                   else o.data_reference),
                 "image_shape_yx": o.image_shape_yx,
             }
             for o in t.observations

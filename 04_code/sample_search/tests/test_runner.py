@@ -1,11 +1,18 @@
+import json
 from dataclasses import replace
 from datetime import datetime, timezone
 
-from ix83_search_host import AcquisitionResult, SampleSearchRunner
+from ix83_search_host import (
+    AcquisitionResult,
+    DataReference,
+    MoveResult,
+    SampleSearchRunner,
+)
 from samplescout import (
     AcquisitionSettings,
     ActionStatus,
     Calibration,
+    DatasetReference,
     DetectedObject,
     Phase,
     Region,
@@ -19,24 +26,32 @@ from samplescout import (
 
 
 class MockBackend:
+    capabilities = frozenset({"stage.xy", "camera.snap", "storage.raw"})
+    resources = frozenset({"stage", "camera", "storage"})
+    setting_capabilities = frozenset({"exposure_ms"})
     def __init__(self, *, missing=False, fail_after=None):
         self.events = []
         self.missing = missing
         self.fail_after = fail_after
+        self.position = (0.0, 0.0, 0.0)
 
-    def move_to(self, request_id, position_xyz_um, *, deadline=None):
-        self.events.append(("move", position_xyz_um))
-        return position_xyz_um
+    def move_to(self, request):
+        self.position = request.position_xyz_um
+        self.events.append(("move", self.position))
+        return MoveResult(request.request_id, self.position)
 
-    def acquire(self, request_id, settings, *, phase, specimen_id, coordinate_frame,
-                calibration_id, run_id, tile_id, target_id, deadline=None):
-        self.events.append(("acquire", phase, tile_id))
+    def acquire(self, request):
+        self.events.append(("acquire", request.phase, request.tile_id))
         if self.fail_after is not None and len(self.events) >= self.fail_after:
             raise RuntimeError("camera failure")
         now = datetime.now(timezone.utc)
-        image = None if self.missing is True else ("blank" if self.missing == "blank" else tile_id)
-        return AcquisitionResult(image, (self.events[-2][1][0], self.events[-2][1][1]), now,
-                                data_reference=f"data://{tile_id}" if image is not None else None)
+        image = None if self.missing is True else ("blank" if self.missing == "blank" else request.tile_id)
+        dataset = None if image is None else DataReference(
+            f"data://{request.tile_id}", "npy-frames", "QYX", (request.settings.frames, 10, 10),
+            "uint8", request.settings.frames, "completed", "0" * 64)
+        return AcquisitionResult(request.request_id, request.run_id, request.specimen_id,
+            request.phase, request.coordinate_frame, request.calibration_id, request.tile_id,
+            image, self.position[:2], now, dataset)
 
 
 def setup(backend, *, cancelled=lambda: False, review=None):
@@ -93,12 +108,12 @@ def test_failed_second_revisit_retains_first_completed_dataset_observation():
     class FailingSecondRevisit(MockBackend):
         revisits = 0
 
-        def acquire(self, request_id, settings, **kwargs):
-            if kwargs["phase"] is Phase.REVISIT:
+        def acquire(self, request):
+            if request.phase is Phase.REVISIT:
                 self.revisits += 1
                 if self.revisits == 2:
                     raise RuntimeError("second movie failed")
-            return super().acquire(request_id, settings, **kwargs)
+            return super().acquire(request)
 
     runner = setup(FailingSecondRevisit())
     runner.region = Region(0, 0, 10, 10)
@@ -119,6 +134,8 @@ def test_saved_detection_replay_reproduces_selected_targets(tmp_path):
     path = tmp_path / "replay.json"
     save_replay(path, detections)
     loaded = load_replay(path)
+    assert isinstance(loaded[0].data_reference, DatasetReference)
+    assert loaded[0].data_reference == detections[0].data_reference
     targets = replay_targets(loaded, runner.calibration, runner.region,
                              distance_um=runner.recipe.deduplication_um,
                              max_targets=runner.recipe.max_targets)
@@ -128,7 +145,8 @@ def test_saved_detection_replay_reproduces_selected_targets(tmp_path):
     snapshot = tmp_path / "run.json"
     save_run(snapshot, run, runner.recipe, runner.calibration, runner.region)
     payload = __import__("json").loads(snapshot.read_text(encoding="utf-8"))
-    assert payload["schema"] == "samplescout-run-v1"
+    assert payload["schema"] == "samplescout-run-v3"
+    assert payload["execution_bindings"][0]["provider"].endswith("MockBackend")
     assert payload["run"]["run_id"] == run.run_id
     assert payload["observations"]
     assert all("image" not in action.get("readback", {}) for action in payload["actions"]
@@ -163,7 +181,7 @@ def test_capability_and_explicit_resource_preflight_happens_before_motion():
     runner.recipe = replace(runner.recipe, required_capabilities=frozenset({"camera.sequence"}))
     result = runner.run()
     assert result.status is RunStatus.FAILED
-    assert "does not declare capabilities" in result.errors[0]
+    assert "lacks required capabilities" in result.errors[0]
     assert backend.events == []
 
     backend = MockBackend()
@@ -171,8 +189,35 @@ def test_capability_and_explicit_resource_preflight_happens_before_motion():
     runner.recipe = replace(runner.recipe, resources=runner.recipe.resources + (replace(runner.recipe.resources[0], name="fluidics"),))
     result = runner.run()
     assert result.status is RunStatus.FAILED
-    assert "does not declare explicitly requested resources" in result.errors[0]
+    assert "lacks required resources" in result.errors[0]
+
+
+def test_durable_action_journal_is_required_and_records_before_dispatch(tmp_path):
+    class JournalBackend(MockBackend):
+        durable_journal_required = True
+
+        def move_to(self, request):
+            entries = [json.loads(line) for line in journal.read_text(encoding="utf-8").splitlines()]
+            assert [entry["action"]["status"] for entry in entries[-3:]] == [
+                "proposed", "accepted", "started"
+            ]
+            assert entries[-1]["execution_bindings"][0]["provider"].endswith("JournalBackend")
+            return super().move_to(request)
+
+    backend = JournalBackend()
+    runner = setup(backend)
+    missing = runner.run()
+    assert missing.status is RunStatus.FAILED
     assert backend.events == []
+
+    journal = tmp_path / "actions.jsonl"
+    runner = SampleSearchRunner(backend, runner.detector, runner.recipe, runner.calibration,
+        runner.region, action_journal=journal)
+    run = runner.run()
+    assert run.status is RunStatus.COMPLETED
+    entries = [json.loads(line) for line in journal.read_text(encoding="utf-8").splitlines()]
+    assert entries[-1]["action"]["status"] == "completed"
+    assert entries[-1]["execution_bindings"][0]["resources"] == ["camera", "stage", "storage"]
 
 
 def test_backend_capabilities_and_resources_are_checked_before_actions():

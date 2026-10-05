@@ -1,10 +1,10 @@
 """Pure scan recipe geometry; importing it opens no devices or execution host."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import isfinite
 
-from .contracts import AcquisitionSettings, Phase
+from .contracts import AcquisitionSettings, Phase, ResourceRequirement
 
 
 @dataclass(frozen=True)
@@ -51,11 +51,14 @@ class StageScanRecipe:
     recipe_id: str
     specimen_id: str
     positions: tuple[ScanPosition, ...]
-    settings: AcquisitionSettings = AcquisitionSettings()
+    settings: AcquisitionSettings = field(default_factory=AcquisitionSettings)
     version: str = "0.1-local"
     phase: Phase = Phase.SURVEY
     coordinate_frame: str = "stage-xy"
     calibration_id: str = "uncalibrated-stage-scan"
+    resources: tuple[ResourceRequirement, ...] = (
+        ResourceRequirement("stage"), ResourceRequirement("camera"), ResourceRequirement("storage")
+    )
 
     def __post_init__(self) -> None:
         if not all(isinstance(v, str) and v for v in (
@@ -66,6 +69,9 @@ class StageScanRecipe:
             raise ValueError("stage scan recipe must describe survey or revisit")
         if not isinstance(self.settings, AcquisitionSettings):
             raise TypeError("typed acquisition settings required")
+        if (not self.resources or any(not isinstance(r, ResourceRequirement) for r in self.resources)
+                or len({r.name for r in self.resources}) != len(self.resources)):
+            raise ValueError("scan resources must be unique typed requirements")
         if not isinstance(self.positions, tuple) or not 1 <= len(self.positions) <= 10000:
             raise ValueError("immutable tuple of 1–10000 positions required")
         if any(not isinstance(p, ScanPosition) or not p.position_id or
@@ -80,6 +86,17 @@ class StageScanRecipe:
         if self.settings.frames > 1:
             capabilities.add("camera.sequence")
         return frozenset(capabilities)
+
+    @property
+    def required_settings(self) -> frozenset[str]:
+        settings = {"exposure_ms"}
+        if self.settings.channel_id is not None:
+            settings.add("channel")
+        if self.settings.roi_origin is not None:
+            settings.add("roi")
+        if self.settings.binning is not None:
+            settings.add("binning")
+        return frozenset(settings)
 
 
 def build_grid_recipe(origin_xy_um: tuple[float, float], *, specimen_id: str,

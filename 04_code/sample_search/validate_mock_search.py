@@ -1,25 +1,19 @@
 """Two-pass sample-search through the bundle executor and real storage contracts."""
 # Source-tree bootstrapping is intentional before packaging.
-# ruff: noqa: E402
 from __future__ import annotations
 
 import json
-import sys
 import time
-from pathlib import Path
 
 import numpy as np
+from source_bootstrap import enable_source_tree
 
-BUNDLE = Path(__file__).resolve().parents[1].parent
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"),
-                str(BUNDLE / "04_code/ix83_acquisition/src"),
-                str(BUNDLE / "03_external/Realtime-Anisotropy-SPT-Analysis/src")]
+BUNDLE = enable_source_tree(include_processing_source=True)
 
 from ix83_acquisition import MockCamera, MockXYZStage, replay_frames, replay_ome_frames
 from ix83_acquisition.rtaspt_handoff import rtaspt_planes
 from ix83_search_adapter import IX83SearchExecutor
-from ix83_search_host import SampleSearchRunner
+from ix83_search_host import SampleSearchRunner, local_dataset_path
 from samplescout import (
     AcquisitionSettings,
     Calibration,
@@ -48,7 +42,8 @@ def main():
     try:
         run = SampleSearchRunner(executor,
             lambda image, _obs: detect_bright_objects(image, DetectionConfig(threshold=1000, min_area_px=3)),
-            recipe, calibration, region, timeout_s=30).run()
+            recipe, calibration, region, timeout_s=30,
+            action_journal=output / "actions.jsonl").run()
         if run.status != RunStatus.COMPLETED:
             raise RuntimeError(f"mock workflow failed: {run.errors}")
         survey = [obs for obs in run.observations if obs.phase == Phase.SURVEY]
@@ -56,12 +51,12 @@ def main():
         assert len(survey) == 12
         assert len(run.targets) == len(revisits) == 5
         assert all(obs.exposure_ms == 50 for obs in survey + revisits)
-        assert sum(len(list(replay_frames(Path(obs.data_reference)))) for obs in survey) == 12
-        movie_frames = sum(len(list(replay_ome_frames(Path(obs.data_reference)))) for obs in revisits)
+        assert sum(len(list(replay_frames(local_dataset_path(obs.data_reference)))) for obs in survey) == 12
+        movie_frames = sum(len(list(replay_ome_frames(local_dataset_path(obs.data_reference)))) for obs in revisits)
         assert movie_frames == 15
         for target, observed in zip(run.targets, revisits, strict=True):
             assert np.linalg.norm(np.array(observed.stage_xy_um) - (target.x_um, target.y_um)) < 1e-9
-            image = next(replay_ome_frames(Path(observed.data_reference))).pixels
+            image = next(replay_ome_frames(local_dataset_path(observed.data_reference))).pixels
             # Actual saved pixels contain a bright target at the reference pixel.
             assert image[38:42, 38:42].max() > 5000
         replay_path = output / "observations.json"
@@ -69,7 +64,7 @@ def main():
         save_run(output / "workflow_run.json", run, recipe, calibration, region)
         targets = replay_targets(load_replay(replay_path), calibration, region, distance_um=1)
         assert {target.target_id for target in targets} == {target.target_id for target in run.targets}
-        plane_count = sum(len(list(rtaspt_planes(Path(obs.data_reference)))) for obs in revisits)
+        plane_count = sum(len(list(rtaspt_planes(local_dataset_path(obs.data_reference)))) for obs in revisits)
         assert plane_count == movie_frames
         report = {"status": "passed", "survey_tiles": 12, "targets": 5,
                   "full_movie_frames": movie_frames, "rtaspt_planes": plane_count,

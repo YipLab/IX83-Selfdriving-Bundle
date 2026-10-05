@@ -5,23 +5,18 @@ Run after the mock and AutoScanJ replay gates. Uses six positions over 50 x 25 u
 binning, physical Z, homing or driver settings are changed.
 """
 # Source-tree bootstrapping is intentional until distribution packaging is added.
-# ruff: noqa: E402
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import sys
 import time
 from dataclasses import asdict
-from pathlib import Path
 
 import numpy as np
+from source_bootstrap import enable_source_tree
 
-BUNDLE = Path(__file__).resolve().parents[1].parent
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"),
-                str(BUNDLE / "04_code/ix83_acquisition/src")]
+BUNDLE = enable_source_tree()
 
 from ix83_acquisition import replay_frames, replay_ome_frames
 from ix83_acquisition.pycromanager import (
@@ -30,6 +25,12 @@ from ix83_acquisition.pycromanager import (
     connect_core,
 )
 from ix83_search_adapter import IX83SearchExecutor
+from ix83_search_host import (
+    AcquireRequest,
+    ExecutionControl,
+    MoveRequest,
+    local_dataset_path,
+)
 from samplescout import AcquisitionSettings, Phase
 
 
@@ -90,30 +91,35 @@ def main():
             entry = {"target_um": [origin.x_um + dx, origin.y_um + dy, origin.z_um], "state": "started"}
             report["moves"].append(entry)
             journal()
-            readback = device.move_to(f"scan-move-{index}", tuple(entry["target_um"]), deadline=time.monotonic() + 15)
-            entry.update(state="completed", readback_um=readback)
-            observed = device.acquire(f"scan-tile-{index}",
+            deadline = time.monotonic() + 15
+            readback = device.move_to(MoveRequest(f"scan-move-{index}", report_path.stem,
+                "mechanical-scan", "1", "operator-current-field", Phase.SURVEY,
+                "ludl-stage", "uncalibrated-motion-test", tuple(entry["target_um"]),
+                f"tile-{index}", control=ExecutionControl(deadline_monotonic=deadline)))
+            entry.update(state="completed", readback_um=readback.stage_xyz_um)
+            observed = device.acquire(AcquireRequest(f"scan-tile-{index}", report_path.stem,
+                "mechanical-scan", "1", "operator-current-field", Phase.SURVEY,
+                "ludl-stage", "uncalibrated-motion-test", f"tile-{index}",
                 AcquisitionSettings(exposure_ms=50, image_shape_yx=(2048, 2048)),
-                phase=Phase.SURVEY, specimen_id="operator-current-field", coordinate_frame="ludl-stage",
-                calibration_id="uncalibrated-motion-test", run_id=report_path.stem, tile_id=f"tile-{index}",
-                deadline=time.monotonic() + 15)
-            frames = list(replay_frames(Path(observed.data_reference)))
+                control=ExecutionControl(deadline_monotonic=deadline)))
+            frames = list(replay_frames(local_dataset_path(observed.dataset)))
             np.testing.assert_array_equal(frames[0].pixels, observed.image)
-            report["datasets"].append({"path": observed.data_reference, "frames": len(frames),
+            report["datasets"].append({"path": observed.dataset.uri, "frames": len(frames),
                 "stage_xy_um": observed.stage_xy_um, "pixels_verified": True,
                 "image_min": int(observed.image.min()), "image_max": int(observed.image.max()),
                 "image_mean": float(observed.image.mean())})
             journal()
-        movie = device.acquire("control-movie", AcquisitionSettings(exposure_ms=50, frames=5,
-                image_shape_yx=(2048, 2048)), phase=Phase.REVISIT,
-                specimen_id="operator-current-field", coordinate_frame="ludl-stage",
-                calibration_id="uncalibrated-motion-test", run_id=report_path.stem,
-                tile_id="control", target_id="mechanical-control", deadline=time.monotonic() + 15)
-        frames = list(replay_ome_frames(Path(movie.data_reference)))
+        deadline = time.monotonic() + 15
+        movie = device.acquire(AcquireRequest("control-movie", report_path.stem,
+            "mechanical-scan", "1", "operator-current-field", Phase.REVISIT,
+            "ludl-stage", "uncalibrated-motion-test", "control",
+            AcquisitionSettings(exposure_ms=50, frames=5, image_shape_yx=(2048, 2048)),
+            "mechanical-control", ExecutionControl(deadline_monotonic=deadline)))
+        frames = list(replay_ome_frames(local_dataset_path(movie.dataset)))
         np.testing.assert_array_equal(frames[0].pixels, movie.image)
         if len(frames) != 5:
             raise RuntimeError("control movie incomplete")
-        report["datasets"].append({"path": movie.data_reference, "frames": 5, "pixels_verified": True})
+        report["datasets"].append({"path": movie.dataset.uri, "frames": 5, "pixels_verified": True})
         report["status"] = "passed"
     except Exception as exc:
         report.update(status="failed", error=f"{type(exc).__name__}: {exc}")
@@ -124,9 +130,12 @@ def main():
                 report["return_to_origin"] = "not_attempted_outcome_unknown"
             else:
                 report["final_before_return_um"] = asdict(stage.position)
-                actual = device.move_to("return-to-origin", (origin.x_um, origin.y_um, origin.z_um),
-                                        deadline=time.monotonic() + 15)
-                report["final_um"] = actual
+                actual = device.move_to(MoveRequest("return-to-origin", report_path.stem,
+                    "mechanical-scan", "1", "operator-current-field", Phase.REVISIT,
+                    "ludl-stage", "uncalibrated-motion-test",
+                    (origin.x_um, origin.y_um, origin.z_um), "origin",
+                    control=ExecutionControl(deadline_monotonic=time.monotonic() + 15)))
+                report["final_um"] = actual.stage_xyz_um
                 report["return_to_origin"] = "verified_within_0.5_um"
             device.close(timeout=15)
             preflight()

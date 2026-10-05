@@ -3,19 +3,17 @@
 from __future__ import annotations
 
 import argparse
-import sys
 import webbrowser
 from pathlib import Path
 
 import numpy as np
 from numpy.typing import NDArray
+from source_bootstrap import enable_source_tree
 
-BUNDLE = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(BUNDLE / "03_external/sample_search"),
-                str(BUNDLE / "04_code/sample_search"),
-                str(BUNDLE / "04_code/ix83_acquisition/src")]
+enable_source_tree()
 
 from ix83_acquisition import replay_frames
+from ix83_search_host import local_dataset_path
 from samplescout import RunStatus, SearchObservation, load_review_run
 from samplescout.contracts import Phase
 from samplescout.review import ReviewContext, render_review_html
@@ -38,7 +36,7 @@ def main(argv: list[str] | None = None) -> int:
     def load_median_image(observation: SearchObservation) -> NDArray[np.generic]:
         if observation.data_reference is None:
             raise ValueError(f"survey image has no data reference: {observation.request_id}")
-        frames = [frame.pixels for frame in replay_frames(Path(observation.data_reference))]
+        frames = [frame.pixels for frame in replay_frames(local_dataset_path(observation.data_reference))]
         if not frames:
             raise ValueError(f"survey image is missing: {observation.data_reference}")
         return frames[0] if len(frames) == 1 else np.median(np.stack(frames), axis=0)

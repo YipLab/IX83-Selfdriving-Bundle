@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 from samplescout import (
     AcquisitionSettings,
+    ResourceRequirement,
     ScanPosition,
     StageScanRecipe,
     build_grid_recipe,
@@ -30,7 +31,7 @@ assert not hasattr(samplescout, "StageScanRunner")
 print("recipe compiled without host")
 '''
     result = subprocess.run([sys.executable, "-I", "-c", code], cwd=tmp_path,
-                            capture_output=True, text=True, timeout=30)
+                            capture_output=True, text=True, timeout=30, check=False)
     assert result.returncode == 0, result.stderr
     assert "recipe compiled without host" in result.stdout
 
@@ -48,3 +49,8 @@ def test_invalid_published_positions_are_rejected():
         StageScanRecipe("scan", "s", (ScanPosition("same", 0, 0), ScanPosition("same", 10, 10)))
     with pytest.raises(ValueError, match="finite"):
         StageScanRecipe("scan", "s", (ScanPosition("invalid", float("nan"), 0),))
+
+
+def test_serial_recipes_reject_unsupported_shared_resources():
+    with pytest.raises(ValueError, match="exclusive"):
+        ResourceRequirement("camera", mode="shared")
