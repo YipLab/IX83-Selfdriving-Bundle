@@ -1,3 +1,6 @@
 [submodule "03_external/Realtime-Anisotropy-SPT-Analysis"]
 	path = 03_external/Realtime-Anisotropy-SPT-Analysis
 	url = https://github.com/YipLab/Realtime-Anisotropy-SPT-Analysis.git
+[submodule "03_external/redsun-searching-is-imaging"]
+	path = 03_external/redsun-searching-is-imaging
+	url = https://github.com/deanziyangyu/redsun-searching-is-imaging.git
