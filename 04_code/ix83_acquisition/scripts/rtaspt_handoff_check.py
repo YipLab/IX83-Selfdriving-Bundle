@@ -23,7 +23,9 @@ sys.path.insert(0, str(bundle_root / "03_external/Realtime-Anisotropy-SPT-Analys
 
 
 def main() -> None:
-    if sys.version_info < (3, 12):
+    # Validates the interpreter this check was launched with, which need not be
+    # the project environment that enforces requires-python.
+    if sys.version_info < (3, 12):  # noqa: UP036
         raise RuntimeError("Run this check on Python 3.12, as required by the RTASPT checkout")
     from rtaspt.acquisition import run_acquisition
     from rtaspt.config import load_config
@@ -43,10 +45,14 @@ def main() -> None:
     with TemporaryDirectory(prefix="ix83-rtaspt-") as temporary:
         root = Path(temporary)
         # Recorded raw planes -> real RTASPT input adapter, with no reacquisition.
-        writer = RunRecorder(root, "local", context={"specimen_id": "mock", "calibration_id": "test"})
+        writer = RunRecorder(
+            root, "local", context={"specimen_id": "mock", "calibration_id": "test"}
+        )
         controller = AcquisitionController(MockCamera(shape_yx=(16, 16)), MockXYZStage())
         try:
-            controller.start_finite([CaptureRequest(timepoint=i) for i in range(3)], on_frame=writer)
+            controller.start_finite(
+                [CaptureRequest(timepoint=i) for i in range(3)], on_frame=writer
+            )
             result = controller.wait(5)
             if result.state != "completed":
                 raise RuntimeError(result.error)
@@ -62,25 +68,47 @@ def main() -> None:
             raise RuntimeError("Plane coordinate mapping was lost")
 
         # Real RTASPT acquisition runner -> new device backend -> its OME output.
-        original = load_config(bundle_root / "03_external/Realtime-Anisotropy-SPT-Analysis/configs/mock.yaml")
+        original = load_config(
+            bundle_root / "03_external/Realtime-Anisotropy-SPT-Analysis/configs/mock.yaml"
+        )
         config = replace(
             original,
-            acquisition=replace(original.acquisition, output_dir=str(root), dataset_name="rtaspt", frames=3),
+            acquisition=replace(
+                original.acquisition, output_dir=str(root), dataset_name="rtaspt", frames=3
+            ),
             detector_config=replace(original.detector_config, type="single"),
         )
-        backend = RtasptBackend(MockCamera(shape_yx=(16, 16)), MockXYZStage(), channel_group=config.acquisition.channel_group)
+        backend = RtasptBackend(
+            MockCamera(shape_yx=(16, 16)),
+            MockXYZStage(),
+            channel_group=config.acquisition.channel_group,
+        )
         expected = []
-        acquired = run_acquisition(config, backend=backend, show_progress=False,
-                                   frame_callback=lambda event, pixels: expected.append(pixels.copy()))
+        acquired = run_acquisition(
+            config,
+            backend=backend,
+            show_progress=False,
+            frame_callback=lambda event, pixels: expected.append(pixels.copy()),
+        )
         raw, axes = read_tiff(acquired.raw_path)
         np.testing.assert_array_equal(raw, np.stack(expected))
         metadata = json.loads(acquired.metadata_path.read_text())
         if acquired.frames_acquired != len(expected) or len(metadata["events"]) != len(expected):
             raise RuntimeError("RTASPT raw output/event count mismatch")
-        print(json.dumps({"result": "PASS", "python": sys.version.split()[0],
-                          "numpy": version("numpy"), "replayed_planes": len(planes),
-                          "rtaspt_raw_frames": acquired.frames_acquired,
-                          "rtaspt_raw_axes": axes, "raw_pixels_equal": True}, indent=2))
+        print(
+            json.dumps(
+                {
+                    "result": "PASS",
+                    "python": sys.version.split()[0],
+                    "numpy": version("numpy"),
+                    "replayed_planes": len(planes),
+                    "rtaspt_raw_frames": acquired.frames_acquired,
+                    "rtaspt_raw_axes": axes,
+                    "raw_pixels_equal": True,
+                },
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":

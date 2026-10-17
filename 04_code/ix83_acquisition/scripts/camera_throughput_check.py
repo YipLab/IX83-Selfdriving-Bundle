@@ -41,10 +41,17 @@ def main() -> None:
     parser.add_argument("--allow-real", action="store_true", required=True)
     parser.add_argument("--frames", type=int, default=64)
     parser.add_argument("--sequence-only", action="store_true")
-    parser.add_argument("--defer-hashing", action="store_true",
-                        help="Verify sequence hashes after draining to isolate transfer throughput")
-    parser.add_argument("--buffer-mb", type=int, choices=(250, 512, 1024),
-                        help="Temporary Core buffer size; original size is restored")
+    parser.add_argument(
+        "--defer-hashing",
+        action="store_true",
+        help="Verify sequence hashes after draining to isolate transfer throughput",
+    )
+    parser.add_argument(
+        "--buffer-mb",
+        type=int,
+        choices=(250, 512, 1024),
+        help="Temporary Core buffer size; original size is restored",
+    )
     args = parser.parse_args()
     if not args.allow_real or not 16 <= args.frames <= 256:
         raise ValueError("Authorize real camera access and select 16..256 frames")
@@ -64,10 +71,17 @@ def main() -> None:
     readout = core.get_property("Camera-1", "ReadoutRate")
     initial_buffer_mb = core.get_circular_buffer_memory_footprint()
     output = bundle_root / f"08_session_logs/camera-throughput-{time.time_ns()}.json"
-    report = {"state": "running", "frames_per_trial": args.frames,
-              "exposure_ms": 10, "binning": binning, "readout": readout,
-              "initial_position_um": asdict(initial), "stage_commands": 0,
-              "initial_buffer_mb": initial_buffer_mb, "trials": []}
+    report = {
+        "state": "running",
+        "frames_per_trial": args.frames,
+        "exposure_ms": 10,
+        "binning": binning,
+        "readout": readout,
+        "initial_position_um": asdict(initial),
+        "stage_commands": 0,
+        "initial_buffer_mb": initial_buffer_mb,
+        "trials": [],
+    }
     sequence_owned = False
 
     def journal():
@@ -77,12 +91,22 @@ def main() -> None:
         return hashlib.sha256(memoryview(np.ascontiguousarray(pixels)).cast("B")).hexdigest()
 
     def tagged_pixels(tagged):
-        return np.asarray(tagged.pix).reshape(int(tagged.tags["Height"]), int(tagged.tags["Width"])).copy()
+        return (
+            np.asarray(tagged.pix)
+            .reshape(int(tagged.tags["Height"]), int(tagged.tags["Width"]))
+            .copy()
+        )
 
     def simple_tags(tagged):
-        return {str(key): value for key, value in tagged.tags.items()
-                if any(word in str(key).lower() for word in ("frame", "image", "time", "camera", "width", "height"))
-                and isinstance(value, (str, int, float, bool, type(None)))}
+        return {
+            str(key): value
+            for key, value in tagged.tags.items()
+            if any(
+                word in str(key).lower()
+                for word in ("frame", "image", "time", "camera", "width", "height")
+            )
+            and isinstance(value, (str, int, float, bool, type(None)))
+        }
 
     def verify(path, expected):
         started = time.monotonic()
@@ -90,11 +114,14 @@ def main() -> None:
             hashes = [digest(page.asarray()) for page in tiff.pages]
             ome = ElementTree.fromstring(tiff.ome_metadata)
             pixels = ome.find("{*}Image/{*}Pixels")
-            result = {"pages": len(tiff.pages), "series_axes": tiff.series[0].axes,
-                      "series_shape": list(tiff.series[0].shape),
-                      "ome_dimensions": {key: pixels.attrib[key] for key in ("SizeT", "SizeC", "SizeZ")},
-                      "pixels_and_order_equal": hashes == expected,
-                      "file_bytes": path.stat().st_size}
+            result = {
+                "pages": len(tiff.pages),
+                "series_axes": tiff.series[0].axes,
+                "series_shape": list(tiff.series[0].shape),
+                "ome_dimensions": {key: pixels.attrib[key] for key in ("SizeT", "SizeC", "SizeZ")},
+                "pixels_and_order_equal": hashes == expected,
+                "file_bytes": path.stat().st_size,
+            }
         result["verification_s"] = time.monotonic() - started
         if hashes != expected:
             raise RuntimeError(f"OME frame count/order/pixel mismatch: {result}")
@@ -118,7 +145,9 @@ def main() -> None:
         if args.buffer_mb is not None:
             core.set_circular_buffer_memory_footprint(args.buffer_mb)
         report["buffer_mb"] = core.get_circular_buffer_memory_footprint()
-        with TemporaryDirectory(prefix="ix83-throughput-", dir=package_root / "recordings") as temporary:
+        with TemporaryDirectory(
+            prefix="ix83-throughput-", dir=package_root / "recordings"
+        ) as temporary:
             directory = Path(temporary)
             if not args.sequence_only:
                 # Same snap/getTaggedImage/copy path as the existing RTASPT adapter.
@@ -138,9 +167,16 @@ def main() -> None:
                     frames.append(pixels)
                     hashes.append(digest(pixels))
                     metadata.append(simple_tags(tagged))
-                    trial["timings_s"].append({"snap": triggered-before,
-                        "get_tagged": transferred-triggered, "copy": copied-transferred})
-                trial.update(capture_s=time.monotonic()-started, captured=len(frames), tags=metadata)
+                    trial["timings_s"].append(
+                        {
+                            "snap": triggered - before,
+                            "get_tagged": transferred - triggered,
+                            "copy": copied - transferred,
+                        }
+                    )
+                trial.update(
+                    capture_s=time.monotonic() - started, captured=len(frames), tags=metadata
+                )
                 trial["capture_fps"] = len(frames) / trial["capture_s"]
                 trial["shape_yx"] = list(frames[0].shape)
                 save_stack("serial", frames, hashes, trial, directory)
@@ -151,8 +187,11 @@ def main() -> None:
                 # Real RTASPT event loop, event table and original OME writer.
                 # The mixed cfg has no channel presets. Keep its single camera fixed
                 # rather than creating/changing hardware config groups for this test.
-                trial = {"name": "rtaspt_runner_fixed_camera", "requested": args.frames,
-                         "channel_presets": "not switched; mixed cfg has none"}
+                trial = {
+                    "name": "rtaspt_runner_fixed_camera",
+                    "requested": args.frames,
+                    "channel_presets": "not switched; mixed cfg has none",
+                }
                 report["trials"].append(trial)
                 camera = PycroManagerCamera(core)
                 hashes, times = [], []
@@ -160,8 +199,10 @@ def main() -> None:
                 class FixedCameraBackend:
                     def acquire(self, event):
                         before = time.monotonic()
-                        pixels = camera.snap(stage_position=initial, exposure_ms=event.exposure_ms).pixels
-                        times.append(time.monotonic()-before)
+                        pixels = camera.snap(
+                            stage_position=initial, exposure_ms=event.exposure_ms
+                        ).pixels
+                        times.append(time.monotonic() - before)
                         return pixels
 
                     def close(self):
@@ -171,35 +212,63 @@ def main() -> None:
                     hashes.append(digest(pixels))
 
                 config = load_config(package_root / "configs/rtaspt_mock.yaml")
-                config = replace(config, acquisition=replace(config.acquisition,
-                    output_dir=str(directory), dataset_name="rtaspt", frames=args.frames, interval_s=0))
+                config = replace(
+                    config,
+                    acquisition=replace(
+                        config.acquisition,
+                        output_dir=str(directory),
+                        dataset_name="rtaspt",
+                        frames=args.frames,
+                        interval_s=0,
+                    ),
+                )
                 print(f"Starting RTASPT runner: {args.frames} frames", flush=True)
                 started = time.monotonic()
-                result = run_acquisition(config, backend=FixedCameraBackend(),
-                                         show_progress=False, frame_callback=on_frame)
-                trial.update(total_run_s=time.monotonic()-started, captured=result.frames_acquired,
-                             capture_call_s=sum(times), frame_call_s=times)
+                result = run_acquisition(
+                    config,
+                    backend=FixedCameraBackend(),
+                    show_progress=False,
+                    frame_callback=on_frame,
+                )
+                trial.update(
+                    total_run_s=time.monotonic() - started,
+                    captured=result.frames_acquired,
+                    capture_call_s=sum(times),
+                    frame_call_s=times,
+                )
                 trial["capture_call_fps"] = len(times) / sum(times)
                 trial["end_to_end_fps"] = result.frames_acquired / trial["total_run_s"]
                 trial["ome"] = verify(result.raw_path, hashes)
                 events = json.loads(result.metadata_path.read_text())["events"]
                 trial["events"] = len(events)
-                if len(events) != args.frames or [event["frame"] for event in events] != list(range(args.frames)):
+                if len(events) != args.frames or [event["frame"] for event in events] != list(
+                    range(args.frames)
+                ):
                     raise RuntimeError("RTASPT event sequence/count mismatch")
                 journal()
-                print(f"RTASPT: {trial['end_to_end_fps']:.2f} fps; {trial['ome']['pages']} OME pages verified", flush=True)
+                print(
+                    f"RTASPT: {trial['end_to_end_fps']:.2f} fps; {trial['ome']['pages']} OME pages verified",
+                    flush=True,
+                )
 
             # Sequence producer can outrun Python/ZMQ transfer. Preserve the
             # configured Core buffer and stop explicitly on overflow, never allow
             # overwriting frames. Drain all queued frames even after camera stops.
-            trial = {"name": "core_sequence_to_python", "requested": args.frames,
-                     "stop_on_overflow": True, "timings_s": [],
-                     "hashing_during_drain": not args.defer_hashing}
+            trial = {
+                "name": "core_sequence_to_python",
+                "requested": args.frames,
+                "stop_on_overflow": True,
+                "timings_s": [],
+                "hashing_during_drain": not args.defer_hashing,
+            }
             report["trials"].append(trial)
             core.initialize_circular_buffer()
             trial["buffer_capacity_frames"] = core.get_buffer_total_capacity()
             frames, hashes, metadata = [], [], []
-            print(f"Starting finite camera sequence; buffer capacity {trial['buffer_capacity_frames']} frames", flush=True)
+            print(
+                f"Starting finite camera sequence; buffer capacity {trial['buffer_capacity_frames']} frames",
+                flush=True,
+            )
             started = time.monotonic()
             sequence_owned = True
             core.start_sequence_acquisition(args.frames, 0.0, True)
@@ -209,12 +278,12 @@ def main() -> None:
                 remaining = core.get_remaining_image_count()
                 running = core.is_sequence_running()
                 if not running and stopped_after_s is None:
-                    stopped_after_s = time.monotonic()-started
+                    stopped_after_s = time.monotonic() - started
                 if remaining:
                     before = time.monotonic()
                     tagged = core.pop_next_tagged_image()
                     pixels = tagged_pixels(tagged)
-                    trial["timings_s"].append(time.monotonic()-before)
+                    trial["timings_s"].append(time.monotonic() - before)
                     frames.append(pixels)
                     if not args.defer_hashing:
                         hashes.append(digest(pixels))
@@ -228,28 +297,42 @@ def main() -> None:
                     time.sleep(0.001)
                 if time.monotonic() > deadline:
                     raise TimeoutError("Finite camera sequence did not finish")
-            elapsed = time.monotonic()-started
-            trial.update(captured=len(frames), received_fps=len(frames)/elapsed,
-                         capture_and_drain_s=elapsed, camera_stopped_observed_s=stopped_after_s,
-                         buffer_overflowed=core.is_buffer_overflowed(), tags=metadata)
+            elapsed = time.monotonic() - started
+            trial.update(
+                captured=len(frames),
+                received_fps=len(frames) / elapsed,
+                capture_and_drain_s=elapsed,
+                camera_stopped_observed_s=stopped_after_s,
+                buffer_overflowed=core.is_buffer_overflowed(),
+                tags=metadata,
+            )
             indices = [int(tags["ImageNumber"]) for tags in metadata if "ImageNumber" in tags]
-            camera_indices = [int(tags["PVCAM-FrameNr"]) for tags in metadata if "PVCAM-FrameNr" in tags]
-            trial["core_image_numbers_contiguous"] = bool(indices) and indices == list(range(indices[0], indices[0]+len(frames)))
-            trial["camera_frame_numbers_contiguous"] = bool(camera_indices) and camera_indices == list(range(camera_indices[0], camera_indices[0]+len(frames)))
+            camera_indices = [
+                int(tags["PVCAM-FrameNr"]) for tags in metadata if "PVCAM-FrameNr" in tags
+            ]
+            trial["core_image_numbers_contiguous"] = bool(indices) and indices == list(
+                range(indices[0], indices[0] + len(frames))
+            )
+            trial["camera_frame_numbers_contiguous"] = bool(
+                camera_indices
+            ) and camera_indices == list(range(camera_indices[0], camera_indices[0] + len(frames)))
             if len(metadata) > 1 and all("TimeStampMsec" in tags for tags in metadata):
                 span_ms = float(metadata[-1]["TimeStampMsec"]) - float(metadata[0]["TimeStampMsec"])
-                trial["producer_fps_from_timestamps"] = (len(metadata)-1) * 1000 / span_ms
+                trial["producer_fps_from_timestamps"] = (len(metadata) - 1) * 1000 / span_ms
             core.stop_sequence_acquisition()
             sequence_owned = False
             if args.defer_hashing:
                 hashing_started = time.monotonic()
                 hashes = [digest(frame) for frame in frames]
-                trial["hash_validation_s_after_drain"] = time.monotonic()-hashing_started
+                trial["hash_validation_s_after_drain"] = time.monotonic() - hashing_started
             if frames:
                 save_stack("sequence", frames, hashes, trial, directory)
             trial["requested_count_met"] = len(frames) == args.frames
             journal()
-            print(f"Sequence: {len(frames)}/{args.frames} received; overflow={trial['buffer_overflowed']}; saved pages verified", flush=True)
+            print(
+                f"Sequence: {len(frames)}/{args.frames} received; overflow={trial['buffer_overflowed']}; saved pages verified",
+                flush=True,
+            )
         report["state"] = "completed"
     except Exception as exc:
         report.update(state="failed", error=f"{type(exc).__name__}: {exc}")
@@ -262,19 +345,33 @@ def main() -> None:
                 report["queued_frames_before_buffer_restore"] = core.get_remaining_image_count()
                 core.set_circular_buffer_memory_footprint(initial_buffer_mb)
                 core.initialize_circular_buffer()
-            report["buffer_size_restored"] = core.get_circular_buffer_memory_footprint() == initial_buffer_mb
+            report["buffer_size_restored"] = (
+                core.get_circular_buffer_memory_footprint() == initial_buffer_mb
+            )
             core.set_exposure(exposure)
-            report.update(final_position_um=asdict(stage.position),
-                          exposure_restored=core.get_exposure() == exposure,
-                          binning_unchanged=core.get_property("Camera-1", "Binning") == binning,
-                          sequence_running_at_end=core.is_sequence_running())
+            report.update(
+                final_position_um=asdict(stage.position),
+                exposure_restored=core.get_exposure() == exposure,
+                binning_unchanged=core.get_property("Camera-1", "Binning") == binning,
+                sequence_running_at_end=core.is_sequence_running(),
+            )
         finally:
             report["finished_ns"] = time.time_ns()
             journal()
     print(f"Report: {output}", flush=True)
-    print(json.dumps([{key: value for key, value in trial.items()
-                      if key not in ("tags", "timings_s", "frame_call_s")}
-                     for trial in report["trials"]], indent=2))
+    print(
+        json.dumps(
+            [
+                {
+                    key: value
+                    for key, value in trial.items()
+                    if key not in ("tags", "timings_s", "frame_call_s")
+                }
+                for trial in report["trials"]
+            ],
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

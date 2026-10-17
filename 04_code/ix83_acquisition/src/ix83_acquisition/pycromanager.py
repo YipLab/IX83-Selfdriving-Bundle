@@ -41,7 +41,12 @@ class PycroManagerCamera:
         self.last_sequence_status: SequenceStatus | None = None
 
     def snap(
-        self, *, stage_position: Position, exposure_ms: float, channel: Channel | None = None
+        self,
+        *,
+        stage_position: Position,
+        exposure_ms: float,
+        channel: Channel | None = None,
+        configure_exposure: bool = True,
     ) -> Frame:
         if self._closed:
             raise RuntimeError("camera is closed")
@@ -55,7 +60,16 @@ class PycroManagerCamera:
         if selected is not None:
             self.core.set_config(selected.group, selected.preset)
             self.core.wait_for_config(selected.group, selected.preset)
-        self.core.set_exposure(exposure_ms)
+        if configure_exposure:
+            self.core.set_exposure(exposure_ms)
+            actual_exposure_ms = float(exposure_ms)
+        else:
+            actual_exposure_ms = float(self.core.get_exposure())
+            if not isfinite(actual_exposure_ms) or abs(actual_exposure_ms - exposure_ms) > 1e-6:
+                raise RuntimeError(
+                    f"current exposure is {actual_exposure_ms:g} ms; "
+                    f"requested read-only exposure is {exposure_ms:g} ms"
+                )
         started_ns = time.time_ns()
         self.core.snap_image()
         tagged = self.core.get_tagged_image()
@@ -65,7 +79,7 @@ class PycroManagerCamera:
             pixels,
             stage_position,
             self.sequence,
-            exposure_ms,
+            actual_exposure_ms,
             started_ns,
             time.time_ns(),
             selected,
@@ -78,8 +92,13 @@ class PycroManagerCamera:
         self._closed = True
 
     def stream_sequence(
-        self, *, frames: int, exposure_ms: float, stage_position: Position,
-        stop_requested: Callable[[], bool], channel: Channel | None = None,
+        self,
+        *,
+        frames: int,
+        exposure_ms: float,
+        stage_position: Position,
+        stop_requested: Callable[[], bool],
+        channel: Channel | None = None,
         timeout_s: float = 10,
     ) -> Iterator[Frame]:
         """Drain a native fixed-channel sequence, stopping on overflow.
@@ -128,23 +147,52 @@ class PycroManagerCamera:
                     started = time.time_ns()
                     tagged = self.core.pop_next_tagged_image()
                     core_number = int(tagged.tags["ImageNumber"])
-                    camera_number = int(tagged.tags["PVCAM-FrameNr"]) if "PVCAM-FrameNr" in tagged.tags else None
+                    camera_number = (
+                        int(tagged.tags["PVCAM-FrameNr"])
+                        if "PVCAM-FrameNr" in tagged.tags
+                        else None
+                    )
                     if previous_core is None and core_number != 0:
-                        raise RuntimeError(f"sequence starts with missing Core frames: {core_number}")
+                        raise RuntimeError(
+                            f"sequence starts with missing Core frames: {core_number}"
+                        )
                     if received == 0 and camera_number is not None and camera_number != 1:
-                        raise RuntimeError(f"sequence starts with missing PVCAM frames: {camera_number}")
+                        raise RuntimeError(
+                            f"sequence starts with missing PVCAM frames: {camera_number}"
+                        )
                     if previous_core is not None and core_number != previous_core + 1:
-                        raise RuntimeError(f"Core frame gap or duplicate: {previous_core} -> {core_number}")
+                        raise RuntimeError(
+                            f"Core frame gap or duplicate: {previous_core} -> {core_number}"
+                        )
                     if previous_camera is not None and camera_number != previous_camera + 1:
-                        raise RuntimeError(f"camera frame gap or duplicate: {previous_camera} -> {camera_number}")
+                        raise RuntimeError(
+                            f"camera frame gap or duplicate: {previous_camera} -> {camera_number}"
+                        )
                     if received >= frames:
                         raise RuntimeError("camera returned more frames than requested")
                     previous_core, previous_camera = core_number, camera_number
-                    pixels = np.asarray(tagged.pix).reshape(int(tagged.tags["Height"]), int(tagged.tags["Width"])).copy()
-                    timestamp = float(tagged.tags["TimeStampMsec"]) if "TimeStampMsec" in tagged.tags else None
-                    frame = Frame(pixels, stage_position, received, exposure_ms, started,
-                        time.time_ns(), selected, core_image_number=core_number,
-                        camera_frame_number=camera_number, source_timestamp_ms=timestamp)
+                    pixels = (
+                        np.asarray(tagged.pix)
+                        .reshape(int(tagged.tags["Height"]), int(tagged.tags["Width"]))
+                        .copy()
+                    )
+                    timestamp = (
+                        float(tagged.tags["TimeStampMsec"])
+                        if "TimeStampMsec" in tagged.tags
+                        else None
+                    )
+                    frame = Frame(
+                        pixels,
+                        stage_position,
+                        received,
+                        exposure_ms,
+                        started,
+                        time.time_ns(),
+                        selected,
+                        core_image_number=core_number,
+                        camera_frame_number=camera_number,
+                        source_timestamp_ms=timestamp,
+                    )
                     received += 1
                     last_progress = time.monotonic()
                     yield frame
@@ -163,7 +211,9 @@ class PycroManagerCamera:
             self.core.stop_sequence_acquisition()
             unread = int(self.core.get_remaining_image_count())
             overflowed = overflowed or bool(self.core.is_buffer_overflowed())
-            self.last_sequence_status = SequenceStatus(frames, received, overflowed, unread, cancelled)
+            self.last_sequence_status = SequenceStatus(
+                frames, received, overflowed, unread, cancelled
+            )
             if unread:
                 self.core.clear_circular_buffer()
 
@@ -172,7 +222,11 @@ class PycroManagerXYZStage:
     """Absolute XYZ motion through a caller-owned Core and explicit stage labels."""
 
     def __init__(
-        self, core: Any, *, xy_stage: str, z_stage: str,
+        self,
+        core: Any,
+        *,
+        xy_stage: str,
+        z_stage: str,
         limits_um: tuple[tuple[float, float], tuple[float, float], tuple[float, float]]
         | None = None,
     ) -> None:

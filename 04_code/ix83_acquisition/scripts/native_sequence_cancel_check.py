@@ -30,13 +30,24 @@ def main() -> None:
     args = parser.parse_args()
     assert args.allow_real
     core = connect_core(timeout=5000)
-    expected = {"COM22": ("SerialManager", "COM22"), "Camera-1": ("PVCAM", "Camera-1"),
-                "LudlController": ("Ludl", "LudlController"), "XYStage": ("Ludl", "XYStage"),
-                "DHub": ("DemoCamera", "DHub"), "ZStage": ("DemoCamera", "DStage")}
-    assert {label: (core.get_device_library(label), core.get_device_name(label))
-            for label in _labels(core.get_loaded_devices()) if label != "Core"} == expected
+    expected = {
+        "COM22": ("SerialManager", "COM22"),
+        "Camera-1": ("PVCAM", "Camera-1"),
+        "LudlController": ("Ludl", "LudlController"),
+        "XYStage": ("Ludl", "XYStage"),
+        "DHub": ("DemoCamera", "DHub"),
+        "ZStage": ("DemoCamera", "DStage"),
+    }
+    assert {
+        label: (core.get_device_library(label), core.get_device_name(label))
+        for label in _labels(core.get_loaded_devices())
+        if label != "Core"
+    } == expected
     assert (core.get_camera_device(), core.get_xy_stage_device(), core.get_focus_device()) == (
-        "Camera-1", "XYStage", "ZStage")
+        "Camera-1",
+        "XYStage",
+        "ZStage",
+    )
     assert not core.is_sequence_running() and not core.get_remaining_image_count()
     assert not core.get_auto_shutter() and not core.get_shutter_device()
     exposure = core.get_exposure()
@@ -53,7 +64,9 @@ def main() -> None:
 
         try:
             controller.start_sequence(SequenceRequest(200, exposure_ms=50), on_frame=record)
-            result = writer.finish(controller.wait(15), device_status=asdict(camera.last_sequence_status))
+            result = writer.finish(
+                controller.wait(15), device_status=asdict(camera.last_sequence_status)
+            )
             assert result.state == "cancelled" and 20 <= writer.frames_written < 200
             replayed = 0
             for frame in replay_ome_frames(writer.dataset_dir):
@@ -64,8 +77,12 @@ def main() -> None:
             assert not camera.last_sequence_status.overflowed
             assert camera.last_sequence_status.unread_at_cleanup == 0
             assert not core.is_sequence_running()
-            report = {"result": "PASS", "run": asdict(result), "verified_pages": replayed,
-                      "sequence_status": asdict(camera.last_sequence_status)}
+            report = {
+                "result": "PASS",
+                "run": asdict(result),
+                "verified_pages": replayed,
+                "sequence_status": asdict(camera.last_sequence_status),
+            }
             print(json.dumps(report, indent=2))
             path = bundle_root / f"08_session_logs/sequence-cancel-{time.time_ns()}.json"
             path.write_text(json.dumps(report, indent=2), encoding="utf-8")

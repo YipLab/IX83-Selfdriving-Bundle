@@ -109,10 +109,22 @@ class RunRecorder:
     def finish(self, result: RunResult) -> Path:
         if self._finished or self._ledger.closed:
             raise RuntimeError("recording is closed")
+        if result.frames_requested is not None and (
+            isinstance(result.frames_requested, bool)
+            or not isinstance(result.frames_requested, int)
+            or result.frames_requested < 0
+        ):
+            raise ValueError("frames_requested must be a nonnegative integer")
         if result.frames_acquired < self.frames_written or (
             result.state == "completed" and result.frames_acquired != self.frames_written
         ):
             raise ValueError("run result disagrees with the number of recorded frames")
+        if (
+            result.state == "completed"
+            and result.frames_requested is not None
+            and result.frames_acquired != result.frames_requested
+        ):
+            raise ValueError("completed run does not contain every requested frame")
         metadata = self.dataset_dir / "run_metadata.json"
         with metadata.open("x", encoding="utf-8") as stream:
             stream.write(

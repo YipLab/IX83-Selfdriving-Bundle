@@ -35,16 +35,24 @@ class StageReadbackTests(unittest.TestCase):
 
     def test_bounds_rejected_without_sending_device_commands(self):
         # This Core has readbacks only: any attempted write would fail the test.
-        stage = PycroManagerXYZStage(ScalarReadbackCore(), xy_stage="XYStage", z_stage="ZStage",
-                                    limits_um=((0, 1000), (0, 1000), (2, 2)))
+        stage = PycroManagerXYZStage(
+            ScalarReadbackCore(),
+            xy_stage="XYStage",
+            z_stage="ZStage",
+            limits_um=((0, 1000), (0, 1000), (2, 2)),
+        )
         for target in (Position(1000.1, 0, 2), Position(0, -0.1, 2), Position(0, 0, 3)):
             with self.assertRaisesRegex(ValueError, "outside stage limits"):
                 stage.move_to(target)
 
     def test_invalid_bounds_rejected_at_construction(self):
         with self.assertRaisesRegex(ValueError, "finite and ordered"):
-            PycroManagerXYZStage(ScalarReadbackCore(), xy_stage="XYStage", z_stage="ZStage",
-                                 limits_um=((1, 0), (0, 1), (0, 1)))
+            PycroManagerXYZStage(
+                ScalarReadbackCore(),
+                xy_stage="XYStage",
+                z_stage="ZStage",
+                limits_um=((1, 0), (0, 1), (0, 1)),
+            )
 
 
 if __name__ == "__main__":

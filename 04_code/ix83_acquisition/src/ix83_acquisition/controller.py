@@ -135,7 +135,10 @@ class AcquisitionController:
         return self._start(repeat(request), "freerun", interval_s, None)
 
     def start_sequence(
-        self, request: SequenceRequest, *, on_frame: Callable[[Frame], None] | None = None,
+        self,
+        request: SequenceRequest,
+        *,
+        on_frame: Callable[[Frame], None] | None = None,
     ) -> str:
         """Own one fixed-position, fixed-channel native camera sequence."""
         request.validate()
@@ -166,7 +169,9 @@ class AcquisitionController:
             self._run_id = uuid.uuid4().hex
             self._state = mode
             self._thread = threading.Thread(
-                target=self._run, args=(requests, mode, interval_s, on_frame, sequence_request), daemon=True
+                target=self._run,
+                args=(requests, mode, interval_s, on_frame, sequence_request),
+                daemon=True,
             )
             self._thread.start()
             return self._run_id
@@ -183,6 +188,7 @@ class AcquisitionController:
         outcome: RunState = "completed"
         error: str | None = None
         started = time.monotonic()
+
         def publish(frame: Frame) -> None:
             frame.pixels.flags.writeable = False
             with self._lock:
@@ -197,15 +203,23 @@ class AcquisitionController:
             if sequence_request is not None:
                 assert isinstance(self.camera, SequenceCamera)
                 position = self.stage.position
-                stream = self.camera.stream_sequence(frames=sequence_request.frames,
-                    exposure_ms=sequence_request.exposure_ms, stage_position=position,
-                    channel=sequence_request.channel, stop_requested=self._stop.is_set,
-                    timeout_s=sequence_request.timeout_s)
+                stream = self.camera.stream_sequence(
+                    frames=sequence_request.frames,
+                    exposure_ms=sequence_request.exposure_ms,
+                    stage_position=position,
+                    channel=sequence_request.channel,
+                    stop_requested=self._stop.is_set,
+                    timeout_s=sequence_request.timeout_s,
+                )
                 try:
                     for captured in stream:
-                        frame = replace(captured, sequence=count, timepoint=count,
+                        frame = replace(
+                            captured,
+                            sequence=count,
+                            timepoint=count,
                             request_id=f"{sequence_request.request_id}:{count}",
-                            target_id=sequence_request.target_id)
+                            target_id=sequence_request.target_id,
+                        )
                         count += 1
                         publish(frame)
                 finally:
@@ -251,8 +265,13 @@ class AcquisitionController:
             outcome, error = "failed", f"{type(exc).__name__}: {exc}"
         finally:
             with self._lock:
-                self._result = RunResult(self._run_id, outcome, count, error,
-                    sequence_request.frames if sequence_request is not None else None)
+                self._result = RunResult(
+                    self._run_id,
+                    outcome,
+                    count,
+                    error,
+                    sequence_request.frames if sequence_request is not None else None,
+                )
                 self._state = "closing" if self._closing else "idle"
                 self._events.put(self._result)
                 self._done.set()

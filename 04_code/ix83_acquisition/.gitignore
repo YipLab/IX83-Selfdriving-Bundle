@@ -1,4 +1,7 @@
-.venv-integration/
+# One project environment only (`.venv`); dated backups and uv caches stay local.
+.venv*/
+.cache-uv-*/
+.uv-cache-*/
 recordings/
 # The bundle ignores generic script directories; these are package entrypoints.
 !scripts/

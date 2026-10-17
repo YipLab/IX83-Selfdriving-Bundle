@@ -33,15 +33,22 @@ class OMERecorder:
     Flush/fsync at finalization, not per frame. No crash-atomicity guarantee.
     """
 
-    def __init__(self, root: Path, name: str, *, queue_capacity: int = 32,
-                 context: Mapping[str, object] | None = None) -> None:
+    def __init__(
+        self,
+        root: Path,
+        name: str,
+        *,
+        queue_capacity: int = 32,
+        context: Mapping[str, object] | None = None,
+    ) -> None:
         if queue_capacity < 1:
             raise ValueError("writer queue capacity must be positive")
         if not name or name in (".", "..") or Path(name).name != name or ":" in name:
             raise ValueError("dataset name must be a single directory name")
         self._tifffile = importlib.import_module("tifffile")
-        header = _json_line({"type": "dataset", "schema_version": 1,
-                             "context": dict(context or {})})
+        header = _json_line(
+            {"type": "dataset", "schema_version": 1, "context": dict(context or {})}
+        )
         root.mkdir(parents=True, exist_ok=True)
         suffix = 0
         while True:
@@ -106,24 +113,41 @@ class OMERecorder:
                 if layout is not None and layout != frame_layout:
                     raise ValueError("OME recording requires a fixed shape and dtype")
                 layout = frame_layout
-                record = {field.name: getattr(frame, field.name) for field in fields(frame)
-                          if field.name != "pixels"}
+                record = {
+                    field.name: getattr(frame, field.name)
+                    for field in fields(frame)
+                    if field.name != "pixels"
+                }
                 record["stage_position"] = asdict(frame.stage_position)
                 record["channel"] = asdict(frame.channel) if frame.channel else None
-                record.update(type="frame", page=frame.sequence, shape=list(frame.pixels.shape),
-                              dtype=str(frame.pixels.dtype), sha256=pixel_hash(frame.pixels))
+                record.update(
+                    type="frame",
+                    page=frame.sequence,
+                    shape=list(frame.pixels.shape),
+                    dtype=str(frame.pixels.dtype),
+                    sha256=pixel_hash(frame.pixels),
+                )
                 line = _json_line(record)
                 if writer is None:
                     writer = self._tifffile.TiffWriter(self.raw_path, bigtiff=True, ome=False)
-                writer.write(frame.pixels, contiguous=True, photometric="minisblack",
-                             metadata=None, description="Incomplete acquisition" if not self.frames_written else None)
+                writer.write(
+                    frame.pixels,
+                    contiguous=True,
+                    photometric="minisblack",
+                    metadata=None,
+                    description="Incomplete acquisition" if not self.frames_written else None,
+                )
                 self._ledger.write(line)
                 self.frames_written += 1
             if writer is not None and layout is not None:
                 shape, dtype = layout
                 ome = self._tifffile.OmeXml()
-                ome.addimage(dtype, (self.frames_written, *shape),
-                             (self.frames_written, 1, 1, shape[0], shape[1], 1), axes="TYX")
+                ome.addimage(
+                    dtype,
+                    (self.frames_written, *shape),
+                    (self.frames_written, 1, 1, shape[0], shape[1], 1),
+                    axes="TYX",
+                )
                 writer.overwrite_description(ome.tostring())
         except Exception as exc:
             with self._lock:
@@ -162,8 +186,13 @@ class OMERecorder:
         if not self._done.wait(timeout):
             raise TimeoutError("OME writer is still busy")
 
-    def finish(self, result: RunResult, *, timeout: float = 30,
-               device_status: Mapping[str, object] | None = None) -> RunResult:
+    def finish(
+        self,
+        result: RunResult,
+        *,
+        timeout: float = 30,
+        device_status: Mapping[str, object] | None = None,
+    ) -> RunResult:
         if self._finished:
             raise RuntimeError("recording already finished")
         self._join(timeout)
@@ -172,20 +201,30 @@ class OMERecorder:
             error = error or "captured/submitted frame count mismatch"
         if self.frames_written != self.frames_submitted:
             error = error or "submitted/written frame count mismatch"
-        if (result.state == "completed" and result.frames_requested is not None
-                and self.frames_written != result.frames_requested):
+        if (
+            result.state == "completed"
+            and result.frames_requested is not None
+            and self.frames_written != result.frames_requested
+        ):
             error = error or "requested/written frame count mismatch"
         final_error = f"{result.error}; OME writer: {error}" if error and result.error else error
         final = replace(result, state="failed", error=final_error) if error else result
         if self.raw_path.exists() and not self._error:
             with self.raw_path.open("r+b") as raw:
                 os.fsync(raw.fileno())
-        manifest = {"schema_version": 1, "format": "ome-tiff", "axes": "TYX",
-            "raw_file": "raw.ome.tif", "frames_written": self.frames_written,
-            "frames_submitted": self.frames_submitted, "max_queue_depth": self.max_queue_depth,
+        manifest = {
+            "schema_version": 1,
+            "format": "ome-tiff",
+            "axes": "TYX",
+            "raw_file": "raw.ome.tif",
+            "frames_written": self.frames_written,
+            "frames_submitted": self.frames_submitted,
+            "max_queue_depth": self.max_queue_depth,
             "ledger_sha256": _sha256(self.dataset_dir / "frames.jsonl"),
             "raw_integrity": "unverified_after_writer_error" if self._error else "ledger_hashes",
-            "result": asdict(final), "device_status": dict(device_status or {})}
+            "result": asdict(final),
+            "device_status": dict(device_status or {}),
+        }
         with (self.dataset_dir / "run_metadata.json").open("x", encoding="utf-8") as stream:
             stream.write(_json_line(manifest))
             stream.flush()
@@ -204,9 +243,13 @@ def replay_ome_frames(dataset_dir: Path) -> Iterator[Frame]:
     tifffile = importlib.import_module("tifffile")
     manifest = json.loads((dataset_dir / "run_metadata.json").read_text(encoding="utf-8"))
     ledger = dataset_dir / "frames.jsonl"
-    if (manifest["schema_version"] != 1 or manifest["format"] != "ome-tiff"
-            or manifest["raw_integrity"] != "ledger_hashes" or manifest["axes"] != "TYX"
-            or manifest["raw_file"] != "raw.ome.tif"):
+    if (
+        manifest["schema_version"] != 1
+        or manifest["format"] != "ome-tiff"
+        or manifest["raw_integrity"] != "ledger_hashes"
+        or manifest["axes"] != "TYX"
+        or manifest["raw_file"] != "raw.ome.tif"
+    ):
         raise ValueError("unsupported or failed OME recording")
     if _sha256(ledger) != manifest["ledger_sha256"]:
         raise ValueError("frame ledger checksum mismatch")
@@ -226,11 +269,24 @@ def replay_ome_frames(dataset_dir: Path) -> Iterator[Frame]:
             if record["page"] != index or record["sequence"] != index:
                 raise ValueError("invalid frame/page sequence")
             pixels = tiff.pages[index].asarray()
-            if (list(pixels.shape) != record["shape"] or str(pixels.dtype) != record["dtype"]
-                    or pixel_hash(pixels) != record["sha256"]):
+            if (
+                list(pixels.shape) != record["shape"]
+                or str(pixels.dtype) != record["dtype"]
+                or pixel_hash(pixels) != record["sha256"]
+            ):
                 raise ValueError("OME frame checksum/layout mismatch")
-            yield Frame(pixels, Position(**record["stage_position"]), index, record["exposure_ms"],
-                record["acquisition_start_ns"], record["acquisition_end_ns"],
+            yield Frame(
+                pixels,
+                Position(**record["stage_position"]),
+                index,
+                record["exposure_ms"],
+                record["acquisition_start_ns"],
+                record["acquisition_end_ns"],
                 Channel(**record["channel"]) if record["channel"] else None,
-                record["request_id"], record["target_id"], record["timepoint"],
-                record["core_image_number"], record["camera_frame_number"], record["source_timestamp_ms"])
+                record["request_id"],
+                record["target_id"],
+                record["timepoint"],
+                record["core_image_number"],
+                record["camera_frame_number"],
+                record["source_timestamp_ms"],
+            )

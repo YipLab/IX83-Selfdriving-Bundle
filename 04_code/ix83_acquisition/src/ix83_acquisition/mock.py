@@ -109,8 +109,13 @@ class MockCamera:
         self._closed = True
 
     def stream_sequence(
-        self, *, frames: int, exposure_ms: float, stage_position: Position,
-        stop_requested: Callable[[], bool], channel: Channel | None = None,
+        self,
+        *,
+        frames: int,
+        exposure_ms: float,
+        stage_position: Position,
+        stop_requested: Callable[[], bool],
+        channel: Channel | None = None,
         timeout_s: float = 10,
     ) -> Iterator[Frame]:
         """Exposure-paced mock sequence with deterministic native frame IDs."""
@@ -125,6 +130,9 @@ class MockCamera:
                 time.sleep(min(0.001, max(0, deadline - time.monotonic())))
             if stop_requested():
                 return
-            yield replace(self.snap(stage_position=stage_position, exposure_ms=exposure_ms, channel=channel),
-                          core_image_number=index, camera_frame_number=index + 1,
-                          source_timestamp_ms=index * exposure_ms)
+            yield replace(
+                self.snap(stage_position=stage_position, exposure_ms=exposure_ms, channel=channel),
+                core_image_number=index,
+                camera_frame_number=index + 1,
+                source_timestamp_ms=index * exposure_ms,
+            )

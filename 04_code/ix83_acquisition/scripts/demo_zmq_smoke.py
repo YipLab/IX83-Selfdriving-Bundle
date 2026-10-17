@@ -48,13 +48,13 @@ def main() -> None:
     loaded = core.get_loaded_devices()
     # Java returns StrVector; some newer clients convert it to a Python list.
     labels = (
-        [loaded.get(i) for i in range(loaded.size())]
-        if hasattr(loaded, "size")
-        else list(loaded)
+        [loaded.get(i) for i in range(loaded.size())] if hasattr(loaded, "size") else list(loaded)
     )
     for label in labels:
         if label != "Core":
-            check(core.get_device_library(label) == "DemoCamera", f"Non-demo device loaded: {label}")
+            check(
+                core.get_device_library(label) == "DemoCamera", f"Non-demo device loaded: {label}"
+            )
     for label, name in {"Camera": "DCam", "XYStage": "DXYStage", "ZStage": "DStage"}.items():
         check(core.get_device_name(label) == name, f"Unexpected device: {label}")
     check(core.get_camera_device() == "Camera", "Unexpected camera role")
@@ -96,11 +96,17 @@ def main() -> None:
             check(frame.stage_position == actual, "Unexpected frame position context")
             check(np.isfinite(frame.pixels).all(), "Non-finite image values")
             report["frames"].append(
-                {"sequence": sequence, "shape": list(frame.pixels.shape), "dtype": str(frame.pixels.dtype)}
+                {
+                    "sequence": sequence,
+                    "shape": list(frame.pixels.shape),
+                    "dtype": str(frame.pixels.dtype),
+                }
             )
         controller = AcquisitionController(camera, stage, preview_capacity=2)
         with TemporaryDirectory(prefix="ix83-demo-recording-") as temporary:
-            writer = RunRecorder(Path(temporary), "demo", context={"device_profile": "ix83_demo_mmconfig.cfg"})
+            writer = RunRecorder(
+                Path(temporary), "demo", context={"device_profile": "ix83_demo_mmconfig.cfg"}
+            )
             expected = []
 
             def record(frame):
@@ -109,7 +115,10 @@ def main() -> None:
 
             try:
                 controller.start_finite(
-                    [CaptureRequest(channel=Channel("Channel", "Demo"), timepoint=t) for t in range(3)],
+                    [
+                        CaptureRequest(channel=Channel("Channel", "Demo"), timepoint=t)
+                        for t in range(3)
+                    ],
                     on_frame=record,
                 )
                 finite = controller.wait(10)
@@ -127,7 +136,9 @@ def main() -> None:
                 controller.request_stop()
                 controller.wait(10)
                 writer.close()
-        controller.start_free_run(CaptureRequest(channel=Channel("Channel", "Demo")), interval_s=0.05)
+        controller.start_free_run(
+            CaptureRequest(channel=Channel("Channel", "Demo")), interval_s=0.05
+        )
         deadline = time.monotonic() + 5
         while not controller.preview() and time.monotonic() < deadline:
             time.sleep(0.01)

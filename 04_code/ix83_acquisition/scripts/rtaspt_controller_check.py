@@ -35,8 +35,12 @@ def main() -> None:
 
     with TemporaryDirectory(prefix="ix83-controller-") as temporary:
         config = load_config(package_root / "configs/rtaspt_mock.yaml")
-        config = replace(config, acquisition=replace(config.acquisition,
-                         output_dir=temporary, interval_s=0.01, interval_ms=10))
+        config = replace(
+            config,
+            acquisition=replace(
+                config.acquisition, output_dir=temporary, interval_s=0.01, interval_ms=10
+            ),
+        )
         captures = []
         backends = []
         closed = []
@@ -52,8 +56,11 @@ def main() -> None:
                 closed.append(self)
 
         def factory(runtime):
-            backend = Backend(MockCamera(shape_yx=(96, 96)), MockXYZStage(),
-                              channel_group=runtime.acquisition.channel_group)
+            backend = Backend(
+                MockCamera(shape_yx=(96, 96)),
+                MockXYZStage(),
+                channel_group=runtime.acquisition.channel_group,
+            )
             backends.append(backend)
             return backend
 
@@ -68,8 +75,9 @@ def main() -> None:
             return MDASettings("Channel", channels, 3, 10, temporary, "controller")
 
         runner = _make_live_mda_runner(SimpleNamespace(channel=None), (), backend_factory=factory)
-        controller = LiveAcquisitionController(config, mda_runner=runner,
-                     settings_loader=settings_loader, backend_factory=factory)
+        controller = LiveAcquisitionController(
+            config, mda_runner=runner, settings_loader=settings_loader, backend_factory=factory
+        )
 
         def wait_until(predicate):
             deadline = time.monotonic() + 5
@@ -98,9 +106,19 @@ def main() -> None:
             exposures = [event.exposure_ms for event, _ in captures]
             assert exposures == [10, 20, 20], exposures
             assert len(backends) == len(closed) == 2
-            print(json.dumps({"result": "PASS", "free_run_frames": live_count,
-                              "mda_frames": len(captures), "exposures_ms": exposures,
-                              "raw_pixels_equal": True, "backends_closed": len(closed)}, indent=2))
+            print(
+                json.dumps(
+                    {
+                        "result": "PASS",
+                        "free_run_frames": live_count,
+                        "mda_frames": len(captures),
+                        "exposures_ms": exposures,
+                        "raw_pixels_equal": True,
+                        "backends_closed": len(closed),
+                    },
+                    indent=2,
+                )
+            )
         finally:
             controller.shutdown()
 

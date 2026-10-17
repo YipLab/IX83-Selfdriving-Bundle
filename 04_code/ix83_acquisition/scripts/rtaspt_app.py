@@ -31,8 +31,9 @@ def main() -> int:
         if config.detector_config.type != "single":
             raise ValueError("The bundle baseline requires detector_config.type: single")
         if options.devices == "mock":
-            camera = MockCamera(shape_yx=config.acquisition.image_shape,
-                                seed=config.acquisition.random_seed)
+            camera = MockCamera(
+                shape_yx=config.acquisition.image_shape, seed=config.acquisition.random_seed
+            )
             stage = MockXYZStage()
         else:
             from ix83_acquisition.pycromanager import (
@@ -48,7 +49,9 @@ def main() -> int:
                 if label != "Core" and core.get_device_library(label) != "DemoCamera":
                     raise RuntimeError(f"Demo mode refuses loaded real device {label!r}")
             if (core.get_camera_device(), core.get_xy_stage_device(), core.get_focus_device()) != (
-                "Camera", "XYStage", "ZStage",
+                "Camera",
+                "XYStage",
+                "ZStage",
             ):
                 raise RuntimeError("Load ix83_demo_mmconfig.cfg before using demo mode")
             if core.is_sequence_running():

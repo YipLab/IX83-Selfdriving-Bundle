@@ -5,10 +5,15 @@ __pycache__/
 
 # macOS
 .DS_Store
+.pva-tmp/
 
 persist/
 scripts/
+02_docs_offline/
 05_simulations/
+07_experiment_notebook/
+08_session_logs/
+
 
 # vscode
 .vscode/

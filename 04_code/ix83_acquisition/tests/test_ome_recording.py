@@ -4,7 +4,6 @@ from dataclasses import replace
 
 import numpy as np
 import pytest
-import tifffile
 
 from ix83_acquisition import (
     AcquisitionController,
@@ -17,16 +16,29 @@ from ix83_acquisition import (
 )
 from ix83_acquisition.ome_recording import OMERecorder, replay_ome_frames
 
+tifffile = pytest.importorskip(
+    "tifffile", reason="the ome extra installs tifffile; sync --extra ome to run these tests"
+)
+
 
 def frame(index):
-    return Frame(np.full((8, 8), index, dtype=np.uint16), Position(1, 2, 3), index, 50,
-                 timepoint=index,
-                 core_image_number=index, camera_frame_number=index+1, source_timestamp_ms=index*50)
+    return Frame(
+        np.full((8, 8), index, dtype=np.uint16),
+        Position(1, 2, 3),
+        index,
+        50,
+        timepoint=index,
+        core_image_number=index,
+        camera_frame_number=index + 1,
+        source_timestamp_ms=index * 50,
+    )
 
 
 def test_concurrent_controller_recording_retains_every_frame(tmp_path):
     writer = OMERecorder(tmp_path, "mock", queue_capacity=8)
-    controller = AcquisitionController(MockCamera(shape_yx=(8, 8)), MockXYZStage(), preview_capacity=1)
+    controller = AcquisitionController(
+        MockCamera(shape_yx=(8, 8)), MockXYZStage(), preview_capacity=1
+    )
     controller.start_sequence(SequenceRequest(4, exposure_ms=1), on_frame=writer)
     result = writer.finish(controller.wait(2))
     assert result.state == "completed" and writer.frames_written == 4

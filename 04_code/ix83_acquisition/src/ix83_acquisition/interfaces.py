@@ -92,7 +92,12 @@ class SequenceCamera(Camera, Protocol):
     """
 
     def stream_sequence(
-        self, *, frames: int, exposure_ms: float, stage_position: Position,
-        stop_requested: Callable[[], bool], channel: Channel | None = None,
+        self,
+        *,
+        frames: int,
+        exposure_ms: float,
+        stage_position: Position,
+        stop_requested: Callable[[], bool],
+        channel: Channel | None = None,
         timeout_s: float = 10,
     ) -> Iterator[Frame]: ...

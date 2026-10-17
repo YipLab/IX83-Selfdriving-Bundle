@@ -7,14 +7,16 @@ name = "ix83-acquisition"
 version = "0.1.0"
 description = "Minimal camera and XYZ-stage interfaces for IX83-Automation"
 requires-python = ">=3.12,<3.13"
-dependencies = ["numpy==1.26.4"]
+dependencies = ["numpy==1.26.4", "redsun-planner==0.1.0.dev0"]
 
 [project.scripts]
 ix83-acquire = "ix83_acquisition.__main__:main"
 
 [project.optional-dependencies]
 ome = ["tifffile==2025.1.10"]
-pycromanager = ["pycromanager==1.0.2", "pyjavaz==1.2.8"]
+pycromanager = ["pycromanager==1.0.2", "pyjavaz==1.2.8", "ophyd==1.11.2"]
+hand-eye = ["redsun-planner[registration]==0.1.0.dev0"]
+oxiserial = ["oxiserial==0.2.0"]
 rtaspt-check = [
     "tifffile==2025.1.10", "pyyaml==6.0.2",
     "msgspec>=0.21.1", "psygnal>=0.15.1", "tqdm==4.67.1",
@@ -27,7 +29,7 @@ rtaspt-controller-check = [
 ]
 
 [dependency-groups]
-dev = ["pytest==9.1.1", "ruff==0.16.10", "mypy==2.4.0"]
+dev = ["pytest==9.1.1", "ruff==0.16.10", "mypy==2.4.0", "ophyd==1.11.2"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -40,6 +42,13 @@ line-length = 100
 select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501"]
 
+[tool.ruff.lint.per-file-ignores]
+# Launchers call source_bootstrap.enable_source_tree() before importing the
+# package, so their imports legitimately follow executable statements. That
+# bootstrap is scoped migration debt, not the lasting integration mechanism, so
+# the E402 exception stays confined to these launchers.
+"scripts/scan_workflow/*.py" = ["E402"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true
@@ -49,8 +58,17 @@ files = ["src"]
 module = ["pycromanager"]
 ignore_missing_imports = true
 
+# Optional extras that ship no py.typed marker, or are absent from the base
+# environment; the guarded imports remain runtime-optional.
+[[tool.mypy.overrides]]
+module = ["oxiserial", "oxiserial.*", "ophyd.status"]
+ignore_missing_imports = true
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.uv.sources]
+redsun-planner = { path = "../../03_external/sample_search", editable = false }
 
 [tool.setuptools.package-data]
 ix83_acquisition = ["py.typed"]
