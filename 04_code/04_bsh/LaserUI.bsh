@@ -1,5 +1,5 @@
 String [] lasers = new String [] {"405", "488", "561", "670"};
-String [] ports = new String [] {"COM28", "COM22", "COM26", "COM30"};
+String [] ports = new String [] {"COM12", "COM6", "COM10", "COM9"};
 double [] maxPwr = new double [] {55.0, 190.0, 190.0, 160.0};
 double [] minPwr = new double [] {2.0,20.0,5.0,5.0};
 
