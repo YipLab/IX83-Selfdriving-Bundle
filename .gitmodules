@@ -4,3 +4,6 @@
 [submodule "03_external/redsun-searching-is-imaging"]
 	path = 03_external/redsun-searching-is-imaging
 	url = https://github.com/deanziyangyu/redsun-searching-is-imaging.git
+[submodule "03_external/sample_search"]
+	path = 03_external/sample_search
+	url = https://github.com/deanziyangyu/redsun-planner.git
