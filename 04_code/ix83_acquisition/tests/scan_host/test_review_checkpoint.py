@@ -1,3 +1,4 @@
+import hashlib
 import json
 from dataclasses import replace
 from datetime import UTC, datetime, timedelta
@@ -135,24 +136,33 @@ def test_checkpoint_load_resume_runs_only_revisits_and_keeps_review_record(tmp_p
         resumed_runner.resume_review(result, decision_for(result, resumed_runner))
 
 
-def test_legacy_checkpoint_is_verified_then_normalized_to_named_axes(tmp_path):
+def test_lowercase_axes_are_normalized_to_named_axes_on_load(tmp_path):
     runner = setup()
     checkpoint = runner.run(review_only=True)
-    path = tmp_path / "legacy.json"
+    path = tmp_path / "lowercase-axes.json"
     save_run(path, checkpoint, runner.recipe, runner.calibration, runner.region)
     payload = json.loads(path.read_text(encoding="utf-8"))
     payload.pop("payload_sha256")
-    payload["schema"] = "samplescout-run-v1"
     for observation in payload["observations"]:
         observation["axes"] = [axis.lower() for axis in observation["axes"]]
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False)
-    import hashlib
-
     payload["payload_sha256"] = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
     path.write_text(json.dumps(payload), encoding="utf-8")
     loaded, *_ = load_review_run(path)
     assert loaded.status is RunStatus.REVIEW_PENDING
     assert all(o.axes == ("Y", "X") for o in loaded.observations)
+
+
+def test_unsupported_schema_is_rejected(tmp_path):
+    runner = setup()
+    checkpoint = runner.run(review_only=True)
+    path = tmp_path / "unsupported-schema.json"
+    save_run(path, checkpoint, runner.recipe, runner.calibration, runner.region)
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload["schema"] = "planner-run-v2"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ValueError, match="unsupported saved run schema"):
+        load_review_run(path)
 
 
 def test_blank_survey_still_pauses_and_missing_survey_fails():

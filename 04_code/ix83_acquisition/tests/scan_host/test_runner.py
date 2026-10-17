@@ -188,7 +188,7 @@ def test_saved_detection_replay_reproduces_selected_targets(tmp_path):
     snapshot = tmp_path / "run.json"
     save_run(snapshot, run, runner.recipe, runner.calibration, runner.region)
     payload = __import__("json").loads(snapshot.read_text(encoding="utf-8"))
-    assert payload["schema"] == "samplescout-run-v3"
+    assert payload["schema"] == "planner-run-v3"
     assert payload["execution_bindings"][0]["provider"].endswith("MockBackend")
     assert payload["run"]["run_id"] == run.run_id
     assert payload["observations"]

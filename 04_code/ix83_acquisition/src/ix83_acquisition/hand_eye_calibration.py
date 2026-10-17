@@ -148,10 +148,10 @@ class HandEyeCalibrationRecorder:
         _write_json(self.directory / "stop.json", self._stop_doc)
         analysis: dict[str, Any]
         try:
-            # Imported here because the hand-eye extra (and its OpenCV
-            # dependency) is optional; a missing extra is recorded as a failed
-            # analysis instead of breaking recorder construction or import.
-            from planner.hand_eye_analysis import analyze_hand_eye_run
+            # Imported here because the analysis pulls in OpenCV for image
+            # registration; a missing extra is recorded as a failed analysis
+            # instead of breaking recorder construction or import.
+            from .hand_eye_analysis import analyze_hand_eye_run
 
             analysis_events = []
             for event in self._event_docs:
