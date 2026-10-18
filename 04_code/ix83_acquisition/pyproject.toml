@@ -15,7 +15,9 @@ ix83-acquire = "ix83_acquisition.__main__:main"
 [project.optional-dependencies]
 ome = ["tifffile==2025.1.10"]
 pycromanager = ["pycromanager==1.0.2", "pyjavaz==1.2.8", "ophyd==1.11.2"]
-hand-eye = ["redsun-planner[registration]==0.1.0.dev0"]
+hand-eye = [
+    "opencv-python-headless>=4.8", "tifffile==2025.1.10",
+]
 oxiserial = ["oxiserial==0.2.0"]
 rtaspt-check = [
     "tifffile==2025.1.10", "pyyaml==6.0.2",
