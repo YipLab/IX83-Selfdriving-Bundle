@@ -1,0 +1,33 @@
+{
+ "schema": "redsun-bundle.figure-sources/v1",
+ "figure_id": "figure-2-revisit-accuracy",
+ "title": "Revisit accuracy and registration residuals",
+ "status": "placeholder",
+ "slots": [
+  {"slot": "D03", "claim": "filled"},
+  {"slot": "D06", "claim": "filled"}
+ ],
+ "inputs": [
+  {
+   "path": "records/example_inputs/revisit_and_registration.csv",
+   "kind": "csv",
+   "status": "placeholder",
+   "quantity": "revisit_error_median",
+   "unit": "um",
+   "produced_by": "04_code/run_evidence/build_run_evidence.py (recorded-run mode)"
+  }
+ ],
+ "unit_registry": {
+  "revisit_error_median": "um",
+  "revisit_error_p95": "um",
+  "registration_residual": "px"
+ },
+ "analysis": {
+  "name": "revisit-and-registration-reducer",
+  "version": "0.1.0",
+  "config": "records/example_inputs/analysis_config.json"
+ },
+ "exclusions": [
+  "the example CSV carries arithmetic placeholders, not a specimen measurement"
+ ]
+}

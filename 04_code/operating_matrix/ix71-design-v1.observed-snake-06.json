@@ -1,0 +1,96 @@
+{
+ "schema": "ix71.operating-matrix-observed.1",
+ "matrix_id": "ix71-design-v1",
+ "created_utc": "2026-10-27T19:41:00Z",
+ "run": {
+  "run_dir": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261024T_long_strip_broom_01\\run_snake_06",
+  "confirmation_id": "ix71-snake-06",
+  "report": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261024T_long_strip_broom_01\\run_snake_06\\ix71-snake-06-report.json",
+  "strip_record": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261024T_long_strip_broom_01\\run_snake_06\\strips\\asi-broom-ix71-snake-06-strips.json",
+  "setpoint_mw": 1.0,
+  "declared_maximum_frame_period_s": 0.05
+ },
+ "declared_point": {
+  "detector_mode": "virtual_slit",
+  "speed_um_s": 100.0,
+  "exposure_ms": 10.0,
+  "width_um": 219.384,
+  "frame_period_s": 0.05,
+  "step_um": 5.0,
+  "retained_frames_per_strip": 157
+ },
+ "strips": [
+  {
+   "row": 0,
+   "captured_count": 93,
+   "frame_span_s": 4.344,
+   "median_frame_interval_s": 0.047,
+   "strip_length_um": 781.0,
+   "record_implied_speed_um_s": 148.8,
+   "predicted_frames": 157,
+   "frame_delta": -64,
+   "predicted_step_um": 5.0,
+   "observed_step_um": 8.4891,
+   "step_ratio": 1.6978,
+   "interval_delta_s": -0.003,
+   "observed_overhead_s": 0.02
+  },
+  {
+   "row": 1,
+   "captured_count": 93,
+   "frame_span_s": 4.328,
+   "median_frame_interval_s": 0.047,
+   "strip_length_um": 781.0,
+   "record_implied_speed_um_s": 153.8,
+   "predicted_frames": 157,
+   "frame_delta": -64,
+   "predicted_step_um": 5.0,
+   "observed_step_um": 8.4891,
+   "step_ratio": 1.6978,
+   "interval_delta_s": -0.003,
+   "observed_overhead_s": 0.004
+  },
+  {
+   "row": 2,
+   "captured_count": 93,
+   "frame_span_s": 4.344,
+   "median_frame_interval_s": 0.047,
+   "strip_length_um": 781.0,
+   "record_implied_speed_um_s": 164.9,
+   "predicted_frames": 157,
+   "frame_delta": -64,
+   "predicted_step_um": 5.0,
+   "observed_step_um": 8.4891,
+   "step_ratio": 1.6978,
+   "interval_delta_s": -0.003,
+   "observed_overhead_s": 0.02
+  }
+ ],
+ "summary": {
+  "strips": 3,
+  "predicted_frames_per_strip": 157,
+  "observed_frames": [
+   93,
+   93,
+   93
+  ],
+  "step_ratio_median": 1.6978,
+  "interval_delta_median_s": -0.003
+ },
+ "not_comparable": [
+  {
+   "metric": "valid_area",
+   "reason": "no registered support exists for this run"
+  },
+  {
+   "metric": "local_support_duration",
+   "reason": "no per-location observation map exists for this run"
+  },
+  {
+   "metric": "psf_blur",
+   "reason": "no measured point-spread function exists"
+  }
+ ],
+ "guard": "the recorded route commands speed in the stage service's own unit; the matrix speed axis is a request in the same unit. A frame-count or step ratio measures agreement inside that convention and does not establish physical speed, which remains the open unit-scaling item on this instrument",
+ "accepted": false
+}

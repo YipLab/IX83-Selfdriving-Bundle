@@ -1,0 +1,150 @@
+{
+ "schema": "redsun-rtaspt-handoff-check/v1",
+ "created_utc": "2026-10-27T20:06:55Z",
+ "handoff": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261024T_snap_plan_retest_01\\rtaspt_e2e\\handoff\\handoff.json",
+ "handoff_schema": "redsun-rtaspt-handoff-v1",
+ "frame_count": 9,
+ "checks": [
+  {
+   "id": "schema",
+   "ok": true,
+   "detail": "schema 'redsun-rtaspt-handoff-v1'"
+  },
+  {
+   "id": "required-keys",
+   "ok": true,
+   "detail": "all required keys present"
+  },
+  {
+   "id": "frame-count",
+   "ok": true,
+   "detail": "9 frames"
+  },
+  {
+   "id": "tile-shape",
+   "ok": true,
+   "detail": "1200x1200"
+  },
+  {
+   "id": "outputs-present",
+   "ok": true,
+   "detail": "declared outputs ['frames', 'movie', 'request']"
+  },
+  {
+   "id": "output-movie",
+   "ok": true,
+   "detail": "execute_asi_snap_coverage_survey_and_prepare_review_00002_tiles.ome.tif digest matches"
+  },
+  {
+   "id": "output-frames",
+   "ok": true,
+   "detail": "frames.csv digest matches"
+  },
+  {
+   "id": "output-request",
+   "ok": true,
+   "detail": "request.yaml digest matches"
+  },
+  {
+   "id": "frame-table-header",
+   "ok": true,
+   "detail": "header ['frame', 'x_um', 'y_um', 'time_s']"
+  },
+  {
+   "id": "frame-table-count",
+   "ok": true,
+   "detail": "9 rows against 9 frames"
+  },
+  {
+   "id": "frame-table-values",
+   "ok": true,
+   "detail": "frame ids 0..N-1 with finite coordinates"
+  },
+  {
+   "id": "frame-table-order",
+   "ok": true,
+   "detail": "time_s non-decreasing in emitted order"
+  },
+  {
+   "id": "request-order-pinned",
+   "ok": true,
+   "detail": "order 'as_given'"
+  },
+  {
+   "id": "request-keys",
+   "ok": true,
+   "detail": "only schema keys"
+  },
+  {
+   "id": "request-kind",
+   "ok": true,
+   "detail": "kind 'settled'"
+  },
+  {
+   "id": "request-digest-consistency",
+   "ok": true,
+   "detail": "request digest agrees with the file on disk"
+  },
+  {
+   "id": "movie-axes",
+   "ok": true,
+   "detail": "axes 'TYX'"
+  },
+  {
+   "id": "movie-shape",
+   "ok": true,
+   "detail": "shape (9, 1200, 1200) against 9 x [1200, 1200]"
+  },
+  {
+   "id": "provenance-schema",
+   "ok": true,
+   "detail": "provenance.json carries a schema"
+  },
+  {
+   "id": "provenance-outputs",
+   "ok": true,
+   "detail": "provenance digests agree"
+  },
+  {
+   "id": "writer-checks-declared",
+   "ok": true,
+   "detail": "declared 7 writer checks"
+  }
+ ],
+ "declared_checks": [
+  {
+   "id": "C1-sidecar-schema",
+   "detail": "sidecar declares redsun-planner.snap-position-association-v4"
+  },
+  {
+   "id": "C2-frame-count",
+   "detail": "store 9, sidecar 9, frames_written 9"
+  },
+  {
+   "id": "C3-acquisition-order",
+   "detail": "stage path is a complete 3 x 3 (x by y, y fastest) serpentine walk; times monotonic with array_index"
+  },
+  {
+   "id": "C4-order-pinned",
+   "detail": "request order is as_given and movie page i is frame table row i for all 9 frames"
+  },
+  {
+   "id": "C5-no-dropped-sections",
+   "detail": "request carries only rtaspt-search-product-v1 keys"
+  },
+  {
+   "id": "C6-tiff-carrier",
+   "detail": "TYX [9, 1200, 1200] uint16 single OME series, one page per frame"
+  },
+  {
+   "id": "C7-tile-shape",
+   "detail": "1200x1200 matches the emitted plane"
+  }
+ ],
+ "findings": [],
+ "accepted": true,
+ "notes": [
+  "writer checks are recorded, not re-verified; the file-level checks above are recomputed",
+  "this checks the handoff bundle, not the RTASPT product: use verify_product.py for the product"
+ ]
+}

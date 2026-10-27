@@ -1,0 +1,45 @@
+{
+ "schema": "ix71.acquisition-ledger.v1.report",
+ "accepted": true,
+ "blocking": [],
+ "issues": [
+  {
+   "code": "clock_uncertainty_missing",
+   "severity": "warning",
+   "detail": "clock 'python.time.monotonic_ns' declares no mapping uncertainty",
+   "row_index": 0
+  },
+  {
+   "code": "no_action_records",
+   "severity": "info",
+   "detail": "the ledger carries no action rows; command/response evidence is absent",
+   "row_index": null
+  }
+ ],
+ "summary": {
+  "frames_total": 279,
+  "action_rows": 0,
+  "stores": {
+   "run_asi_pvcam_coordinated_broom_00001": {
+    "frames": 93,
+    "frame_id_first": 1,
+    "frame_id_last": 93
+   },
+   "run_asi_pvcam_coordinated_broom_00002": {
+    "frames": 93,
+    "frame_id_first": 1,
+    "frame_id_last": 93
+   },
+   "run_asi_pvcam_coordinated_broom_00003": {
+    "frames": 93,
+    "frame_id_first": 1,
+    "frame_id_last": 93
+   }
+  },
+  "pose_offsets_measured": 279,
+  "pose_offset_median_ns": 27230000,
+  "pose_offset_max_abs_ns": 35380000,
+  "declared_pose_semantics": "camera_receipt",
+  "declared_exposure_association": "none"
+ }
+}

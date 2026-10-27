@@ -1,0 +1,4 @@
+quantity,value,unit
+revisit_error_median_um,1.84,um
+revisit_error_p95_um,3.10,um
+registration_residual_px,0.178,px

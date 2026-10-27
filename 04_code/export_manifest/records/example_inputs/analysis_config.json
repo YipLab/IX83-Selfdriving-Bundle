@@ -1,0 +1,1 @@
+{"detection_backend": "region", "threshold_dn": 550, "area_px": [2000, 80000], "dedup_um": 2.0}

@@ -1,0 +1,175 @@
+{
+ "schema": "ix71.throughput-accounting.1",
+ "created_utc": "2026-10-27T19:58:59Z",
+ "source": {
+  "mode": "recorded_run",
+  "run_dir": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261024T_long_strip_broom_01\\run_snake_05",
+  "confirmation_id": "ix71-snake-05",
+  "store_count": 3
+ },
+ "camera_mode": {
+  "exposure_ms": 10.0,
+  "binning_xy": [
+   1,
+   1
+  ],
+  "roi_sensor_pixels": {
+   "x": 0,
+   "y": 0,
+   "width": 1200,
+   "height": 1200
+  }
+ },
+ "categories": {
+  "attempted": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "the recorder wrote no attempt log"
+  },
+  "captured": {
+   "value": 284,
+   "status": "measured",
+   "source": "report stores"
+  },
+  "published": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "no publication record exists for this run"
+  },
+  "refused": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "no refusal record exists for this run"
+  },
+  "processed": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "no consumer processed this run"
+  },
+  "released": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "no consumer released this run"
+  },
+  "persisted": {
+   "value": 284,
+   "status": "measured",
+   "source": "report stores"
+  },
+  "missing": {
+   "value": 2,
+   "status": "derived",
+   "source": "captured minus posed"
+  }
+ },
+ "queue": {
+  "value": null,
+  "status": "not_recorded",
+  "reason": "no queue record exists for this run"
+ },
+ "latency": {
+  "value": null,
+  "status": "not_recorded",
+  "reason": "no exposure-to-output timestamps exist for this run"
+ },
+ "restarts": {
+  "value": null,
+  "status": "not_recorded",
+  "reason": "the recorder wrote no session boundaries"
+ },
+ "memory": {
+  "value": null,
+  "status": "not_recorded",
+  "reason": "peak memory was not recorded"
+ },
+ "stores": {
+  "captured": {
+   "run_asi_pvcam_coordinated_broom_00001.zarr:mmcamera": [
+    94,
+    1200,
+    1200
+   ],
+   "run_asi_pvcam_coordinated_broom_00002.zarr:mmcamera": [
+    95,
+    1200,
+    1200
+   ],
+   "run_asi_pvcam_coordinated_broom_00003.zarr:mmcamera": [
+    95,
+    1200,
+    1200
+   ]
+  },
+  "sidecars": [
+   {
+    "sidecar": "run_asi_pvcam_coordinated_broom_00001.positions.json",
+    "frames_written": 94,
+    "frames": 94,
+    "exit_status": "success"
+   },
+   {
+    "sidecar": "run_asi_pvcam_coordinated_broom_00002.positions.json",
+    "frames_written": 94,
+    "frames": 94,
+    "exit_status": "success"
+   },
+   {
+    "sidecar": "run_asi_pvcam_coordinated_broom_00003.positions.json",
+    "frames_written": 94,
+    "frames": 94,
+    "exit_status": "success"
+   }
+  ],
+  "timing": [
+   {
+    "timing": "run_asi_pvcam_coordinated_broom_00001.timing.json",
+    "written_count": 94
+   },
+   {
+    "timing": "run_asi_pvcam_coordinated_broom_00002.timing.json",
+    "written_count": 95
+   },
+   {
+    "timing": "run_asi_pvcam_coordinated_broom_00003.timing.json",
+    "written_count": 95
+   }
+  ],
+  "strips": [
+   {
+    "row": 0,
+    "captured_count": 94,
+    "frame_budget": 2162,
+    "terminal_state": "completed"
+   },
+   {
+    "row": 1,
+    "captured_count": 95,
+    "frame_budget": 2162,
+    "terminal_state": "completed"
+   },
+   {
+    "row": 2,
+    "captured_count": 95,
+    "frame_budget": 2162,
+    "terminal_state": "completed"
+   }
+  ]
+ },
+ "findings": [
+  {
+   "code": "captured_without_pose",
+   "severity": "blocking",
+   "detail": "284 captured against 282 posed"
+  },
+  {
+   "code": "run_incomplete",
+   "severity": "warning",
+   "detail": "pose association was required but failed for some frames (row 1: 1 frames, row 2: 1 frames); the stage was already returned to its anchor and the capture is not usable for placement"
+  }
+ ],
+ "notes": [
+  "captured and persisted are the same store length here; they are kept separate because a consumer run may persist fewer frames than were captured",
+  "a category the recorder did not write is not zero"
+ ],
+ "accepted": false
+}

@@ -1,0 +1,17 @@
+{
+ "schema": "ix71.matched-comparison-events.1",
+ "experiment_id": "ix71-matched-design-v1",
+ "description": "Illustrative per-field units for the reducer, not measurements. Each unit is one field under one strategy; the numbers are chosen so the arithmetic can be checked by hand.",
+ "units": [
+  {"unit_id": "f1-survey", "field_id": "field-a", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "survey_revisit", "valid_area_um2": 400000, "elapsed_s": 60.0, "targets_detected": 12, "targets_accepted": 9, "accepted_windows": 30, "time": {"focus": 4.0, "travel": 6.0, "review": 8.0, "acquisition": 14.0, "segmentation": 5.0, "processing": 3.0}},
+  {"unit_id": "f1-uniform", "field_id": "field-a", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "uniform_broom", "valid_area_um2": 600000, "elapsed_s": 60.0, "targets_detected": 12, "targets_accepted": 11, "accepted_windows": 60, "time": {"focus": 4.0, "travel": 12.0, "review": 0.0, "acquisition": 30.0, "segmentation": 8.0, "processing": 6.0}},
+  {"unit_id": "f1-adaptive", "field_id": "field-a", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "adaptive_broom", "valid_area_um2": 500000, "elapsed_s": 50.0, "targets_detected": 12, "targets_accepted": 11, "accepted_windows": 55},
+  {"unit_id": "f1-step-matched", "field_id": "field-a", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "mean_step_matched", "valid_area_um2": 550000, "elapsed_s": 55.0, "targets_detected": 12, "targets_accepted": 10, "accepted_windows": 55},
+  {"unit_id": "f1-residence-matched", "field_id": "field-a", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "residence_matched", "valid_area_um2": 450000, "elapsed_s": 60.0, "targets_detected": 12, "targets_accepted": 10, "accepted_windows": 45},
+  {"unit_id": "f2-survey", "field_id": "field-b", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "survey_revisit", "valid_area_um2": 300000, "elapsed_s": 60.0, "targets_detected": 10, "targets_accepted": 8, "accepted_windows": 24},
+  {"unit_id": "f2-uniform", "field_id": "field-b", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "uniform_broom", "valid_area_um2": 450000, "elapsed_s": 60.0, "targets_detected": 10, "targets_accepted": 9, "accepted_windows": 45},
+  {"unit_id": "f2-adaptive", "field_id": "field-b", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "adaptive_broom", "valid_area_um2": 400000, "elapsed_s": 50.0, "targets_detected": 10, "targets_accepted": 9, "accepted_windows": 44},
+  {"unit_id": "f2-step-matched", "field_id": "field-b", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "mean_step_matched", "valid_area_um2": 420000, "elapsed_s": 56.0, "targets_detected": 10, "targets_accepted": 9, "accepted_windows": 42},
+  {"unit_id": "f2-residence-matched", "field_id": "field-b", "specimen_id": "design-placeholder", "field_block": 1, "strategy": "residence_matched", "valid_area_um2": 350000, "elapsed_s": 60.0, "targets_detected": 10, "targets_accepted": 8, "accepted_windows": 35}
+ ]
+}

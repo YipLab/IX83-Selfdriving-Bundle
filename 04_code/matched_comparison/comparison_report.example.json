@@ -1,0 +1,128 @@
+{
+ "schema": "ix71.matched-comparison-report.1",
+ "experiment_id": "ix71-matched-design-v1",
+ "created_utc": "2026-10-27T19:47:12Z",
+ "units": 10,
+ "by_strategy": {
+  "survey_revisit": {
+   "units": 2,
+   "valid_area_mm2": 0.7,
+   "elapsed_s": 120.0,
+   "area_mm2_per_min": 0.35,
+   "accepted_windows": 54,
+   "accepted_windows_per_min": 27.0,
+   "targets_detected": 22,
+   "targets_accepted": 17,
+   "success_fraction": 0.7727
+  },
+  "uniform_broom": {
+   "units": 2,
+   "valid_area_mm2": 1.05,
+   "elapsed_s": 120.0,
+   "area_mm2_per_min": 0.525,
+   "accepted_windows": 105,
+   "accepted_windows_per_min": 52.5,
+   "targets_detected": 22,
+   "targets_accepted": 20,
+   "success_fraction": 0.9091
+  },
+  "adaptive_broom": {
+   "units": 2,
+   "valid_area_mm2": 0.9,
+   "elapsed_s": 100.0,
+   "area_mm2_per_min": 0.54,
+   "accepted_windows": 99,
+   "accepted_windows_per_min": 59.4,
+   "targets_detected": 22,
+   "targets_accepted": 20,
+   "success_fraction": 0.9091
+  },
+  "mean_step_matched": {
+   "units": 2,
+   "valid_area_mm2": 0.97,
+   "elapsed_s": 111.0,
+   "area_mm2_per_min": 0.524324,
+   "accepted_windows": 97,
+   "accepted_windows_per_min": 52.4324,
+   "targets_detected": 22,
+   "targets_accepted": 19,
+   "success_fraction": 0.8636
+  },
+  "residence_matched": {
+   "units": 2,
+   "valid_area_mm2": 0.8,
+   "elapsed_s": 120.0,
+   "area_mm2_per_min": 0.4,
+   "accepted_windows": 80,
+   "accepted_windows_per_min": 40.0,
+   "targets_detected": 22,
+   "targets_accepted": 18,
+   "success_fraction": 0.8182
+  }
+ },
+ "paired": [
+  {
+   "field_id": "field-a",
+   "strategy": "survey_revisit",
+   "area_mm2_per_min_delta": -0.2,
+   "accepted_windows_per_min_delta": -30.0
+  },
+  {
+   "field_id": "field-a",
+   "strategy": "adaptive_broom",
+   "area_mm2_per_min_delta": 0.0,
+   "accepted_windows_per_min_delta": 6.0
+  },
+  {
+   "field_id": "field-a",
+   "strategy": "mean_step_matched",
+   "area_mm2_per_min_delta": 0.0,
+   "accepted_windows_per_min_delta": 0.0
+  },
+  {
+   "field_id": "field-a",
+   "strategy": "residence_matched",
+   "area_mm2_per_min_delta": -0.15,
+   "accepted_windows_per_min_delta": -15.0
+  },
+  {
+   "field_id": "field-b",
+   "strategy": "survey_revisit",
+   "area_mm2_per_min_delta": -0.15,
+   "accepted_windows_per_min_delta": -21.0
+  },
+  {
+   "field_id": "field-b",
+   "strategy": "adaptive_broom",
+   "area_mm2_per_min_delta": 0.03,
+   "accepted_windows_per_min_delta": 7.8
+  },
+  {
+   "field_id": "field-b",
+   "strategy": "mean_step_matched",
+   "area_mm2_per_min_delta": -0.0,
+   "accepted_windows_per_min_delta": 0.0
+  },
+  {
+   "field_id": "field-b",
+   "strategy": "residence_matched",
+   "area_mm2_per_min_delta": -0.1,
+   "accepted_windows_per_min_delta": -10.0
+  }
+ ],
+ "unpaired": [],
+ "time_endpoints_not_measured": [],
+ "declared_controls": {
+  "mean_step_tolerance_fraction": 0.02,
+  "residence_requirement_s": 2.0,
+  "residence_tolerance_s": 0.01,
+  "mean_step_delta_um": 0.0,
+  "residence_delta_s": 0.0
+ },
+ "notes": [
+  "units are fields, not frames or tracks",
+  "union area is summed over disjoint field units only",
+  "a strategy absent from the event table is absent from by_strategy, not zero"
+ ],
+ "accepted": false
+}

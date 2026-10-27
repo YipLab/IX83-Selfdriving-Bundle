@@ -1,0 +1,118 @@
+{
+ "schema": "ix71.throughput-accounting.1",
+ "created_utc": "2026-10-27T19:58:59Z",
+ "source": {
+  "mode": "consumer_log",
+  "log": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\consumer.example.json",
+  "stream_id": "fixture-broom-stream",
+  "rows": 7
+ },
+ "camera_mode": {
+  "exposure_ms": 10.0,
+  "binning_xy": [
+   1,
+   1
+  ],
+  "roi_sensor_pixels": {
+   "x": 0,
+   "y": 0,
+   "width": 1200,
+   "height": 1200
+  }
+ },
+ "categories": {
+  "attempted": {
+   "value": 7,
+   "status": "measured",
+   "source": "consumer log"
+  },
+  "captured": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "the consumer log starts after capture"
+  },
+  "published": {
+   "value": 6,
+   "status": "measured",
+   "source": "consumer log"
+  },
+  "refused": {
+   "value": 1,
+   "status": "measured",
+   "source": "consumer log dropped flag"
+  },
+  "processed": {
+   "value": 6,
+   "status": "measured",
+   "source": "consumer log"
+  },
+  "released": {
+   "value": 6,
+   "status": "measured",
+   "source": "consumer log"
+  },
+  "persisted": {
+   "value": null,
+   "status": "not_recorded",
+   "reason": "no persistence record exists in this log"
+  },
+  "missing": {
+   "value": 0,
+   "status": "derived",
+   "source": "non-dropped rows without a publication"
+  }
+ },
+ "queue": {
+  "value": {
+   "peak_occupancy": 1,
+   "capacity": 2
+  },
+  "status": "derived",
+  "source": "published minus released, ordered by frame id"
+ },
+ "latency": {
+  "value": {
+   "publish_to_process_ms": {
+    "count": 6,
+    "median": 80.0,
+    "p95": 260.0,
+    "max": 260.0
+   },
+   "process_to_release_ms": {
+    "count": 6,
+    "median": 20.0,
+    "p95": 20.0
+   },
+   "clock_uncertainty_ms": 0.5
+  },
+  "status": "derived",
+  "source": "consumer log timestamps"
+ },
+ "restarts": {
+  "value": 1,
+  "status": "derived",
+  "source": "session list length minus one"
+ },
+ "memory": {
+  "value": null,
+  "status": "not_recorded",
+  "reason": "peak memory was not recorded"
+ },
+ "findings": [
+  {
+   "code": "frames_dropped",
+   "severity": "warning",
+   "detail": "1 rows are marked dropped"
+  },
+  {
+   "code": "latency_over_budget",
+   "severity": "warning",
+   "detail": "p95 260.0 ms over budget 150.0 ms"
+  }
+ ],
+ "notes": [
+  "capture, persistence and attempt counts are absent from a consumer log",
+  "queue occupancy is published minus released, not a device readback"
+ ],
+ "accepted": false
+}

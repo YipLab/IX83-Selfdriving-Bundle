@@ -1,0 +1,65 @@
+{
+ "schema": "redsun-bundle.figure-export/v1",
+ "figure_id": "figure-2-revisit-accuracy",
+ "title": "Revisit accuracy and registration residuals",
+ "created_utc": "2026-10-27T19:54:36Z",
+ "status": "placeholder",
+ "reason": null,
+ "slots": [
+  {
+   "slot": "D03",
+   "claim": "filled",
+   "reason": null
+  },
+  {
+   "slot": "D06",
+   "claim": "filled",
+   "reason": null
+  }
+ ],
+ "inputs": [
+  {
+   "path": "records/example_inputs/revisit_and_registration.csv",
+   "kind": "csv",
+   "status": "placeholder",
+   "quantity": "revisit_error_median",
+   "unit": "um",
+   "produced_by": "04_code/run_evidence/build_run_evidence.py (recorded-run mode)",
+   "sha256": "c39a2508e771ca5467723186c1e13ddf871f56d843fec8850f61a4805af684a7",
+   "bytes": 114
+  }
+ ],
+ "unit_registry": {
+  "revisit_error_median": "um",
+  "revisit_error_p95": "um",
+  "registration_residual": "px"
+ },
+ "analysis": {
+  "name": "revisit-and-registration-reducer",
+  "version": "0.1.0",
+  "config": "records/example_inputs/analysis_config.json",
+  "config_sha256": "8982f02f8177b37c23231dffc4c95e1ab1f2363d71c527082af22564f5d11f4b"
+ },
+ "exclusions": [
+  "the example CSV carries arithmetic placeholders, not a specimen measurement"
+ ],
+ "software": {
+  "bundle": {
+   "revision": "f68d07d0894a66e1179769ebb48069a8470746a3",
+   "dirty": true
+  },
+  "app": {
+   "revision": "c3fbec8efdc593b127db04ee48cc2433a1cb318a",
+   "dirty": true
+  },
+  "planner": {
+   "revision": "659996c435f5713f26dcae757a80f24bb9645938",
+   "dirty": true
+  },
+  "rtaspt": {
+   "revision": "29e0b9be55133b7390eda9af1eca7317d9123fb4",
+   "dirty": true
+  }
+ },
+ "accepted": false
+}

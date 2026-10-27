@@ -1,0 +1,538 @@
+{
+ "schema": "ix71.run-evidence.v1",
+ "generator": "04_code/run_evidence/build_run_evidence.py",
+ "created_utc": "2026-10-27T19:17:47Z",
+ "run": {
+  "run_dir": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06",
+  "confirmation_id": {
+   "value": "ix71-snake-06",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "attempt_id": {
+   "value": "b8ece265-4312-403f-8c27-af727bf352a7",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_manifest_20261026T040848Z.json",
+   "status": "declared"
+  },
+  "created_at": {
+   "value": "2026-10-26T04:08:48.153647+00:00",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_manifest_20261026T040848Z.json",
+   "status": "declared"
+  },
+  "session_outcome": {
+   "value": "success",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "complete": {
+   "value": true,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_manifest_20261026T040848Z.json",
+   "status": "declared"
+  },
+  "interrupted": {
+   "value": false,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_manifest_20261026T040848Z.json",
+   "status": "declared"
+  }
+ },
+ "software": {
+  "bundle": {
+   "value": {
+    "revision": "f68d07d0894a66e1179769ebb48069a8470746a3",
+    "dirty": true,
+    "dirty_entries": 31
+   },
+   "source": "git",
+   "status": "derived"
+  },
+  "app": {
+   "value": {
+    "revision": "c3fbec8efdc593b127db04ee48cc2433a1cb318a",
+    "dirty": true,
+    "dirty_entries": 20
+   },
+   "source": "git",
+   "status": "derived"
+  },
+  "planner": {
+   "value": {
+    "revision": "659996c435f5713f26dcae757a80f24bb9645938",
+    "dirty": true,
+    "dirty_entries": 7
+   },
+   "source": "git",
+   "status": "derived"
+  },
+  "rtaspt": {
+   "value": {
+    "revision": "29e0b9be55133b7390eda9af1eca7317d9123fb4",
+    "dirty": true,
+    "dirty_entries": 5
+   },
+   "source": "git",
+   "status": "derived"
+  },
+  "profile_path": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+  "profile_sha256": {
+   "value": "629b1888e452987bca6ca57bf13160f13d4aa0ea5d086ce87729d4bf4502be14",
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "derived"
+  }
+ },
+ "camera": {
+  "name": {
+   "value": "mmcamera",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "exposure_ms": {
+   "value": 10.0,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "binning_xy": {
+   "value": [
+    1,
+    1
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "roi_sensor_pixels": {
+   "value": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 1200
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "roi_binned_pixels": {
+   "value": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 1200
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "properties": {
+   "value": {},
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "adapter": {
+   "value": "PVCAM",
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "device": {
+   "value": "Camera-1",
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "declared_properties": {
+   "value": "Binning",
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "mode_source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json"
+ },
+ "illumination": {
+  "setpoint_mw": {
+   "value": 1.0,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "mode": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "the run names a setpoint but not an optical mode; the profile's 488 channel is not evidence that this run emitted through it",
+   "checked": [
+    "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml"
+   ]
+  },
+  "objective": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "no recorded source names the objective or its magnification",
+   "checked": [
+    "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml"
+   ]
+  }
+ },
+ "stage": {
+  "port": {
+   "value": "COM5",
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "counts_per_um": {
+   "value": 5.0,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "speed_mm_s": {
+   "value": 0.1,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "ramp_ms": {
+   "value": 150,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "backlash_mm": {
+   "value": 0.016,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "absolute_takeup_um": {
+   "value": 2.0,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "max_xy_offset_um": {
+   "value": 1500,
+   "source": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "status": "declared"
+  },
+  "conversion_note": "counts_per_um is the service conversion; it is not an independently measured optical scale"
+ },
+ "coordinates": {
+  "basis": {
+   "value": "stage-xy-reported-um",
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "readback_keys": {
+   "value": {
+    "x": "asi_stage-xy-axis-x",
+    "y": "asi_stage-xy-axis-y"
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "declared"
+  },
+  "pose_sources": {
+   "value": [
+    "camera_receipt"
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "derived"
+  },
+  "frame_status_counts": {
+   "value": {
+    "associated_receipt": 279
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "derived"
+  },
+  "pose_phase_counts": {
+   "value": {
+    "steady": 279
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+   "status": "derived"
+  },
+  "pose_clock": {
+   "value": "python.time.monotonic_ns",
+   "source": "timing sidecar",
+   "status": "declared"
+  },
+  "timestamp_semantics": {
+   "value": "service_arrival_after_core_frame_read",
+   "source": "timing sidecar",
+   "status": "declared"
+  },
+  "frame_metadata_semantics": {
+   "value": "raw per-frame MMCore tags; timestamps are not assumed to be exposure intervals or mapped to the host monotonic clock",
+   "source": "timing sidecar",
+   "status": "declared"
+  },
+  "exposure_associated": {
+   "value": false,
+   "source": "timing sidecar",
+   "status": "derived",
+   "reason": "the declared semantics associate a stage readback with service arrival, not with the exposure interval"
+  }
+ },
+ "geometry": {
+  "strip_span_um": {
+   "value": 1000.0,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "footprint_xy_um": {
+   "value": [
+    219.0,
+    219.0
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+   "status": "declared"
+  },
+  "overlap": {
+   "value": 0.2,
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+   "status": "declared"
+  },
+  "anchor_xy_um": {
+   "value": [
+    -465.76,
+    1158.66
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "route_rows": {
+   "value": [
+    {
+     "row": 0,
+     "start_xy_um": [
+      -856.6,
+      1042.02
+     ],
+     "end_xy_um": [
+      -75.60000000000002,
+      1042.02
+     ],
+     "terminal_state": "completed",
+     "captured_count": 93
+    },
+    {
+     "row": 1,
+     "start_xy_um": [
+      -75.60000000000002,
+      1158.82
+     ],
+     "end_xy_um": [
+      -856.6,
+      1158.82
+     ],
+     "terminal_state": "completed",
+     "captured_count": 93
+    },
+    {
+     "row": 2,
+     "start_xy_um": [
+      -856.6,
+      1275.62
+     ],
+     "end_xy_um": [
+      -75.60000000000002,
+      1275.62
+     ],
+     "terminal_state": "completed",
+     "captured_count": 93
+    }
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+   "status": "declared"
+  },
+  "anchor_return": {
+   "value": {
+    "attempted": true,
+    "final_xy_um": [
+     -466.1,
+     1158.82
+    ],
+    "error_um": [
+     -0.34,
+     0.16
+    ]
+   },
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+   "status": "declared"
+  }
+ },
+ "calibration": {
+  "id": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "no calibration record was supplied and the run references none",
+   "checked": []
+  },
+  "mode_match": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "no calibration record was supplied, so no camera-mode match exists",
+   "checked": []
+  },
+  "records": []
+ },
+ "specimen": {
+  "specimen_id": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "no recorded source names the specimen; it is an operator/author fact",
+   "checked": []
+  },
+  "field_id": {
+   "value": null,
+   "source": null,
+   "status": "unresolved",
+   "reason": "the run names an anchor and a footprint, not a field identifier",
+   "checked": []
+  },
+  "field_anchor_xy_um": {
+   "value": [
+    -465.76,
+    1158.66
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+   "status": "declared"
+  },
+  "footprint_xy_um": {
+   "value": [
+    219.0,
+    219.0
+   ],
+   "source": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+   "status": "declared"
+  }
+ },
+ "frames": {
+  "sidecars": [
+   {
+    "sidecar": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+    "store_uri": null,
+    "frames_written": 93,
+    "exit_status": "success",
+    "frame_id_first": 1,
+    "frame_id_last": 93,
+    "frame_ids_strictly_increasing": true,
+    "array_index_contiguous": true
+   },
+   {
+    "sidecar": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00002.positions.json",
+    "store_uri": null,
+    "frames_written": 93,
+    "exit_status": "success",
+    "frame_id_first": 1,
+    "frame_id_last": 93,
+    "frame_ids_strictly_increasing": true,
+    "array_index_contiguous": true
+   },
+   {
+    "sidecar": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00003.positions.json",
+    "store_uri": null,
+    "frames_written": 93,
+    "exit_status": "success",
+    "frame_id_first": 1,
+    "frame_id_last": 93,
+    "frame_ids_strictly_increasing": true,
+    "array_index_contiguous": true
+   }
+  ],
+  "stores": {
+   "run_asi_pvcam_coordinated_broom_00001.zarr:mmcamera": [
+    93,
+    1200,
+    1200
+   ],
+   "run_asi_pvcam_coordinated_broom_00002.zarr:mmcamera": [
+    93,
+    1200,
+    1200
+   ],
+   "run_asi_pvcam_coordinated_broom_00003.zarr:mmcamera": [
+    93,
+    1200,
+    1200
+   ]
+  },
+  "accounting_ok": true,
+  "mismatches": []
+ },
+ "products": {
+  "digests": [
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-snake-06-report.json",
+    "sha256": "6c5b4a09f911d20eb8e2be041ca3da9cc784b0ba929980a694764f55791327a4"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/strips/asi-broom-ix71-snake-06-strips.json",
+    "sha256": "4dddf28333e1c919f3b1968810654a72611969a8250863857b481b134a493e60"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_manifest_20261026T040848Z.json",
+    "sha256": "fecce46d83a1e33165f39c5fe7886962ca843a0e6e636687a3cda794e3df3876"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.positions.json",
+    "sha256": "412cac7b8f4288367c150469b37fa658f579f9ca6106009ce37bca70e96f5266"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00002.positions.json",
+    "sha256": "458b6303ac8becadfdcc52290f13b6d2c99455466476d6b97c2843ab040a02ab"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00003.positions.json",
+    "sha256": "25282b211634213cf3d55421f406eeb4b6873335035d9b10635c6f689798ee13"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00001.timing.json",
+    "sha256": "87a765de74fdb6cba1db680938f41e16e0cec815ff7c76390c270b74e6f70f16"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00002.timing.json",
+    "sha256": "c73304c649222af8413ceb6b5759a13f38a9c46c7772b8ab3d3a2602a81c98fe"
+   },
+   {
+    "path": "08_session_logs/20261024T_long_strip_broom_01/run_snake_06/ix71-asi-sapphire-snake/2026-10-26/mmcamera/run_asi_pvcam_coordinated_broom_00003.timing.json",
+    "sha256": "7e42e86938c807d6fd183d8c789dda1b3e310ada69bbe72817743f13fc595a2c"
+   }
+  ],
+  "zarr_stores": [
+   {
+    "path": "run_asi_pvcam_coordinated_broom_00001.zarr:mmcamera",
+    "status": "not_digested",
+    "shape": [
+     93,
+     1200,
+     1200
+    ]
+   },
+   {
+    "path": "run_asi_pvcam_coordinated_broom_00002.zarr:mmcamera",
+    "status": "not_digested",
+    "shape": [
+     93,
+     1200,
+     1200
+    ]
+   },
+   {
+    "path": "run_asi_pvcam_coordinated_broom_00003.zarr:mmcamera",
+    "status": "not_digested",
+    "shape": [
+     93,
+     1200,
+     1200
+    ]
+   }
+  ],
+  "profile": {
+   "path": "03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/configurations/ix71_asi_pvcam_sapphire.yaml",
+   "sha256": "629b1888e452987bca6ca57bf13160f13d4aa0ea5d086ce87729d4bf4502be14"
+  }
+ },
+ "findings": [],
+ "blocking": [],
+ "unresolved": [
+  "illumination.mode",
+  "illumination.objective",
+  "calibration.id",
+  "calibration.mode_match",
+  "specimen.specimen_id",
+  "specimen.field_id"
+ ],
+ "identity_complete": false,
+ "accepted": false
+}

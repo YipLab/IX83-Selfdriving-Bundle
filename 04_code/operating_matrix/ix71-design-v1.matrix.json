@@ -1,0 +1,3867 @@
+{
+ "schema": "ix71.operating-matrix-report.1",
+ "matrix_id": "ix71-design-v1",
+ "created_utc": "2026-10-27T19:41:00Z",
+ "specification_schema": "ix71.operating-matrix.1",
+ "instrument": {
+  "camera": {
+   "sensor_width_px": 1200,
+   "sensor_height_px": 1200,
+   "pixel_size_um": 0.18282,
+   "binning": 1,
+   "source": "accepted crop900 hand-eye record camera mode (20 ms, 1200x1200, binning 1x1) and the MR095 reticle sampling 0.1823-0.1829 um/px"
+  },
+  "optics": {
+   "resolution_um": 0.18282,
+   "resolution_basis": "sampling_pitch_not_psf",
+   "source": "no measured point-spread function exists; the sampling pitch is used only as a declared proxy, so blur_ratio is comparable across rows but is not an optical resolution result"
+  },
+  "frame_period_s": 0.05,
+  "illumination_footprint_um": null,
+  "field_extent_um": [
+   219.38400000000001,
+   219.38400000000001
+  ]
+ },
+ "limits": {
+  "max_stage_speed_um_s": 200.0,
+  "min_frame_period_s": 0.05,
+  "max_blur_ratio": 2.0,
+  "max_gamma": 0.5,
+  "min_observations": 3.0,
+  "max_duty": 0.5,
+  "provisional": true,
+  "sources": {
+   "max_stage_speed_um_s": "recorded 0.2 mm/s broom route (20261023T_specimen_broom_four_row_02_speed02); the profile default is 0.1 mm/s, not a ceiling",
+   "min_frame_period_s": "measured cadence 19.81 frames/s at 1200x1200 and 10 ms (20261023T_ix71_camera_cadence_matrix_01)",
+   "max_blur_ratio": "design placeholder",
+   "max_gamma": "design placeholder",
+   "min_observations": "design placeholder, consistent with the plan's 20 percent overlap rule",
+   "max_duty": "design placeholder"
+  }
+ },
+ "rows": [
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8,
+    "observations": 16.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.0625,
+    "duty": 0.09999999999999999,
+    "overlap": 16.0,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.025,
+    "duty": 0.09999999999999999,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 4.0,
+    "observations": 80.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.0125,
+    "duty": 0.09999999999999999,
+    "overlap": 80.0,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.77536,
+    "observations": 175.50719999999998,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.005697771943259308,
+    "duty": 0.09999999999999999,
+    "overlap": 175.50719999999998,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 10.0,
+    "observations": 200.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.005,
+    "duty": 0.09999999999999999,
+    "overlap": 200.0,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8,
+    "observations": 16.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.0625,
+    "duty": 0.19999999999999998,
+    "overlap": 16.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.025,
+    "duty": 0.19999999999999998,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 4.0,
+    "observations": 80.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.0125,
+    "duty": 0.19999999999999998,
+    "overlap": 80.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.77536,
+    "observations": 175.50719999999998,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.005697771943259308,
+    "duty": 0.19999999999999998,
+    "overlap": 175.50719999999998,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 10.0,
+    "observations": 200.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.005,
+    "duty": 0.19999999999999998,
+    "overlap": 200.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8,
+    "observations": 16.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.0625,
+    "duty": 0.39999999999999997,
+    "overlap": 16.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.025,
+    "duty": 0.39999999999999997,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 4.0,
+    "observations": 80.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.0125,
+    "duty": 0.39999999999999997,
+    "overlap": 80.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.77536,
+    "observations": 175.50719999999998,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.005697771943259308,
+    "duty": 0.39999999999999997,
+    "overlap": 175.50719999999998,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 10.0,
+    "observations": 200.0,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.005,
+    "duty": 0.39999999999999997,
+    "overlap": 200.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.4,
+    "observations": 8.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.125,
+    "duty": 0.09999999999999999,
+    "overlap": 8.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.05,
+    "duty": 0.09999999999999999,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.025,
+    "duty": 0.09999999999999999,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.38768,
+    "observations": 87.75359999999999,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.011395543886518616,
+    "duty": 0.09999999999999999,
+    "overlap": 87.75359999999999,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 5.0,
+    "observations": 100.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.01,
+    "duty": 0.09999999999999999,
+    "overlap": 100.0,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.4,
+    "observations": 8.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.125,
+    "duty": 0.19999999999999998,
+    "overlap": 8.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.05,
+    "duty": 0.19999999999999998,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.025,
+    "duty": 0.19999999999999998,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.38768,
+    "observations": 87.75359999999999,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.011395543886518616,
+    "duty": 0.19999999999999998,
+    "overlap": 87.75359999999999,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 5.0,
+    "observations": 100.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.01,
+    "duty": 0.19999999999999998,
+    "overlap": 100.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.4,
+    "observations": 8.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.125,
+    "duty": 0.39999999999999997,
+    "overlap": 8.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.05,
+    "duty": 0.39999999999999997,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 2.0,
+    "observations": 40.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.025,
+    "duty": 0.39999999999999997,
+    "overlap": 40.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.38768,
+    "observations": 87.75359999999999,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.011395543886518616,
+    "duty": 0.39999999999999997,
+    "overlap": 87.75359999999999,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 5.0,
+    "observations": 100.0,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.01,
+    "duty": 0.39999999999999997,
+    "overlap": 100.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.2,
+    "observations": 4.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.25,
+    "duty": 0.09999999999999999,
+    "overlap": 4.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.1,
+    "duty": 0.09999999999999999,
+    "overlap": 10.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.05,
+    "duty": 0.09999999999999999,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.19384,
+    "observations": 43.876799999999996,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.022791087773037233,
+    "duty": 0.09999999999999999,
+    "overlap": 43.876799999999996,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.5,
+    "observations": 50.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.02,
+    "duty": 0.09999999999999999,
+    "overlap": 50.0,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.2,
+    "observations": 4.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.25,
+    "duty": 0.19999999999999998,
+    "overlap": 4.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.1,
+    "duty": 0.19999999999999998,
+    "overlap": 10.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.05,
+    "duty": 0.19999999999999998,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.19384,
+    "observations": 43.876799999999996,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.022791087773037233,
+    "duty": 0.19999999999999998,
+    "overlap": 43.876799999999996,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.5,
+    "observations": 50.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.02,
+    "duty": 0.19999999999999998,
+    "overlap": 50.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.2,
+    "observations": 4.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.25,
+    "duty": 0.39999999999999997,
+    "overlap": 4.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.1,
+    "duty": 0.39999999999999997,
+    "overlap": 10.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 1.0,
+    "observations": 20.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.05,
+    "duty": 0.39999999999999997,
+    "overlap": 20.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.19384,
+    "observations": 43.876799999999996,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.022791087773037233,
+    "duty": 0.39999999999999997,
+    "overlap": 43.876799999999996,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.5,
+    "observations": 50.0,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.02,
+    "duty": 0.39999999999999997,
+    "overlap": 50.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.1,
+    "observations": 2.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.5,
+    "duty": 0.09999999999999999,
+    "overlap": 2.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": false,
+   "reasons": [
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.2,
+    "duty": 0.09999999999999999,
+    "overlap": 5.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.1,
+    "duty": 0.09999999999999999,
+    "overlap": 10.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.09692,
+    "observations": 21.938399999999998,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.045582175546074466,
+    "duty": 0.09999999999999999,
+    "overlap": 21.938399999999998,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.25,
+    "observations": 25.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.04,
+    "duty": 0.09999999999999999,
+    "overlap": 25.0,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": false,
+   "reasons": [
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.1,
+    "observations": 2.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.5,
+    "duty": 0.19999999999999998,
+    "overlap": 2.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.2,
+    "duty": 0.19999999999999998,
+    "overlap": 5.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.1,
+    "duty": 0.19999999999999998,
+    "overlap": 10.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.09692,
+    "observations": 21.938399999999998,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.045582175546074466,
+    "duty": 0.19999999999999998,
+    "overlap": 21.938399999999998,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.25,
+    "observations": 25.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.04,
+    "duty": 0.19999999999999998,
+    "overlap": 25.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.1,
+    "observations": 2.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.5,
+    "duty": 0.39999999999999997,
+    "overlap": 2.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.2,
+    "duty": 0.39999999999999997,
+    "overlap": 5.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.5,
+    "observations": 10.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.1,
+    "duty": 0.39999999999999997,
+    "overlap": 10.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.09692,
+    "observations": 21.938399999999998,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.045582175546074466,
+    "duty": 0.39999999999999997,
+    "overlap": 21.938399999999998,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.25,
+    "observations": 25.0,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.04,
+    "duty": 0.39999999999999997,
+    "overlap": 25.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.05,
+    "observations": 1.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 1.0,
+    "duty": 0.09999999999999999,
+    "overlap": 1.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.125,
+    "observations": 2.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.4,
+    "duty": 0.09999999999999999,
+    "overlap": 2.5,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.2,
+    "duty": 0.09999999999999999,
+    "overlap": 5.0,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.54846,
+    "observations": 10.969199999999999,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.09116435109214893,
+    "duty": 0.09999999999999999,
+    "overlap": 10.969199999999999,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.625,
+    "observations": 12.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.08,
+    "duty": 0.09999999999999999,
+    "overlap": 12.5,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.05,
+    "observations": 1.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 1.0,
+    "duty": 0.19999999999999998,
+    "overlap": 1.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.125,
+    "observations": 2.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.4,
+    "duty": 0.19999999999999998,
+    "overlap": 2.5,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.2,
+    "duty": 0.19999999999999998,
+    "overlap": 5.0,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.54846,
+    "observations": 10.969199999999999,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.09116435109214893,
+    "duty": 0.19999999999999998,
+    "overlap": 10.969199999999999,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.625,
+    "observations": 12.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.08,
+    "duty": 0.19999999999999998,
+    "overlap": 12.5,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 20.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.09116435109214892,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.05,
+    "observations": 1.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 1.0,
+    "duty": 0.39999999999999997,
+    "overlap": 1.0,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 50.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.2279108777303723,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.125,
+    "observations": 2.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.4,
+    "duty": 0.39999999999999997,
+    "overlap": 2.5,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 100.0,
+   "width_px": null,
+   "width_fraction_of_field": 0.4558217554607446,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.25,
+    "observations": 5.0,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.2,
+    "duty": 0.39999999999999997,
+    "overlap": 5.0,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.384,
+   "width_px": null,
+   "width_fraction_of_field": 0.9999999999999999,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.54846,
+    "observations": 10.969199999999999,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.09116435109214893,
+    "duty": 0.39999999999999997,
+    "overlap": 10.969199999999999,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "virtual_slit",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 250.0,
+   "width_px": null,
+   "width_fraction_of_field": 1.1395543886518615,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.625,
+    "observations": 12.5,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.08,
+    "duty": 0.39999999999999997,
+    "overlap": 12.5,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max",
+    "width_exceeds_sensor_field"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8775360000000001,
+    "observations": 17.550720000000002,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.056977719432593076,
+    "duty": 0.09999999999999999,
+    "overlap": 17.550720000000002,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.92512,
+    "observations": 58.5024,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.017093315829777925,
+    "duty": 0.09999999999999999,
+    "overlap": 58.5024,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.125,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.775360000000001,
+    "observations": 175.5072,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 0.6837326331911169,
+    "gamma": 0.005697771943259307,
+    "duty": 0.09999999999999999,
+    "overlap": 175.5072,
+    "effective_sigma_um": 0.18634708404837821,
+    "blur_ratio": 1.019292659711072
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8775360000000001,
+    "observations": 17.550720000000002,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.056977719432593076,
+    "duty": 0.19999999999999998,
+    "overlap": 17.550720000000002,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.92512,
+    "observations": 58.5024,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.017093315829777925,
+    "duty": 0.19999999999999998,
+    "overlap": 58.5024,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.775360000000001,
+    "observations": 175.5072,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 1.3674652663822338,
+    "gamma": 0.005697771943259307,
+    "duty": 0.19999999999999998,
+    "overlap": 175.5072,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 0.8775360000000001,
+    "observations": 17.550720000000002,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.056977719432593076,
+    "duty": 0.39999999999999997,
+    "overlap": 17.550720000000002,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 2.92512,
+    "observations": 58.5024,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.017093315829777925,
+    "duty": 0.39999999999999997,
+    "overlap": 58.5024,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 25.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 1.25,
+   "retained_frames_per_strip": 625,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 1.25,
+    "residence_s": 8.775360000000001,
+    "observations": 175.5072,
+    "area_throughput_um2_s": 5484.6,
+    "beta": 2.7349305327644675,
+    "gamma": 0.005697771943259307,
+    "duty": 0.39999999999999997,
+    "overlap": 175.5072,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.43876800000000005,
+    "observations": 8.775360000000001,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.11395543886518615,
+    "duty": 0.09999999999999999,
+    "overlap": 8.775360000000001,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.46256,
+    "observations": 29.2512,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.03418663165955585,
+    "duty": 0.09999999999999999,
+    "overlap": 29.2512,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.25,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.3876800000000005,
+    "observations": 87.7536,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 1.3674652663822338,
+    "gamma": 0.011395543886518615,
+    "duty": 0.09999999999999999,
+    "overlap": 87.7536,
+    "effective_sigma_um": 0.1965489397919341,
+    "blur_ratio": 1.0750953932388911
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.43876800000000005,
+    "observations": 8.775360000000001,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.11395543886518615,
+    "duty": 0.19999999999999998,
+    "overlap": 8.775360000000001,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.46256,
+    "observations": 29.2512,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.03418663165955585,
+    "duty": 0.19999999999999998,
+    "overlap": 29.2512,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.3876800000000005,
+    "observations": 87.7536,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 2.7349305327644675,
+    "gamma": 0.011395543886518615,
+    "duty": 0.19999999999999998,
+    "overlap": 87.7536,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 0.43876800000000005,
+    "observations": 8.775360000000001,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.11395543886518615,
+    "duty": 0.39999999999999997,
+    "overlap": 8.775360000000001,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 1.46256,
+    "observations": 29.2512,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.03418663165955585,
+    "duty": 0.39999999999999997,
+    "overlap": 29.2512,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 50.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 2.5,
+   "retained_frames_per_strip": 313,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 2.5,
+    "residence_s": 4.3876800000000005,
+    "observations": 87.7536,
+    "area_throughput_um2_s": 10969.2,
+    "beta": 5.469861065528935,
+    "gamma": 0.011395543886518615,
+    "duty": 0.39999999999999997,
+    "overlap": 87.7536,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.21938400000000002,
+    "observations": 4.3876800000000005,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.2279108777303723,
+    "duty": 0.09999999999999999,
+    "overlap": 4.3876800000000005,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.73128,
+    "observations": 14.6256,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.0683732633191117,
+    "duty": 0.09999999999999999,
+    "overlap": 14.6256,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 0.5,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.1938400000000002,
+    "observations": 43.8768,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 2.7349305327644675,
+    "gamma": 0.02279108777303723,
+    "duty": 0.09999999999999999,
+    "overlap": 43.8768,
+    "effective_sigma_um": 0.23293021644546963,
+    "blur_ratio": 1.274095921920302
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.21938400000000002,
+    "observations": 4.3876800000000005,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.2279108777303723,
+    "duty": 0.19999999999999998,
+    "overlap": 4.3876800000000005,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.73128,
+    "observations": 14.6256,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.0683732633191117,
+    "duty": 0.19999999999999998,
+    "overlap": 14.6256,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.1938400000000002,
+    "observations": 43.8768,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 5.469861065528935,
+    "gamma": 0.02279108777303723,
+    "duty": 0.19999999999999998,
+    "overlap": 43.8768,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.21938400000000002,
+    "observations": 4.3876800000000005,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.2279108777303723,
+    "duty": 0.39999999999999997,
+    "overlap": 4.3876800000000005,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 0.73128,
+    "observations": 14.6256,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.0683732633191117,
+    "duty": 0.39999999999999997,
+    "overlap": 14.6256,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 100.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 5.0,
+   "retained_frames_per_strip": 157,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 5.0,
+    "residence_s": 2.1938400000000002,
+    "observations": 43.8768,
+    "area_throughput_um2_s": 21938.4,
+    "beta": 10.93972213105787,
+    "gamma": 0.02279108777303723,
+    "duty": 0.39999999999999997,
+    "overlap": 43.8768,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.10969200000000001,
+    "observations": 2.1938400000000002,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.4558217554607446,
+    "duty": 0.09999999999999999,
+    "overlap": 2.1938400000000002,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": false,
+   "reasons": [
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.36564,
+    "observations": 7.3128,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.1367465266382234,
+    "duty": 0.09999999999999999,
+    "overlap": 7.3128,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 1.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.0969200000000001,
+    "observations": 21.9384,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 5.469861065528935,
+    "gamma": 0.04558217554607446,
+    "duty": 0.09999999999999999,
+    "overlap": 21.9384,
+    "effective_sigma_um": 0.34169648188609336,
+    "blur_ratio": 1.8690322824969552
+   },
+   "feasible": true,
+   "reasons": [],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.10969200000000001,
+    "observations": 2.1938400000000002,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.4558217554607446,
+    "duty": 0.19999999999999998,
+    "overlap": 2.1938400000000002,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.36564,
+    "observations": 7.3128,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.1367465266382234,
+    "duty": 0.19999999999999998,
+    "overlap": 7.3128,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.0969200000000001,
+    "observations": 21.9384,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 10.93972213105787,
+    "gamma": 0.04558217554607446,
+    "duty": 0.19999999999999998,
+    "overlap": 21.9384,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.10969200000000001,
+    "observations": 2.1938400000000002,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.4558217554607446,
+    "duty": 0.39999999999999997,
+    "overlap": 2.1938400000000002,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "observations_below_declared_min"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 0.36564,
+    "observations": 7.3128,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.1367465266382234,
+    "duty": 0.39999999999999997,
+    "overlap": 7.3128,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 200.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 10.0,
+   "retained_frames_per_strip": 79,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 10.0,
+    "residence_s": 1.0969200000000001,
+    "observations": 21.9384,
+    "area_throughput_um2_s": 43876.8,
+    "beta": 21.87944426211574,
+    "gamma": 0.04558217554607446,
+    "duty": 0.39999999999999997,
+    "overlap": 21.9384,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.054846000000000006,
+    "observations": 1.0969200000000001,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.9116435109214892,
+    "duty": 0.09999999999999999,
+    "overlap": 1.0969200000000001,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.18282,
+    "observations": 3.6564,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.2734930532764468,
+    "duty": 0.09999999999999999,
+    "overlap": 3.6564,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 5.0,
+   "exposure_s": 0.005,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 2.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.5484600000000001,
+    "observations": 10.9692,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 10.93972213105787,
+    "gamma": 0.09116435109214892,
+    "duty": 0.09999999999999999,
+    "overlap": 10.9692,
+    "effective_sigma_um": 0.6056042319314928,
+    "blur_ratio": 3.3125710093616276
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.054846000000000006,
+    "observations": 1.0969200000000001,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.9116435109214892,
+    "duty": 0.19999999999999998,
+    "overlap": 1.0969200000000001,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.18282,
+    "observations": 3.6564,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.2734930532764468,
+    "duty": 0.19999999999999998,
+    "overlap": 3.6564,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 10.0,
+   "exposure_s": 0.01,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 4.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.5484600000000001,
+    "observations": 10.9692,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 21.87944426211574,
+    "gamma": 0.09116435109214892,
+    "duty": 0.19999999999999998,
+    "overlap": 10.9692,
+    "effective_sigma_um": 1.1690836093852883,
+    "blur_ratio": 6.394724917324627
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 21.9384,
+   "width_px": 120,
+   "width_fraction_of_field": 0.1,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.054846000000000006,
+    "observations": 1.0969200000000001,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.9116435109214892,
+    "duty": 0.39999999999999997,
+    "overlap": 1.0969200000000001,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "interframe_gap_exceeds_declared_max",
+    "observations_below_declared_min",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 73.128,
+   "width_px": 400,
+   "width_fraction_of_field": 0.3333333333333333,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.18282,
+    "observations": 3.6564,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.2734930532764468,
+    "duty": 0.39999999999999997,
+    "overlap": 3.6564,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  },
+  {
+   "detector_mode": "hardware_roi",
+   "speed_um_s": 400.0,
+   "exposure_ms": 20.0,
+   "exposure_s": 0.02,
+   "frame_period_s": 0.05,
+   "width_um": 219.38400000000001,
+   "width_px": 1200,
+   "width_fraction_of_field": 1.0,
+   "step_um": 20.0,
+   "retained_frames_per_strip": 40,
+   "metrics": {
+    "motion_blur_um": 8.0,
+    "interframe_shift_um": 20.0,
+    "residence_s": 0.5484600000000001,
+    "observations": 10.9692,
+    "area_throughput_um2_s": 87753.6,
+    "beta": 43.75888852423148,
+    "gamma": 0.09116435109214892,
+    "duty": 0.39999999999999997,
+    "overlap": 10.9692,
+    "effective_sigma_um": 2.3166260996831864,
+    "blur_ratio": 12.671622906045215
+   },
+   "feasible": false,
+   "reasons": [
+    "blur_ratio_exceeds_declared_max",
+    "speed_exceeds_declared_max"
+   ],
+   "warnings": [
+    "psf_blur_is_a_proxy"
+   ]
+  }
+ ],
+ "summary": {
+  "rows_total": 120,
+  "feasible": 61,
+  "infeasible": 59,
+  "by_mode": {
+   "virtual_slit": {
+    "rows": 75,
+    "feasible": 35
+   },
+   "hardware_roi": {
+    "rows": 45,
+    "feasible": 26
+   }
+  },
+  "reason_counts": {
+   "blur_ratio_exceeds_declared_max": 48,
+   "interframe_gap_exceeds_declared_max": 6,
+   "observations_below_declared_min": 15,
+   "speed_exceeds_declared_max": 24,
+   "width_exceeds_sensor_field": 15
+  }
+ },
+ "not_computed": [
+  {
+   "metric": "valid_area",
+   "reason": "needs registered support from an acquired run, not a declared point"
+  },
+  {
+   "metric": "local_support_duration",
+   "reason": "needs a recorded run; the row records residence_s for the declared width only"
+  },
+  {
+   "metric": "psf_blur",
+   "reason": "no measured point-spread function; optics.resolution_um is declared as a proxy"
+  },
+  {
+   "metric": "acquisition_overhead",
+   "reason": "needs a recorded run with per-frame timing (Q02/Q04)"
+  }
+ ],
+ "findings": [
+  {
+   "code": "limits_provisional",
+   "detail": "the feasibility limits are design placeholders; the matrix does not establish measurement acceptance"
+  },
+  {
+   "code": "psf_unmeasured",
+   "detail": "optics.resolution_um is a declared proxy, so blur_ratio compares motion blur with that proxy, not with a measured PSF"
+  },
+  {
+   "code": "illumination_footprint_undeclared",
+   "detail": "no illumination footprint is declared, so width is bounded only by the sensor field"
+  }
+ ],
+ "accepted": false
+}

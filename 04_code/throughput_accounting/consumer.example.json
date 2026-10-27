@@ -1,0 +1,20 @@
+{
+ "schema": "ix71.consumer-log.1",
+ "stream_id": "fixture-broom-stream",
+ "description": "Illustrative publication/consumer log for the accounting fixture. Frame 7 is refused before publication; frame 3 is processed late. The numbers are arithmetic fixtures, not measurements.",
+ "camera_mode": {"exposure_ms": 10.0, "binning_xy": [1, 1], "roi_sensor_pixels": {"x": 0, "y": 0, "width": 1200, "height": 1200}},
+ "budget": {"queue_capacity": 2, "max_latency_ms": 150.0, "clock_uncertainty_ms": 0.5},
+ "sessions": [
+  {"session": 1, "first_frame_id": 1, "last_frame_id": 4},
+  {"session": 2, "first_frame_id": 5, "last_frame_id": 7}
+ ],
+ "rows": [
+  {"frame_id": 1, "attempted_ns": 0, "published_ns": 100000000, "processed_ns": 180000000, "released_ns": 200000000, "dropped": false},
+  {"frame_id": 2, "attempted_ns": 110000000, "published_ns": 220000000, "processed_ns": 300000000, "released_ns": 320000000, "dropped": false},
+  {"frame_id": 3, "attempted_ns": 120000000, "published_ns": 340000000, "processed_ns": 600000000, "released_ns": 620000000, "dropped": false},
+  {"frame_id": 4, "attempted_ns": 130000000, "published_ns": 460000000, "processed_ns": 540000000, "released_ns": 560000000, "dropped": false},
+  {"frame_id": 5, "attempted_ns": 140000000, "published_ns": 700000000, "processed_ns": 780000000, "released_ns": 800000000, "dropped": false},
+  {"frame_id": 6, "attempted_ns": 150000000, "published_ns": 820000000, "processed_ns": 900000000, "released_ns": 920000000, "dropped": false},
+  {"frame_id": 7, "attempted_ns": 160000000, "published_ns": null, "processed_ns": null, "released_ns": null, "dropped": true}
+ ]
+}

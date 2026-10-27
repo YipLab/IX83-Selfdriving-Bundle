@@ -1,0 +1,41 @@
+{
+ "schema": "ix71.operating-matrix.1",
+ "matrix_id": "ix71-design-v1",
+ "description": "Design matrix for the ix71 brightfield broom path: speed x exposure x detector width, with every infeasible point retained and its reason recorded. The feasibility limits are design placeholders, not acceptance limits.",
+ "camera": {
+  "sensor_width_px": 1200,
+  "sensor_height_px": 1200,
+  "pixel_size_um": 0.18282,
+  "binning": 1,
+  "source": "accepted crop900 hand-eye record camera mode (20 ms, 1200x1200, binning 1x1) and the MR095 reticle sampling 0.1823-0.1829 um/px"
+ },
+ "optics": {
+  "resolution_um": 0.18282,
+  "resolution_basis": "sampling_pitch_not_psf",
+  "source": "no measured point-spread function exists; the sampling pitch is used only as a declared proxy, so blur_ratio is comparable across rows but is not an optical resolution result"
+ },
+ "frame_period_s": 0.05,
+ "strip_length_um": 781.0,
+ "illumination_footprint_um": null,
+ "speeds_um_s": [25.0, 50.0, 100.0, 200.0, 400.0],
+ "exposures_ms": [5.0, 10.0, 20.0],
+ "virtual_slit_widths_um": [20.0, 50.0, 100.0, 219.384, 250.0],
+ "hardware_roi_widths_px": [120, 400, 1200],
+ "limits": {
+  "max_stage_speed_um_s": 200.0,
+  "min_frame_period_s": 0.05,
+  "max_blur_ratio": 2.0,
+  "max_gamma": 0.5,
+  "min_observations": 3.0,
+  "max_duty": 0.5,
+  "provisional": true,
+  "sources": {
+   "max_stage_speed_um_s": "recorded 0.2 mm/s broom route (20261023T_specimen_broom_four_row_02_speed02); the profile default is 0.1 mm/s, not a ceiling",
+   "min_frame_period_s": "measured cadence 19.81 frames/s at 1200x1200 and 10 ms (20261023T_ix71_camera_cadence_matrix_01)",
+   "max_blur_ratio": "design placeholder",
+   "max_gamma": "design placeholder",
+   "min_observations": "design placeholder, consistent with the plan's 20 percent overlap rule",
+   "max_duty": "design placeholder"
+  }
+ }
+}

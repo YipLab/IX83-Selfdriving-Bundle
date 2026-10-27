@@ -1,0 +1,96 @@
+{
+ "schema": "ix71.reconstruction-quality.1",
+ "created_utc": "2026-10-27T20:16:19Z",
+ "source": {
+  "record": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261023T_grid_5x5_regression_01\\calibrated_record.json",
+  "registration_id": "7f5b75e26c7ddb39943fc7a46a5841d7896288bd5b42ebe0eb9a76a86ce5210b",
+  "mosaic_report": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261023T_grid_5x5_regression_01\\calibrated\\registered_snap_mosaic_report.json",
+  "calibration_id": "hand-eye-5e1dca83b8d45040",
+  "frames": 25
+ },
+ "pairs": {
+  "total": 300,
+  "passed": 300,
+  "failed": 0,
+  "pass_fraction": 1.0,
+  "placement_residual_px": {
+   "count": 300,
+   "median": 0.148422,
+   "p95": 0.301365,
+   "max": 0.451552,
+   "rms": 0.177966
+  },
+  "registration_minus_stage_prior_px": {
+   "count": 300,
+   "median": 7.386184,
+   "p95": 15.964538,
+   "max": 18.046549,
+   "rms": 9.280632
+  },
+  "correlation": {
+   "count": 300,
+   "median": 0.901251,
+   "min": 0.795376
+  },
+  "overlap_fraction": {
+   "count": 300,
+   "median": 0.807482,
+   "min": 0.544957
+  }
+ },
+ "graph": {
+  "connected": true,
+  "components": 1,
+  "frames_placed": 25
+ },
+ "coverage": {
+  "file": "registered_snap_coverage.tif",
+  "pixels": 64758,
+  "max_tiles_per_pixel": 25,
+  "fraction_at_least_1": 0.994147,
+  "fraction_at_least_2": 0.979725,
+  "fraction_at_least_3": 0.954369
+ },
+ "mosaic": {
+  "shape_yx": [
+   251,
+   258
+  ],
+  "canvas_pixel_count": 64758,
+  "edge_residual_summary_px": {
+   "accepted_edge_count": 300,
+   "rms": 0.17796551977544353,
+   "maximum": 0.4515516801069515
+  }
+ },
+ "gate": {
+  "max_edge_rms_px": 0.5
+ },
+ "not_measured": [
+  {
+   "metric": "bead_psf_width",
+   "reason": "no bead or point-source recording exists for this camera mode"
+  },
+  {
+   "metric": "independent_placement_error",
+   "reason": "no stage-referenced truth or reticle sample is paired with these frames"
+  },
+  {
+   "metric": "seam_intensity_step",
+   "reason": "not computed here; the seam is a blending property of the mosaic image"
+  }
+ ],
+ "findings": [
+  {
+   "code": "psf_not_measurable",
+   "severity": "info",
+   "detail": "no bead recording; widths and independent truth are not computed"
+  }
+ ],
+ "blocking": [],
+ "accepted": false,
+ "notes": [
+  "residuals are image-derived pairwise placement consistency, not independent stage or reticle accuracy",
+  "coverage is the fraction of the mosaic canvas with at least one, two or three contributing tiles"
+ ]
+}

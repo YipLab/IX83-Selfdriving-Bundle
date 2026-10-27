@@ -1,0 +1,68 @@
+{
+ "schema": "ix71.matched-comparison.1",
+ "experiment_id": "ix71-matched-design-v1",
+ "created_utc": "2026-10-27T00:00:00Z",
+ "specimen_id": "design-placeholder",
+ "footprint": {
+  "width_um": 781.0,
+  "height_um": 452.6,
+  "overlap": 0.2
+ },
+ "detector_width_um": 219.384,
+ "frame_period_s": 0.05,
+ "target_criterion": {
+  "detection_threshold": 3.0,
+  "min_area_px": 2000,
+  "max_area_px": 80000,
+  "dedup_um": 2.0
+ },
+ "observation_requirement": {
+  "min_windows_per_target": 3,
+  "window_s": 0.5
+ },
+ "quality_rule": {
+  "max_blur_ratio": 2.0,
+  "max_edge_rms_px": 0.5
+ },
+ "illumination": {
+  "mode": "epi-488",
+  "setpoint_mw": 1.0,
+  "exposure_ms": 10.0
+ },
+ "time_endpoints": ["focus", "travel", "review", "acquisition", "segmentation", "processing"],
+ "field_blocks": [
+  {
+   "block": 1,
+   "fields": ["field-a", "field-b"],
+   "order": ["survey_revisit", "uniform_broom", "adaptive_broom"]
+  }
+ ],
+ "strategies": {
+  "survey_revisit": {
+   "plan": "execute_asi_snap_coverage_survey_and_prepare_review",
+   "step_um": 60.0
+  },
+  "uniform_broom": {
+   "plan": "run_asi_pvcam_coordinated_broom",
+   "speed_um_s": 200.0
+  },
+  "adaptive_broom": {
+   "plan": "run_asi_pvcam_adaptive_broom",
+   "mean_speed_um_s": 100.0,
+   "mean_step_um": 5.0
+  },
+  "mean_step_matched": {
+   "plan": "run_asi_pvcam_coordinated_broom",
+   "speed_um_s": 100.0
+  },
+  "residence_matched": {
+   "plan": "run_asi_pvcam_coordinated_broom",
+   "speed_um_s": 109.692
+  }
+ },
+ "controls": {
+  "mean_step_tolerance_fraction": 0.02,
+  "residence_requirement_s": 2.0,
+  "residence_tolerance_s": 0.01
+ }
+}

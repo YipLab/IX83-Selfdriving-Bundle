@@ -1,0 +1,11 @@
+# Generated handoff artifacts, test scratch and byte-compiled files.
+#
+# The two OME-TIFF movies (~118 MB), the RTASPT product tables and coverage arrays
+# are local verification evidence; the JSON records that describe them are kept.
+verification/**/*.ome.tif
+verification/**/*.npy
+*.raw
+tmp/
+.pytest-tmp/
+__pycache__/
+.pytest_cache/

@@ -1,0 +1,5052 @@
+{
+ "schema": "ix71.acquisition-ledger.v1",
+ "run_id": "ix71-snake-06",
+ "created_utc": "2026-10-27T19:29:44Z",
+ "clocks": [
+  {
+   "clock": "python.time.monotonic_ns",
+   "host_clock": "python.time.monotonic_ns",
+   "offset_ns": 0,
+   "uncertainty_ns": null
+  }
+ ],
+ "declared": {
+  "pose_semantics": "camera_receipt",
+  "exposure_association": "none",
+  "adapted_from": "positions and timing sidecars",
+  "join_key": "store + sequence_index (timing written_index / position array_index); frame_id is source-local and differs between the two files",
+  "source_label_mismatches": 279,
+  "timing_rows_without_pose": 0,
+  "pose_rows_without_timing": 0,
+  "frames_absent_from_positions": [],
+  "rejected_poses": []
+ },
+ "rows": [
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 1,
+   "sequence_index": 0,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 2,
+   "arrival_ns": 358626781000000,
+   "pose_ns": 358626814550000,
+   "pose_xy_um": [
+    -852.8214215690437,
+    1045.1043431369096
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 2,
+   "sequence_index": 1,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 3,
+   "arrival_ns": 358626828000000,
+   "pose_ns": 358626861500000,
+   "pose_xy_um": [
+    -845.6868627440574,
+    1051.0237254910594
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 3,
+   "sequence_index": 2,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 4,
+   "arrival_ns": 358626875000000,
+   "pose_ns": 358626908750000,
+   "pose_xy_um": [
+    -837.7477419330307,
+    1058.0003225829512
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 4,
+   "sequence_index": 3,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 5,
+   "arrival_ns": 358626937000000,
+   "pose_ns": 358626955890000,
+   "pose_xy_um": [
+    -829.0726661963351,
+    1060.3200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 5,
+   "sequence_index": 4,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 6,
+   "arrival_ns": 358626968000000,
+   "pose_ns": 358627002910000,
+   "pose_xy_um": [
+    -820.5856398539205,
+    1060.3200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 6,
+   "sequence_index": 5,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 7,
+   "arrival_ns": 358627031000000,
+   "pose_ns": 358627050160000,
+   "pose_xy_um": [
+    -812.0570989303549,
+    1060.3200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 7,
+   "sequence_index": 6,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 8,
+   "arrival_ns": 358627078000000,
+   "pose_ns": 358627097100000,
+   "pose_xy_um": [
+    -803.9544113462923,
+    1055.3203687935184
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 8,
+   "sequence_index": 7,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 9,
+   "arrival_ns": 358627125000000,
+   "pose_ns": 358627144330000,
+   "pose_xy_um": [
+    -795.9889546111001,
+    1050.0681248234673
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 9,
+   "sequence_index": 8,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 10,
+   "arrival_ns": 358627171000000,
+   "pose_ns": 358627191450000,
+   "pose_xy_um": [
+    -788.0420496429741,
+    1044.8281134735844
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 10,
+   "sequence_index": 9,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 11,
+   "arrival_ns": 358627218000000,
+   "pose_ns": 358627238570000,
+   "pose_xy_um": [
+    -779.1422903189891,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 11,
+   "sequence_index": 10,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 12,
+   "arrival_ns": 358627265000000,
+   "pose_ns": 358627285620000,
+   "pose_xy_um": [
+    -769.2440436383681,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 12,
+   "sequence_index": 11,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 13,
+   "arrival_ns": 358627312000000,
+   "pose_ns": 358627332810000,
+   "pose_xy_um": [
+    -761.5392036354219,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 13,
+   "sequence_index": 12,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 14,
+   "arrival_ns": 358627359000000,
+   "pose_ns": 358627379890000,
+   "pose_xy_um": [
+    -753.2805307738093,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 14,
+   "sequence_index": 13,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 15,
+   "arrival_ns": 358627406000000,
+   "pose_ns": 358627427060000,
+   "pose_xy_um": [
+    -745.5172307698149,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 15,
+   "sequence_index": 14,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 16,
+   "arrival_ns": 358627453000000,
+   "pose_ns": 358627474130000,
+   "pose_xy_um": [
+    -738.3357368458452,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 16,
+   "sequence_index": 15,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 17,
+   "arrival_ns": 358627500000000,
+   "pose_ns": 358627521220000,
+   "pose_xy_um": [
+    -730.2277593892819,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 17,
+   "sequence_index": 16,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 18,
+   "arrival_ns": 358627546000000,
+   "pose_ns": 358627568650000,
+   "pose_xy_um": [
+    -722.0612406046047,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 18,
+   "sequence_index": 17,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 19,
+   "arrival_ns": 358627593000000,
+   "pose_ns": 358627615530000,
+   "pose_xy_um": [
+    -712.8783364888756,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 19,
+   "sequence_index": 18,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 20,
+   "arrival_ns": 358627640000000,
+   "pose_ns": 358627662580000,
+   "pose_xy_um": [
+    -704.759032428306,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 20,
+   "sequence_index": 19,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 21,
+   "arrival_ns": 358627687000000,
+   "pose_ns": 358627709780000,
+   "pose_xy_um": [
+    -696.6138432464467,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 21,
+   "sequence_index": 20,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 22,
+   "arrival_ns": 358627734000000,
+   "pose_ns": 358627756910000,
+   "pose_xy_um": [
+    -687.1986343394713,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 22,
+   "sequence_index": 21,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 23,
+   "arrival_ns": 358627781000000,
+   "pose_ns": 358627803980000,
+   "pose_xy_um": [
+    -678.9320646448497,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 23,
+   "sequence_index": 22,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 24,
+   "arrival_ns": 358627828000000,
+   "pose_ns": 358627851620000,
+   "pose_xy_um": [
+    -670.5653898939137,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 24,
+   "sequence_index": 23,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 25,
+   "arrival_ns": 358627875000000,
+   "pose_ns": 358627898180000,
+   "pose_xy_um": [
+    -662.3641999899402,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 25,
+   "sequence_index": 24,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 26,
+   "arrival_ns": 358627921000000,
+   "pose_ns": 358627945280000,
+   "pose_xy_um": [
+    -653.1843690195053,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 26,
+   "sequence_index": 25,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 27,
+   "arrival_ns": 358627968000000,
+   "pose_ns": 358627992470000,
+   "pose_xy_um": [
+    -645.0683245635371,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 27,
+   "sequence_index": 26,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 28,
+   "arrival_ns": 358628015000000,
+   "pose_ns": 358628039530000,
+   "pose_xy_um": [
+    -636.9746383868194,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 28,
+   "sequence_index": 27,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 29,
+   "arrival_ns": 358628062000000,
+   "pose_ns": 358628086790000,
+   "pose_xy_um": [
+    -627.5208607988436,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 29,
+   "sequence_index": 28,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 30,
+   "arrival_ns": 358628109000000,
+   "pose_ns": 358628133780000,
+   "pose_xy_um": [
+    -620.1678656041286,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 30,
+   "sequence_index": 29,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 31,
+   "arrival_ns": 358628156000000,
+   "pose_ns": 358628180960000,
+   "pose_xy_um": [
+    -612.7851392016117,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 31,
+   "sequence_index": 30,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 32,
+   "arrival_ns": 358628203000000,
+   "pose_ns": 358628228020000,
+   "pose_xy_um": [
+    -604.456400002461,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 32,
+   "sequence_index": 31,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 33,
+   "arrival_ns": 358628250000000,
+   "pose_ns": 358628275260000,
+   "pose_xy_um": [
+    -595.7634481354604,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 33,
+   "sequence_index": 32,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 34,
+   "arrival_ns": 358628296000000,
+   "pose_ns": 358628322260000,
+   "pose_xy_um": [
+    -587.0872984006567,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 34,
+   "sequence_index": 33,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 35,
+   "arrival_ns": 358628343000000,
+   "pose_ns": 358628369520000,
+   "pose_xy_um": [
+    -578.5564000044675,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 35,
+   "sequence_index": 34,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 36,
+   "arrival_ns": 358628390000000,
+   "pose_ns": 358628416540000,
+   "pose_xy_um": [
+    -569.8840907760247,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 36,
+   "sequence_index": 35,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 37,
+   "arrival_ns": 358628437000000,
+   "pose_ns": 358628463630000,
+   "pose_xy_um": [
+    -561.3590893518952,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 37,
+   "sequence_index": 36,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 38,
+   "arrival_ns": 358628484000000,
+   "pose_ns": 358628510820000,
+   "pose_xy_um": [
+    -553.0991659593197,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 38,
+   "sequence_index": 37,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 39,
+   "arrival_ns": 358628531000000,
+   "pose_ns": 358628557990000,
+   "pose_xy_um": [
+    -543.5809720379698,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 39,
+   "sequence_index": 38,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 40,
+   "arrival_ns": 358628578000000,
+   "pose_ns": 358628605010000,
+   "pose_xy_um": [
+    -535.6154089136636,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 40,
+   "sequence_index": 39,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 41,
+   "arrival_ns": 358628625000000,
+   "pose_ns": 358628652250000,
+   "pose_xy_um": [
+    -527.6675229337277,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 41,
+   "sequence_index": 40,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 42,
+   "arrival_ns": 358628671000000,
+   "pose_ns": 358628699310000,
+   "pose_xy_um": [
+    -519.4138070838671,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 42,
+   "sequence_index": 41,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 43,
+   "arrival_ns": 358628718000000,
+   "pose_ns": 358628746370000,
+   "pose_xy_um": [
+    -510.8295290712911,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 43,
+   "sequence_index": 42,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 44,
+   "arrival_ns": 358628765000000,
+   "pose_ns": 358628793500000,
+   "pose_xy_um": [
+    -502.3565137498724,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 44,
+   "sequence_index": 43,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 45,
+   "arrival_ns": 358628812000000,
+   "pose_ns": 358628840610000,
+   "pose_xy_um": [
+    -494.45810525477685,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 45,
+   "sequence_index": 44,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 46,
+   "arrival_ns": 358628859000000,
+   "pose_ns": 358628887790000,
+   "pose_xy_um": [
+    -487.1741754349325,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 46,
+   "sequence_index": 45,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 47,
+   "arrival_ns": 358628906000000,
+   "pose_ns": 358628935310000,
+   "pose_xy_um": [
+    -478.9322476093139,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 47,
+   "sequence_index": 46,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 48,
+   "arrival_ns": 358628953000000,
+   "pose_ns": 358628982000000,
+   "pose_xy_um": [
+    -470.5076712268395,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 48,
+   "sequence_index": 47,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 49,
+   "arrival_ns": 358629000000000,
+   "pose_ns": 358629029100000,
+   "pose_xy_um": [
+    -462.0167671142893,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 49,
+   "sequence_index": 48,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 50,
+   "arrival_ns": 358629046000000,
+   "pose_ns": 358629076300000,
+   "pose_xy_um": [
+    -452.09759999456537,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 50,
+   "sequence_index": 49,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 51,
+   "arrival_ns": 358629093000000,
+   "pose_ns": 358629123480000,
+   "pose_xy_um": [
+    -444.1713599950831,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 51,
+   "sequence_index": 50,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 52,
+   "arrival_ns": 358629140000000,
+   "pose_ns": 358629170510000,
+   "pose_xy_um": [
+    -436.2703200016886,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 52,
+   "sequence_index": 51,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 53,
+   "arrival_ns": 358629187000000,
+   "pose_ns": 358629217730000,
+   "pose_xy_um": [
+    -426.82016922320224,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 53,
+   "sequence_index": 52,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 54,
+   "arrival_ns": 358629234000000,
+   "pose_ns": 358629264800000,
+   "pose_xy_um": [
+    -418.87861538373403,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 54,
+   "sequence_index": 53,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 55,
+   "arrival_ns": 358629281000000,
+   "pose_ns": 358629311910000,
+   "pose_xy_um": [
+    -410.9303128142133,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 55,
+   "sequence_index": 54,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 56,
+   "arrival_ns": 358629328000000,
+   "pose_ns": 358629358980000,
+   "pose_xy_um": [
+    -401.2077606784399,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 56,
+   "sequence_index": 55,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 57,
+   "arrival_ns": 358629375000000,
+   "pose_ns": 358629406160000,
+   "pose_xy_um": [
+    -393.1831281987007,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 57,
+   "sequence_index": 56,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 58,
+   "arrival_ns": 358629421000000,
+   "pose_ns": 358629453260000,
+   "pose_xy_um": [
+    -385.17210256117824,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 58,
+   "sequence_index": 57,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 59,
+   "arrival_ns": 358629468000000,
+   "pose_ns": 358629500380000,
+   "pose_xy_um": [
+    -375.5168000029129,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 59,
+   "sequence_index": 58,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 60,
+   "arrival_ns": 358629515000000,
+   "pose_ns": 358629547530000,
+   "pose_xy_um": [
+    -368.91580000327406,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 60,
+   "sequence_index": 59,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 61,
+   "arrival_ns": 358629562000000,
+   "pose_ns": 358629594550000,
+   "pose_xy_um": [
+    -362.3329999955353,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 61,
+   "sequence_index": 60,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 62,
+   "arrival_ns": 358629609000000,
+   "pose_ns": 358629641760000,
+   "pose_xy_um": [
+    -353.8992000076196,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 62,
+   "sequence_index": 61,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 63,
+   "arrival_ns": 358629656000000,
+   "pose_ns": 358629688910000,
+   "pose_xy_um": [
+    -345.84083636211835,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 63,
+   "sequence_index": 62,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 64,
+   "arrival_ns": 358629703000000,
+   "pose_ns": 358629735990000,
+   "pose_xy_um": [
+    -337.79443636449116,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 64,
+   "sequence_index": 63,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 65,
+   "arrival_ns": 358629750000000,
+   "pose_ns": 358629783060000,
+   "pose_xy_um": [
+    -329.7497454608386,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 65,
+   "sequence_index": 64,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 66,
+   "arrival_ns": 358629796000000,
+   "pose_ns": 358629830150000,
+   "pose_xy_um": [
+    -320.2704054052949,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 66,
+   "sequence_index": 65,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 67,
+   "arrival_ns": 358629843000000,
+   "pose_ns": 358629877260000,
+   "pose_xy_um": [
+    -312.24897297469,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 67,
+   "sequence_index": 66,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 68,
+   "arrival_ns": 358629890000000,
+   "pose_ns": 358629924390000,
+   "pose_xy_um": [
+    -304.224135132571,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 68,
+   "sequence_index": 67,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 69,
+   "arrival_ns": 358629937000000,
+   "pose_ns": 358629971620000,
+   "pose_xy_um": [
+    -294.6564563732558,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 69,
+   "sequence_index": 68,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 70,
+   "arrival_ns": 358629984000000,
+   "pose_ns": 358630018710000,
+   "pose_xy_um": [
+    -286.4710134277542,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 70,
+   "sequence_index": 69,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 71,
+   "arrival_ns": 358630046000000,
+   "pose_ns": 358630065810000,
+   "pose_xy_um": [
+    -278.28383221398286,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 71,
+   "sequence_index": 70,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 72,
+   "arrival_ns": 358630093000000,
+   "pose_ns": 358630112990000,
+   "pose_xy_um": [
+    -268.40135897495554,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 72,
+   "sequence_index": 71,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 73,
+   "arrival_ns": 358630140000000,
+   "pose_ns": 358630160000000,
+   "pose_xy_um": [
+    -260.40564103147966,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 73,
+   "sequence_index": 72,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 74,
+   "arrival_ns": 358630187000000,
+   "pose_ns": 358630207220000,
+   "pose_xy_um": [
+    -252.37420512472735,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 74,
+   "sequence_index": 73,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 75,
+   "arrival_ns": 358630234000000,
+   "pose_ns": 358630254340000,
+   "pose_xy_um": [
+    -244.28381276881174,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 75,
+   "sequence_index": 74,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 76,
+   "arrival_ns": 358630281000000,
+   "pose_ns": 358630301880000,
+   "pose_xy_um": [
+    -236.13752356741992,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 76,
+   "sequence_index": 75,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 77,
+   "arrival_ns": 358630328000000,
+   "pose_ns": 358630348490000,
+   "pose_xy_um": [
+    -228.19304203577607,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 77,
+   "sequence_index": 76,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 78,
+   "arrival_ns": 358630375000000,
+   "pose_ns": 358630395610000,
+   "pose_xy_um": [
+    -220.13088856925546,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 78,
+   "sequence_index": 77,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 79,
+   "arrival_ns": 358630421000000,
+   "pose_ns": 358630442740000,
+   "pose_xy_um": [
+    -211.66289360956395,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 79,
+   "sequence_index": 78,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 80,
+   "arrival_ns": 358630468000000,
+   "pose_ns": 358630490030000,
+   "pose_xy_um": [
+    -202.6744397132221,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 80,
+   "sequence_index": 79,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 81,
+   "arrival_ns": 358630515000000,
+   "pose_ns": 358630537060000,
+   "pose_xy_um": [
+    -194.35656570924013,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 81,
+   "sequence_index": 80,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 82,
+   "arrival_ns": 358630562000000,
+   "pose_ns": 358630584230000,
+   "pose_xy_um": [
+    -185.62751488371126,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 82,
+   "sequence_index": 81,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 83,
+   "arrival_ns": 358630609000000,
+   "pose_ns": 358630631320000,
+   "pose_xy_um": [
+    -176.91975384702567,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 83,
+   "sequence_index": 82,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 84,
+   "arrival_ns": 358630656000000,
+   "pose_ns": 358630678440000,
+   "pose_xy_um": [
+    -168.72812307513797,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 84,
+   "sequence_index": 83,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 85,
+   "arrival_ns": 358630703000000,
+   "pose_ns": 358630725580000,
+   "pose_xy_um": [
+    -160.68841454579604,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 85,
+   "sequence_index": 84,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 86,
+   "arrival_ns": 358630750000000,
+   "pose_ns": 358630772600000,
+   "pose_xy_um": [
+    -152.19965713291234,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 86,
+   "sequence_index": 85,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 87,
+   "arrival_ns": 358630796000000,
+   "pose_ns": 358630819780000,
+   "pose_xy_um": [
+    -143.5133527296358,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 87,
+   "sequence_index": 86,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 88,
+   "arrival_ns": 358630843000000,
+   "pose_ns": 358630866850000,
+   "pose_xy_um": [
+    -135.36596362248733,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 88,
+   "sequence_index": 87,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 89,
+   "arrival_ns": 358630890000000,
+   "pose_ns": 358630913970000,
+   "pose_xy_um": [
+    -127.32782708404446,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 89,
+   "sequence_index": 88,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 90,
+   "arrival_ns": 358630937000000,
+   "pose_ns": 358630961060000,
+   "pose_xy_um": [
+    -119.83094683370757,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 90,
+   "sequence_index": 89,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 91,
+   "arrival_ns": 358630984000000,
+   "pose_ns": 358631008290000,
+   "pose_xy_um": [
+    -112.40093150006844,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 91,
+   "sequence_index": 90,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 92,
+   "arrival_ns": 358631031000000,
+   "pose_ns": 358631055420000,
+   "pose_xy_um": [
+    -104.13704109281456,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 92,
+   "sequence_index": 91,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 93,
+   "arrival_ns": 358631078000000,
+   "pose_ns": 358631102490000,
+   "pose_xy_um": [
+    -95.25549564167356,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00001",
+   "frame_id": 93,
+   "sequence_index": 92,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 94,
+   "arrival_ns": 358631125000000,
+   "pose_ns": 358631149570000,
+   "pose_xy_um": [
+    -88.68002020176638,
+    1041.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 1,
+   "sequence_index": 0,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 115,
+   "arrival_ns": 358639640000000,
+   "pose_ns": 358639668430000,
+   "pose_xy_um": [
+    -83.92986471171147,
+    1165.4588941226023
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 2,
+   "sequence_index": 1,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 116,
+   "arrival_ns": 358639687000000,
+   "pose_ns": 358639715040000,
+   "pose_xy_um": [
+    -90.93964314907792,
+    1171.4176627551485
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 3,
+   "sequence_index": 2,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 117,
+   "arrival_ns": 358639734000000,
+   "pose_ns": 358639762060000,
+   "pose_xy_um": [
+    -99.56314874471845,
+    1177.34
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 4,
+   "sequence_index": 3,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 118,
+   "arrival_ns": 358639781000000,
+   "pose_ns": 358639809240000,
+   "pose_xy_um": [
+    -108.13949893341608,
+    1177.34
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 5,
+   "sequence_index": 4,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 119,
+   "arrival_ns": 358639828000000,
+   "pose_ns": 358639856270000,
+   "pose_xy_um": [
+    -116.68858220102862,
+    1177.34
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 6,
+   "sequence_index": 5,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 120,
+   "arrival_ns": 358639875000000,
+   "pose_ns": 358639903460000,
+   "pose_xy_um": [
+    -125.04090000554646,
+    1174.9676749940754
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 7,
+   "sequence_index": 6,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 121,
+   "arrival_ns": 358639921000000,
+   "pose_ns": 358639950690000,
+   "pose_xy_um": [
+    -133.03026334481044,
+    1169.5261708187595
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 8,
+   "sequence_index": 7,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 122,
+   "arrival_ns": 358639968000000,
+   "pose_ns": 358639997730000,
+   "pose_xy_um": [
+    -140.99860498544655,
+    1164.2697437701047
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 9,
+   "sequence_index": 8,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 123,
+   "arrival_ns": 358640015000000,
+   "pose_ns": 358640044770000,
+   "pose_xy_um": [
+    -148.96694661622254,
+    1159.0133167279541
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 10,
+   "sequence_index": 9,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 124,
+   "arrival_ns": 358640062000000,
+   "pose_ns": 358640091990000,
+   "pose_xy_um": [
+    -157.85111142573368,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 11,
+   "sequence_index": 10,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 125,
+   "arrival_ns": 358640109000000,
+   "pose_ns": 358640139100000,
+   "pose_xy_um": [
+    -166.39185455040055,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 12,
+   "sequence_index": 11,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 126,
+   "arrival_ns": 358640156000000,
+   "pose_ns": 358640186220000,
+   "pose_xy_um": [
+    -174.54426422641197,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 13,
+   "sequence_index": 12,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 127,
+   "arrival_ns": 358640203000000,
+   "pose_ns": 358640233270000,
+   "pose_xy_um": [
+    -182.67657614212132,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 14,
+   "sequence_index": 13,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 128,
+   "arrival_ns": 358640250000000,
+   "pose_ns": 358640280360000,
+   "pose_xy_um": [
+    -190.815801841761,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 15,
+   "sequence_index": 14,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 129,
+   "arrival_ns": 358640296000000,
+   "pose_ns": 358640327580000,
+   "pose_xy_um": [
+    -200.33850256546657,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 16,
+   "sequence_index": 15,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 130,
+   "arrival_ns": 358640343000000,
+   "pose_ns": 358640374900000,
+   "pose_xy_um": [
+    -208.24943589901616,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 17,
+   "sequence_index": 16,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 131,
+   "arrival_ns": 358640390000000,
+   "pose_ns": 358640421920000,
+   "pose_xy_um": [
+    -216.14299130359072,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 18,
+   "sequence_index": 17,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 132,
+   "arrival_ns": 358640437000000,
+   "pose_ns": 358640468930000,
+   "pose_xy_um": [
+    -225.7325058898777,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 19,
+   "sequence_index": 18,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 133,
+   "arrival_ns": 358640484000000,
+   "pose_ns": 358640516040000,
+   "pose_xy_um": [
+    -233.54722353340844,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 20,
+   "sequence_index": 19,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 134,
+   "arrival_ns": 358640531000000,
+   "pose_ns": 358640563180000,
+   "pose_xy_um": [
+    -241.82838709510247,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 21,
+   "sequence_index": 20,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 135,
+   "arrival_ns": 358640578000000,
+   "pose_ns": 358640610310000,
+   "pose_xy_um": [
+    -250.5147890438989,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 22,
+   "sequence_index": 21,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 136,
+   "arrival_ns": 358640625000000,
+   "pose_ns": 358640657420000,
+   "pose_xy_um": [
+    -259.0074958934296,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 23,
+   "sequence_index": 22,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 137,
+   "arrival_ns": 358640671000000,
+   "pose_ns": 358640704580000,
+   "pose_xy_um": [
+    -268.5591999946023,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 24,
+   "sequence_index": 23,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 138,
+   "arrival_ns": 358640718000000,
+   "pose_ns": 358640752020000,
+   "pose_xy_um": [
+    -276.53019519522786,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 25,
+   "sequence_index": 24,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 139,
+   "arrival_ns": 358640765000000,
+   "pose_ns": 358640798800000,
+   "pose_xy_um": [
+    -283.91020800048483,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 26,
+   "sequence_index": 25,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 140,
+   "arrival_ns": 358640812000000,
+   "pose_ns": 358640845930000,
+   "pose_xy_um": [
+    -291.6581483904985,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 27,
+   "sequence_index": 26,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 141,
+   "arrival_ns": 358640859000000,
+   "pose_ns": 358640893040000,
+   "pose_xy_um": [
+    -299.97871999886314,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 28,
+   "sequence_index": 27,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 142,
+   "arrival_ns": 358640906000000,
+   "pose_ns": 358640940110000,
+   "pose_xy_um": [
+    -307.88648000431186,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 29,
+   "sequence_index": 28,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 143,
+   "arrival_ns": 358640953000000,
+   "pose_ns": 358640987220000,
+   "pose_xy_um": [
+    -316.05746383271946,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 30,
+   "sequence_index": 29,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 144,
+   "arrival_ns": 358641015000000,
+   "pose_ns": 358641034450000,
+   "pose_xy_um": [
+    -325.58548717347804,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 31,
+   "sequence_index": 30,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 145,
+   "arrival_ns": 358641062000000,
+   "pose_ns": 358641081530000,
+   "pose_xy_um": [
+    -333.456297426262,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 32,
+   "sequence_index": 31,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 146,
+   "arrival_ns": 358641109000000,
+   "pose_ns": 358641128550000,
+   "pose_xy_um": [
+    -341.6430212758289,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 33,
+   "sequence_index": 32,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 147,
+   "arrival_ns": 358641156000000,
+   "pose_ns": 358641175670000,
+   "pose_xy_um": [
+    -351.1462383048418,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 34,
+   "sequence_index": 33,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 148,
+   "arrival_ns": 358641203000000,
+   "pose_ns": 358641222890000,
+   "pose_xy_um": [
+    -359.1434978712237,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 35,
+   "sequence_index": 34,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 149,
+   "arrival_ns": 358641250000000,
+   "pose_ns": 358641269990000,
+   "pose_xy_um": [
+    -367.3907478289454,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 36,
+   "sequence_index": 35,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 150,
+   "arrival_ns": 358641296000000,
+   "pose_ns": 358641317120000,
+   "pose_xy_um": [
+    -376.51273846236177,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 37,
+   "sequence_index": 36,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 151,
+   "arrival_ns": 358641343000000,
+   "pose_ns": 358641364250000,
+   "pose_xy_um": [
+    -384.53692307349263,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 38,
+   "sequence_index": 37,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 152,
+   "arrival_ns": 358641390000000,
+   "pose_ns": 358641411270000,
+   "pose_xy_um": [
+    -392.9159499987461,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 39,
+   "sequence_index": 38,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 153,
+   "arrival_ns": 358641437000000,
+   "pose_ns": 358641458500000,
+   "pose_xy_um": [
+    -401.2890000050416,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 40,
+   "sequence_index": 39,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 154,
+   "arrival_ns": 358641484000000,
+   "pose_ns": 358641505530000,
+   "pose_xy_um": [
+    -407.92022999844176,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 41,
+   "sequence_index": 40,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 155,
+   "arrival_ns": 358641531000000,
+   "pose_ns": 358641552720000,
+   "pose_xy_um": [
+    -414.5740200076843,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 42,
+   "sequence_index": 41,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 156,
+   "arrival_ns": 358641578000000,
+   "pose_ns": 358641599780000,
+   "pose_xy_um": [
+    -423.60591677493335,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 43,
+   "sequence_index": 42,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 157,
+   "arrival_ns": 358641625000000,
+   "pose_ns": 358641646880000,
+   "pose_xy_um": [
+    -431.7361986598059,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 44,
+   "sequence_index": 43,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 158,
+   "arrival_ns": 358641671000000,
+   "pose_ns": 358641694110000,
+   "pose_xy_um": [
+    -439.8889208131996,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 45,
+   "sequence_index": 44,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 159,
+   "arrival_ns": 358641718000000,
+   "pose_ns": 358641741150000,
+   "pose_xy_um": [
+    -449.5219999932942,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 46,
+   "sequence_index": 45,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 160,
+   "arrival_ns": 358641765000000,
+   "pose_ns": 358641788410000,
+   "pose_xy_um": [
+    -457.59916364267156,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 47,
+   "sequence_index": 46,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 161,
+   "arrival_ns": 358641812000000,
+   "pose_ns": 358641835570000,
+   "pose_xy_um": [
+    -465.65923636225097,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 48,
+   "sequence_index": 47,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 162,
+   "arrival_ns": 358641859000000,
+   "pose_ns": 358641882590000,
+   "pose_xy_um": [
+    -473.71383999501,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 49,
+   "sequence_index": 48,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 163,
+   "arrival_ns": 358641906000000,
+   "pose_ns": 358641929720000,
+   "pose_xy_um": [
+    -483.28850909055535,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 50,
+   "sequence_index": 49,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 164,
+   "arrival_ns": 358641953000000,
+   "pose_ns": 358641976870000,
+   "pose_xy_um": [
+    -491.3468727261084,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 51,
+   "sequence_index": 50,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 165,
+   "arrival_ns": 358642000000000,
+   "pose_ns": 358642023870000,
+   "pose_xy_um": [
+    -499.37960000178333,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 52,
+   "sequence_index": 51,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 166,
+   "arrival_ns": 358642046000000,
+   "pose_ns": 358642070980000,
+   "pose_xy_um": [
+    -508.84330534238364,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 53,
+   "sequence_index": 52,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 167,
+   "arrival_ns": 358642093000000,
+   "pose_ns": 358642118650000,
+   "pose_xy_um": [
+    -516.9115800667919,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 54,
+   "sequence_index": 53,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 168,
+   "arrival_ns": 358642140000000,
+   "pose_ns": 358642165220000,
+   "pose_xy_um": [
+    -524.7936768759424,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 55,
+   "sequence_index": 54,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 169,
+   "arrival_ns": 358642187000000,
+   "pose_ns": 358642212440000,
+   "pose_xy_um": [
+    -536.5175692288972,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 56,
+   "sequence_index": 55,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 170,
+   "arrival_ns": 358642234000000,
+   "pose_ns": 358642259460000,
+   "pose_xy_um": [
+    -543.2450461501305,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 57,
+   "sequence_index": 56,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 171,
+   "arrival_ns": 358642281000000,
+   "pose_ns": 358642306590000,
+   "pose_xy_um": [
+    -549.9882615361446,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 58,
+   "sequence_index": 57,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 172,
+   "arrival_ns": 358642328000000,
+   "pose_ns": 358642353740000,
+   "pose_xy_um": [
+    -557.703199993874,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 59,
+   "sequence_index": 58,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 173,
+   "arrival_ns": 358642375000000,
+   "pose_ns": 358642400950000,
+   "pose_xy_um": [
+    -566.0992692225927,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 60,
+   "sequence_index": 59,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 174,
+   "arrival_ns": 358642421000000,
+   "pose_ns": 358642448050000,
+   "pose_xy_um": [
+    -574.3961153830643,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 61,
+   "sequence_index": 60,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 175,
+   "arrival_ns": 358642468000000,
+   "pose_ns": 358642495080000,
+   "pose_xy_um": [
+    -583.0471618998728,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 62,
+   "sequence_index": 61,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 176,
+   "arrival_ns": 358642515000000,
+   "pose_ns": 358642542220000,
+   "pose_xy_um": [
+    -591.5268307746046,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 63,
+   "sequence_index": 62,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 177,
+   "arrival_ns": 358642562000000,
+   "pose_ns": 358642589380000,
+   "pose_xy_um": [
+    -599.8342461642995,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 64,
+   "sequence_index": 63,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 178,
+   "arrival_ns": 358642609000000,
+   "pose_ns": 358642636520000,
+   "pose_xy_um": [
+    -608.636658067724,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 65,
+   "sequence_index": 64,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 179,
+   "arrival_ns": 358642656000000,
+   "pose_ns": 358642683600000,
+   "pose_xy_um": [
+    -617.1456000101514,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 66,
+   "sequence_index": 65,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 180,
+   "arrival_ns": 358642703000000,
+   "pose_ns": 358642730780000,
+   "pose_xy_um": [
+    -625.7100228561943,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 67,
+   "sequence_index": 66,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 181,
+   "arrival_ns": 358642750000000,
+   "pose_ns": 358642777900000,
+   "pose_xy_um": [
+    -634.6089714272837,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 68,
+   "sequence_index": 67,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 182,
+   "arrival_ns": 358642796000000,
+   "pose_ns": 358642825020000,
+   "pose_xy_um": [
+    -642.8060072729837,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 69,
+   "sequence_index": 68,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 183,
+   "arrival_ns": 358642843000000,
+   "pose_ns": 358642872150000,
+   "pose_xy_um": [
+    -651.4473714214537,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 70,
+   "sequence_index": 69,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 184,
+   "arrival_ns": 358642890000000,
+   "pose_ns": 358642919210000,
+   "pose_xy_um": [
+    -659.6925619014498,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 71,
+   "sequence_index": 70,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 185,
+   "arrival_ns": 358642937000000,
+   "pose_ns": 358642966390000,
+   "pose_xy_um": [
+    -666.6871841266252,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 72,
+   "sequence_index": 71,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 186,
+   "arrival_ns": 358642984000000,
+   "pose_ns": 358643013510000,
+   "pose_xy_um": [
+    -674.5247487243151,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 73,
+   "sequence_index": 72,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 187,
+   "arrival_ns": 358643031000000,
+   "pose_ns": 358643060530000,
+   "pose_xy_um": [
+    -682.9295829732317,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 74,
+   "sequence_index": 73,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 188,
+   "arrival_ns": 358643078000000,
+   "pose_ns": 358643107690000,
+   "pose_xy_um": [
+    -692.0631692323183,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 75,
+   "sequence_index": 74,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 189,
+   "arrival_ns": 358643125000000,
+   "pose_ns": 358643154830000,
+   "pose_xy_um": [
+    -699.8473128150896,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 76,
+   "sequence_index": 75,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 190,
+   "arrival_ns": 358643171000000,
+   "pose_ns": 358643202060000,
+   "pose_xy_um": [
+    -708.7770212784582,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 77,
+   "sequence_index": 76,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 191,
+   "arrival_ns": 358643218000000,
+   "pose_ns": 358643249130000,
+   "pose_xy_um": [
+    -717.4327615449436,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 78,
+   "sequence_index": 77,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 192,
+   "arrival_ns": 358643265000000,
+   "pose_ns": 358643296250000,
+   "pose_xy_um": [
+    -725.6364743619952,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 79,
+   "sequence_index": 78,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 193,
+   "arrival_ns": 358643312000000,
+   "pose_ns": 358643343270000,
+   "pose_xy_um": [
+    -735.1534127648863,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 80,
+   "sequence_index": 79,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 194,
+   "arrival_ns": 358643359000000,
+   "pose_ns": 358643390480000,
+   "pose_xy_um": [
+    -743.0540923110533,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 81,
+   "sequence_index": 80,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 195,
+   "arrival_ns": 358643406000000,
+   "pose_ns": 358643437500000,
+   "pose_xy_um": [
+    -750.9820183478002,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 82,
+   "sequence_index": 81,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 196,
+   "arrival_ns": 358643453000000,
+   "pose_ns": 358643485170000,
+   "pose_xy_um": [
+    -759.2761248188634,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 83,
+   "sequence_index": 82,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 197,
+   "arrival_ns": 358643500000000,
+   "pose_ns": 358643531810000,
+   "pose_xy_um": [
+    -767.9028709242964,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 84,
+   "sequence_index": 83,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 198,
+   "arrival_ns": 358643546000000,
+   "pose_ns": 358643578900000,
+   "pose_xy_um": [
+    -776.3747155876231,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 85,
+   "sequence_index": 84,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 199,
+   "arrival_ns": 358643593000000,
+   "pose_ns": 358643625990000,
+   "pose_xy_um": [
+    -784.0891813982727,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 86,
+   "sequence_index": 85,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 200,
+   "arrival_ns": 358643640000000,
+   "pose_ns": 358643673110000,
+   "pose_xy_um": [
+    -791.2338883794421,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 87,
+   "sequence_index": 86,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 201,
+   "arrival_ns": 358643687000000,
+   "pose_ns": 358643720260000,
+   "pose_xy_um": [
+    -799.8358311949681,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 88,
+   "sequence_index": 87,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 202,
+   "arrival_ns": 358643734000000,
+   "pose_ns": 358643767440000,
+   "pose_xy_um": [
+    -808.3022605578874,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 89,
+   "sequence_index": 88,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 203,
+   "arrival_ns": 358643781000000,
+   "pose_ns": 358643814570000,
+   "pose_xy_um": [
+    -816.7597174276527,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 90,
+   "sequence_index": 89,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 204,
+   "arrival_ns": 358643828000000,
+   "pose_ns": 358643861660000,
+   "pose_xy_um": [
+    -826.4636991566517,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 91,
+   "sequence_index": 90,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 205,
+   "arrival_ns": 358643875000000,
+   "pose_ns": 358643908820000,
+   "pose_xy_um": [
+    -834.5574837669952,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 92,
+   "sequence_index": 91,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 206,
+   "arrival_ns": 358643921000000,
+   "pose_ns": 358643955870000,
+   "pose_xy_um": [
+    -842.6323897509515,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00002",
+   "frame_id": 93,
+   "sequence_index": 92,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 207,
+   "arrival_ns": 358643968000000,
+   "pose_ns": 358644003000000,
+   "pose_xy_um": [
+    -852.0120000038698,
+    1158.8200000000002
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 1,
+   "sequence_index": 0,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 225,
+   "arrival_ns": 358647390000000,
+   "pose_ns": 358647421460000,
+   "pose_xy_um": [
+    -850.678750180235,
+    1284.2672227724895
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 2,
+   "sequence_index": 1,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 226,
+   "arrival_ns": 358647437000000,
+   "pose_ns": 358647468660000,
+   "pose_xy_um": [
+    -843.9324608040229,
+    1289.9089087969437
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 3,
+   "sequence_index": 2,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 227,
+   "arrival_ns": 358647484000000,
+   "pose_ns": 358647515710000,
+   "pose_xy_um": [
+    -835.1017248241398,
+    1296.9335999987502
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 4,
+   "sequence_index": 3,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 228,
+   "arrival_ns": 358647531000000,
+   "pose_ns": 358647562930000,
+   "pose_xy_um": [
+    -826.3676992801941,
+    1304.4888000091573
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 5,
+   "sequence_index": 4,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 229,
+   "arrival_ns": 358647578000000,
+   "pose_ns": 358647609930000,
+   "pose_xy_um": [
+    -818.1283093478975,
+    1299.868506394226
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 6,
+   "sequence_index": 5,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 230,
+   "arrival_ns": 358647625000000,
+   "pose_ns": 358647657160000,
+   "pose_xy_um": [
+    -809.9293674855124,
+    1293.0655251213502
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 7,
+   "sequence_index": 6,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 231,
+   "arrival_ns": 358647671000000,
+   "pose_ns": 358647704290000,
+   "pose_xy_um": [
+    -800.0110619746644,
+    1284.7419476014652
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 8,
+   "sequence_index": 7,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 232,
+   "arrival_ns": 358647718000000,
+   "pose_ns": 358647751800000,
+   "pose_xy_um": [
+    -792.2030287492197,
+    1281.7425942473676
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 9,
+   "sequence_index": 8,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 233,
+   "arrival_ns": 358647765000000,
+   "pose_ns": 358647798530000,
+   "pose_xy_um": [
+    -784.5231846710368,
+    1278.7924830695897
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 10,
+   "sequence_index": 9,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 234,
+   "arrival_ns": 358647812000000,
+   "pose_ns": 358647845640000,
+   "pose_xy_um": [
+    -776.7808894583005,
+    1275.8183821091761
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 11,
+   "sequence_index": 10,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 235,
+   "arrival_ns": 358647859000000,
+   "pose_ns": 358647892750000,
+   "pose_xy_um": [
+    -767.5891346156124,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 12,
+   "sequence_index": 11,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 236,
+   "arrival_ns": 358647906000000,
+   "pose_ns": 358647939880000,
+   "pose_xy_um": [
+    -759.9214461515297,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 13,
+   "sequence_index": 12,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 237,
+   "arrival_ns": 358647953000000,
+   "pose_ns": 358647986940000,
+   "pose_xy_um": [
+    -752.2651461599422,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 14,
+   "sequence_index": 13,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 238,
+   "arrival_ns": 358648015000000,
+   "pose_ns": 358648034120000,
+   "pose_xy_um": [
+    -744.2885783007729,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 15,
+   "sequence_index": 14,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 239,
+   "arrival_ns": 358648062000000,
+   "pose_ns": 358648081250000,
+   "pose_xy_um": [
+    -735.3546987922562,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 16,
+   "sequence_index": 15,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 240,
+   "arrival_ns": 358648109000000,
+   "pose_ns": 358648128370000,
+   "pose_xy_um": [
+    -726.4227148584345,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 17,
+   "sequence_index": 16,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 241,
+   "arrival_ns": 358648140000000,
+   "pose_ns": 358648175380000,
+   "pose_xy_um": [
+    -718.0738212815412,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 18,
+   "sequence_index": 17,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 242,
+   "arrival_ns": 358648203000000,
+   "pose_ns": 358648222520000,
+   "pose_xy_um": [
+    -709.9458950487076,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 19,
+   "sequence_index": 18,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 243,
+   "arrival_ns": 358648250000000,
+   "pose_ns": 358648269710000,
+   "pose_xy_um": [
+    -701.0969333481777,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 20,
+   "sequence_index": 19,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 244,
+   "arrival_ns": 358648296000000,
+   "pose_ns": 358648316770000,
+   "pose_xy_um": [
+    -693.153957449437,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 21,
+   "sequence_index": 20,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 245,
+   "arrival_ns": 358648343000000,
+   "pose_ns": 358648363870000,
+   "pose_xy_um": [
+    -685.0545137596887,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 22,
+   "sequence_index": 21,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 246,
+   "arrival_ns": 358648390000000,
+   "pose_ns": 358648411020000,
+   "pose_xy_um": [
+    -676.5052766013189,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 23,
+   "sequence_index": 22,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 247,
+   "arrival_ns": 358648437000000,
+   "pose_ns": 358648458220000,
+   "pose_xy_um": [
+    -667.5339290669851,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 24,
+   "sequence_index": 23,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 248,
+   "arrival_ns": 358648484000000,
+   "pose_ns": 358648505240000,
+   "pose_xy_um": [
+    -659.1622972457998,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 25,
+   "sequence_index": 24,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 249,
+   "arrival_ns": 358648531000000,
+   "pose_ns": 358648552450000,
+   "pose_xy_um": [
+    -651.2354522399283,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 26,
+   "sequence_index": 25,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 250,
+   "arrival_ns": 358648578000000,
+   "pose_ns": 358648599490000,
+   "pose_xy_um": [
+    -643.5292815283224,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 27,
+   "sequence_index": 26,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 251,
+   "arrival_ns": 358648625000000,
+   "pose_ns": 358648646660000,
+   "pose_xy_um": [
+    -636.2742458633345,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 28,
+   "sequence_index": 27,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 252,
+   "arrival_ns": 358648671000000,
+   "pose_ns": 358648693780000,
+   "pose_xy_um": [
+    -627.6629578043876,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 29,
+   "sequence_index": 28,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 253,
+   "arrival_ns": 358648718000000,
+   "pose_ns": 358648740840000,
+   "pose_xy_um": [
+    -619.0626348708056,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 30,
+   "sequence_index": 29,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 254,
+   "arrival_ns": 358648765000000,
+   "pose_ns": 358648787990000,
+   "pose_xy_um": [
+    -609.2987165962661,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 31,
+   "sequence_index": 30,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 255,
+   "arrival_ns": 358648812000000,
+   "pose_ns": 358648835300000,
+   "pose_xy_um": [
+    -601.2781616932422,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 32,
+   "sequence_index": 31,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 256,
+   "arrival_ns": 358648859000000,
+   "pose_ns": 358648882230000,
+   "pose_xy_um": [
+    -593.3220289248886,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 33,
+   "sequence_index": 32,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 257,
+   "arrival_ns": 358648906000000,
+   "pose_ns": 358648929520000,
+   "pose_xy_um": [
+    -583.5771384640465,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 34,
+   "sequence_index": 33,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 258,
+   "arrival_ns": 358648953000000,
+   "pose_ns": 358648976560000,
+   "pose_xy_um": [
+    -575.6406461583485,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 35,
+   "sequence_index": 34,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 259,
+   "arrival_ns": 358649000000000,
+   "pose_ns": 358649023630000,
+   "pose_xy_um": [
+    -567.6990923051087,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 36,
+   "sequence_index": 35,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 260,
+   "arrival_ns": 358649046000000,
+   "pose_ns": 358649070740000,
+   "pose_xy_um": [
+    -558.1800205090265,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 37,
+   "sequence_index": 36,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 261,
+   "arrival_ns": 358649093000000,
+   "pose_ns": 358649118410000,
+   "pose_xy_um": [
+    -550.1372358857225,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 38,
+   "sequence_index": 37,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 262,
+   "arrival_ns": 358649140000000,
+   "pose_ns": 358649164940000,
+   "pose_xy_um": [
+    -542.286789744832,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 39,
+   "sequence_index": 38,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 263,
+   "arrival_ns": 358649187000000,
+   "pose_ns": 358649212060000,
+   "pose_xy_um": [
+    -533.2391829777202,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 40,
+   "sequence_index": 39,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 264,
+   "arrival_ns": 358649234000000,
+   "pose_ns": 358649259190000,
+   "pose_xy_um": [
+    -526.5808170174828,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 41,
+   "sequence_index": 40,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 265,
+   "arrival_ns": 358649281000000,
+   "pose_ns": 358649306360000,
+   "pose_xy_um": [
+    -519.9167999997259,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 42,
+   "sequence_index": 41,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 266,
+   "arrival_ns": 358649328000000,
+   "pose_ns": 358649353460000,
+   "pose_xy_um": [
+    -511.23700000126644,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 43,
+   "sequence_index": 42,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 267,
+   "arrival_ns": 358649375000000,
+   "pose_ns": 358649400690000,
+   "pose_xy_um": [
+    -502.9717499992842,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 44,
+   "sequence_index": 43,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 268,
+   "arrival_ns": 358649421000000,
+   "pose_ns": 358649447700000,
+   "pose_xy_um": [
+    -494.74500000523085,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 45,
+   "sequence_index": 44,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 269,
+   "arrival_ns": 358649468000000,
+   "pose_ns": 358649494810000,
+   "pose_xy_um": [
+    -485.98770000417784,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 46,
+   "sequence_index": 45,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 270,
+   "arrival_ns": 358649515000000,
+   "pose_ns": 358649541960000,
+   "pose_xy_um": [
+    -477.18320000315396,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 47,
+   "sequence_index": 46,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 271,
+   "arrival_ns": 358649562000000,
+   "pose_ns": 358649589030000,
+   "pose_xy_um": [
+    -469.1385090963481,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 48,
+   "sequence_index": 47,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 272,
+   "arrival_ns": 358649609000000,
+   "pose_ns": 358649636230000,
+   "pose_xy_um": [
+    -461.0715999977083,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 49,
+   "sequence_index": 48,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 273,
+   "arrival_ns": 358649656000000,
+   "pose_ns": 358649683270000,
+   "pose_xy_um": [
+    -451.5793090877256,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 50,
+   "sequence_index": 49,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 274,
+   "arrival_ns": 358649703000000,
+   "pose_ns": 358649730500000,
+   "pose_xy_um": [
+    -443.5072727202721,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 51,
+   "sequence_index": 50,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 275,
+   "arrival_ns": 358649750000000,
+   "pose_ns": 358649777630000,
+   "pose_xy_um": [
+    -435.4523272726683,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 52,
+   "sequence_index": 51,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 276,
+   "arrival_ns": 358649796000000,
+   "pose_ns": 358649824660000,
+   "pose_xy_um": [
+    -426.075459073133,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 53,
+   "sequence_index": 52,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 277,
+   "arrival_ns": 358649843000000,
+   "pose_ns": 358649871870000,
+   "pose_xy_um": [
+    -418.0783202836729,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 54,
+   "sequence_index": 53,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 278,
+   "arrival_ns": 358649890000000,
+   "pose_ns": 358649918950000,
+   "pose_xy_um": [
+    -410.1032028564492,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 55,
+   "sequence_index": 54,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 279,
+   "arrival_ns": 358649937000000,
+   "pose_ns": 358649966030000,
+   "pose_xy_um": [
+    -400.0565750154869,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 56,
+   "sequence_index": 55,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 280,
+   "arrival_ns": 358649984000000,
+   "pose_ns": 358650013220000,
+   "pose_xy_um": [
+    -391.47643076321566,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 57,
+   "sequence_index": 56,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 281,
+   "arrival_ns": 358650031000000,
+   "pose_ns": 358650060260000,
+   "pose_xy_um": [
+    -384.8104205084805,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 58,
+   "sequence_index": 57,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 282,
+   "arrival_ns": 358650078000000,
+   "pose_ns": 358650107470000,
+   "pose_xy_um": [
+    -377.48434041032976,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 59,
+   "sequence_index": 58,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 283,
+   "arrival_ns": 358650125000000,
+   "pose_ns": 358650154660000,
+   "pose_xy_um": [
+    -368.7375700502134,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 60,
+   "sequence_index": 59,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 284,
+   "arrival_ns": 358650171000000,
+   "pose_ns": 358650201840000,
+   "pose_xy_um": [
+    -360.1997561491085,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 61,
+   "sequence_index": 60,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 285,
+   "arrival_ns": 358650218000000,
+   "pose_ns": 358650248880000,
+   "pose_xy_um": [
+    -351.73040000456047,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 62,
+   "sequence_index": 61,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 286,
+   "arrival_ns": 358650265000000,
+   "pose_ns": 358650295970000,
+   "pose_xy_um": [
+    -343.1991007025873,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 63,
+   "sequence_index": 62,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 287,
+   "arrival_ns": 358650312000000,
+   "pose_ns": 358650343040000,
+   "pose_xy_um": [
+    -334.37264113732493,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 64,
+   "sequence_index": 63,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 288,
+   "arrival_ns": 358650359000000,
+   "pose_ns": 358650390210000,
+   "pose_xy_um": [
+    -326.0168595789727,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 65,
+   "sequence_index": 64,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 289,
+   "arrival_ns": 358650406000000,
+   "pose_ns": 358650437280000,
+   "pose_xy_um": [
+    -317.78356698122315,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 66,
+   "sequence_index": 65,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 290,
+   "arrival_ns": 358650453000000,
+   "pose_ns": 358650484660000,
+   "pose_xy_um": [
+    -309.4403177312977,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 67,
+   "sequence_index": 66,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 291,
+   "arrival_ns": 358650500000000,
+   "pose_ns": 358650531530000,
+   "pose_xy_um": [
+    -300.89069787675464,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 68,
+   "sequence_index": 67,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 292,
+   "arrival_ns": 358650546000000,
+   "pose_ns": 358650578710000,
+   "pose_xy_um": [
+    -292.43903119985197,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 69,
+   "sequence_index": 68,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 293,
+   "arrival_ns": 358650593000000,
+   "pose_ns": 358650625810000,
+   "pose_xy_um": [
+    -284.24491719900914,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 70,
+   "sequence_index": 69,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 294,
+   "arrival_ns": 358650640000000,
+   "pose_ns": 358650672940000,
+   "pose_xy_um": [
+    -276.1997961707116,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 71,
+   "sequence_index": 70,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 295,
+   "arrival_ns": 358650687000000,
+   "pose_ns": 358650720020000,
+   "pose_xy_um": [
+    -268.98723668860777,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 72,
+   "sequence_index": 71,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 296,
+   "arrival_ns": 358650734000000,
+   "pose_ns": 358650767180000,
+   "pose_xy_um": [
+    -260.52439632295005,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 73,
+   "sequence_index": 72,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 297,
+   "arrival_ns": 358650781000000,
+   "pose_ns": 358650814200000,
+   "pose_xy_um": [
+    -252.0866789067872,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 74,
+   "sequence_index": 73,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 298,
+   "arrival_ns": 358650828000000,
+   "pose_ns": 358650861320000,
+   "pose_xy_um": [
+    -242.40318974695396,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 75,
+   "sequence_index": 74,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 299,
+   "arrival_ns": 358650875000000,
+   "pose_ns": 358650908440000,
+   "pose_xy_um": [
+    -234.45320000078564,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 76,
+   "sequence_index": 75,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 300,
+   "arrival_ns": 358650921000000,
+   "pose_ns": 358650955660000,
+   "pose_xy_um": [
+    -226.48633844911907,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 77,
+   "sequence_index": 76,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 301,
+   "arrival_ns": 358650968000000,
+   "pose_ns": 358651002740000,
+   "pose_xy_um": [
+    -216.75915574086787,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 78,
+   "sequence_index": 77,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 302,
+   "arrival_ns": 358651031000000,
+   "pose_ns": 358651049790000,
+   "pose_xy_um": [
+    -208.71861106060516,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 79,
+   "sequence_index": 78,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 303,
+   "arrival_ns": 358651062000000,
+   "pose_ns": 358651097020000,
+   "pose_xy_um": [
+    -200.64730553378413,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 80,
+   "sequence_index": 79,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 304,
+   "arrival_ns": 358651125000000,
+   "pose_ns": 358651144060000,
+   "pose_xy_um": [
+    -191.1540512801881,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 81,
+   "sequence_index": 80,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 305,
+   "arrival_ns": 358651156000000,
+   "pose_ns": 358651191170000,
+   "pose_xy_um": [
+    -183.06079487441448,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 82,
+   "sequence_index": 81,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 306,
+   "arrival_ns": 358651218000000,
+   "pose_ns": 358651238390000,
+   "pose_xy_um": [
+    -174.94864102885037,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 83,
+   "sequence_index": 82,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 307,
+   "arrival_ns": 358651265000000,
+   "pose_ns": 358651285520000,
+   "pose_xy_um": [
+    -165.315819576124,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 84,
+   "sequence_index": 83,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 308,
+   "arrival_ns": 358651312000000,
+   "pose_ns": 358651332630000,
+   "pose_xy_um": [
+    -157.47350807910865,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 85,
+   "sequence_index": 84,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 309,
+   "arrival_ns": 358651359000000,
+   "pose_ns": 358651379720000,
+   "pose_xy_um": [
+    -149.6345259497676,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 86,
+   "sequence_index": 85,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 310,
+   "arrival_ns": 358651406000000,
+   "pose_ns": 358651426770000,
+   "pose_xy_um": [
+    -141.40194128979763,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 87,
+   "sequence_index": 86,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 311,
+   "arrival_ns": 358651453000000,
+   "pose_ns": 358651474020000,
+   "pose_xy_um": [
+    -134.067354133109,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 88,
+   "sequence_index": 87,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 312,
+   "arrival_ns": 358651500000000,
+   "pose_ns": 358651521100000,
+   "pose_xy_um": [
+    -126.75915596036828,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 89,
+   "sequence_index": 88,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 313,
+   "arrival_ns": 358651546000000,
+   "pose_ns": 358651568750000,
+   "pose_xy_um": [
+    -118.66630137000166,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 90,
+   "sequence_index": 89,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 314,
+   "arrival_ns": 358651593000000,
+   "pose_ns": 358651615370000,
+   "pose_xy_um": [
+    -110.55995615954201,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 91,
+   "sequence_index": 90,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 315,
+   "arrival_ns": 358651640000000,
+   "pose_ns": 358651662400000,
+   "pose_xy_um": [
+    -102.3823196387147,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 92,
+   "sequence_index": 91,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 316,
+   "arrival_ns": 358651687000000,
+   "pose_ns": 358651709510000,
+   "pose_xy_um": [
+    -92.34730212230001,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  },
+  {
+   "kind": "frame",
+   "store": "run_asi_pvcam_coordinated_broom_00003",
+   "frame_id": 93,
+   "sequence_index": 92,
+   "pose_source": "camera_receipt",
+   "source_frame_id": 317,
+   "arrival_ns": 358651734000000,
+   "pose_ns": 358651756730000,
+   "pose_xy_um": [
+    -84.63135318442018,
+    1275.48
+   ],
+   "exposure_start_ns": null,
+   "exposure_end_ns": null,
+   "rejected_reason": null,
+   "dropped": false
+  }
+ ],
+ "notes": {
+  "source": "adapt_recorded_run",
+  "action_records": "the recorder emitted none"
+ }
+}
