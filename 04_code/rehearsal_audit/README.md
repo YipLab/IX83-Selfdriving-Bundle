@@ -16,6 +16,32 @@ It knows the three record shapes in use:
 A prose `record` (for example the anisotropy stage's "no analyser in this light
 path…") is kept as a note, not counted as a missing file.
 
+## Declared-digest audit across records
+
+`declared_digests.py` audits the digests that Markdown records declare for their
+artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
+against the record, recomputes the digest and reports `verified`, `missing`,
+`digest_mismatch` or `unreadable`. External links are skipped, and a row without
+a digest is ignored.
+
+A table under a heading that mentions a commit, history or a snapshot is treated
+as a point-in-time claim: a mismatch there is reported as
+`historical_mismatch` and does not block, so an old commit record stays honest
+without pretending it describes today's file.
+
+```powershell
+python declared_digests.py --root <bundle> --output <run>/declared-digests.json
+```
+
+On the bundle as of 2026-10-27 it reads **87 declared digests** across 17
+records: 84 verified and 3 classified historical (two planner files recorded at commit `08248b1`, and the
+work-packages source-snapshot row). Its first run found eight mismatches — five
+stale current claims and three misclassified point-in-time ones — and each was
+fixed rather than suppressed: two planner rows moved under a "Files at planner
+commit 08248b1" heading, the work-packages heading became an explicit snapshot,
+two application-file digests in the ring-consumer record and the ledger test
+digest in the Q02 record were refreshed with a note, and the S2 handoff record's
+table was corrected after it had printed one digest for three different files.
 ## Findings
 
 | Code | Severity | Raised when |
@@ -28,6 +54,32 @@ path…") is kept as a note, not counted as a missing file.
 The record is never edited. A missing file does not prove the acquisition never
 happened; it means the evidence can no longer be re-verified from this checkout.
 
+## Declared-digest audit across records
+
+`declared_digests.py` audits the digests that Markdown records declare for their
+artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
+against the record, recomputes the digest and reports `verified`, `missing`,
+`digest_mismatch` or `unreadable`. External links are skipped, and a row without
+a digest is ignored.
+
+A table under a heading that mentions a commit, history or a snapshot is treated
+as a point-in-time claim: a mismatch there is reported as
+`historical_mismatch` and does not block, so an old commit record stays honest
+without pretending it describes today's file.
+
+```powershell
+python declared_digests.py --root <bundle> --output <run>/declared-digests.json
+```
+
+On the bundle as of 2026-10-27 it reads **87 declared digests** across 17
+records: 84 verified and 3 classified historical (two planner files recorded at commit `08248b1`, and the
+work-packages source-snapshot row). Its first run found eight mismatches — five
+stale current claims and three misclassified point-in-time ones — and each was
+fixed rather than suppressed: two planner rows moved under a "Files at planner
+commit 08248b1" heading, the work-packages heading became an explicit snapshot,
+two application-file digests in the ring-consumer record and the ledger test
+digest in the Q02 record were refreshed with a note, and the S2 handoff record's
+table was corrected after it had printed one digest for three different files.
 ## Result, 2026-10-27
 
 | Record | Declared | Verified | Missing | Byte drift |
@@ -44,6 +96,32 @@ both records without a declared digest, so the change cannot be attributed. The
 full record is
 [2026-10-27 rehearsal audit](../../08_session_logs/20261027T_rehearsal_audit/README.md).
 
+## Declared-digest audit across records
+
+`declared_digests.py` audits the digests that Markdown records declare for their
+artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
+against the record, recomputes the digest and reports `verified`, `missing`,
+`digest_mismatch` or `unreadable`. External links are skipped, and a row without
+a digest is ignored.
+
+A table under a heading that mentions a commit, history or a snapshot is treated
+as a point-in-time claim: a mismatch there is reported as
+`historical_mismatch` and does not block, so an old commit record stays honest
+without pretending it describes today's file.
+
+```powershell
+python declared_digests.py --root <bundle> --output <run>/declared-digests.json
+```
+
+On the bundle as of 2026-10-27 it reads **87 declared digests** across 17
+records: 84 verified and 3 classified historical (two planner files recorded at commit `08248b1`, and the
+work-packages source-snapshot row). Its first run found eight mismatches — five
+stale current claims and three misclassified point-in-time ones — and each was
+fixed rather than suppressed: two planner rows moved under a "Files at planner
+commit 08248b1" heading, the work-packages heading became an explicit snapshot,
+two application-file digests in the ring-consumer record and the ledger test
+digest in the Q02 record were refreshed with a note, and the S2 handoff record's
+table was corrected after it had printed one digest for three different files.
 ## Usage
 
 ```powershell
@@ -59,6 +137,32 @@ $py = "$root\03_external\redsun-searching-is-imaging\.venv\Scripts\python.exe"
 Exit codes: `0` when no blocking finding, `1` when one exists, `2` for an
 unreadable or unrecognised record.
 
+## Declared-digest audit across records
+
+`declared_digests.py` audits the digests that Markdown records declare for their
+artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
+against the record, recomputes the digest and reports `verified`, `missing`,
+`digest_mismatch` or `unreadable`. External links are skipped, and a row without
+a digest is ignored.
+
+A table under a heading that mentions a commit, history or a snapshot is treated
+as a point-in-time claim: a mismatch there is reported as
+`historical_mismatch` and does not block, so an old commit record stays honest
+without pretending it describes today's file.
+
+```powershell
+python declared_digests.py --root <bundle> --output <run>/declared-digests.json
+```
+
+On the bundle as of 2026-10-27 it reads **87 declared digests** across 17
+records: 84 verified and 3 classified historical (two planner files recorded at commit `08248b1`, and the
+work-packages source-snapshot row). Its first run found eight mismatches — five
+stale current claims and three misclassified point-in-time ones — and each was
+fixed rather than suppressed: two planner rows moved under a "Files at planner
+commit 08248b1" heading, the work-packages heading became an explicit snapshot,
+two application-file digests in the ring-consumer record and the ledger test
+digest in the Q02 record were refreshed with a note, and the S2 handoff record's
+table was corrected after it had printed one digest for three different files.
 ## What this does not establish
 
 - **Not a re-run.** The artifacts are read, not regenerated; a figure or table is
@@ -69,9 +173,38 @@ unreadable or unrecognised record.
   here.
 - **No physical state.** Nothing contacts a device.
 
+## Declared-digest audit across records
+
+`declared_digests.py` audits the digests that Markdown records declare for their
+artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
+against the record, recomputes the digest and reports `verified`, `missing`,
+`digest_mismatch` or `unreadable`. External links are skipped, and a row without
+a digest is ignored.
+
+A table under a heading that mentions a commit, history or a snapshot is treated
+as a point-in-time claim: a mismatch there is reported as
+`historical_mismatch` and does not block, so an old commit record stays honest
+without pretending it describes today's file.
+
+```powershell
+python declared_digests.py --root <bundle> --output <run>/declared-digests.json
+```
+
+On the bundle as of 2026-10-27 it reads **87 declared digests** across 17
+records: 84 verified and 3 classified historical (two planner files recorded at commit `08248b1`, and the
+work-packages source-snapshot row). Its first run found eight mismatches — five
+stale current claims and three misclassified point-in-time ones — and each was
+fixed rather than suppressed: two planner rows moved under a "Files at planner
+commit 08248b1" heading, the work-packages heading became an explicit snapshot,
+two application-file digests in the ring-consumer record and the ledger test
+digest in the Q02 record were refreshed with a note, and the S2 handoff record's
+table was corrected after it had printed one digest for three different files.
 ## Verification
 
 Nine hardware-free tests cover the three record shapes, clean and broken
 verification, digest and byte drift, prose notes, missing sources and the CLI.
 On 2026-10-27 the suite passed and `ruff format --check` / `ruff check --select
 E,F,I` were clean.
+
+
+

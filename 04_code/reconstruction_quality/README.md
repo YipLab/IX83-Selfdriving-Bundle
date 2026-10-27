@@ -51,6 +51,33 @@ that trusted the prior alone would sit several pixels away from where the conten
 actually registers. That is consistency between frames, not accuracy against an
 independent reference.
 
+## Seam measurement and its geometry precondition
+
+`seams.py` adds the seam half. A seam metric needs to know which canvas position
+each tile's edge falls on, and a saved mosaic does not always carry that: the
+declared source shape and downsample can disagree with the canvas once the
+builder also crops. Rather than trust a declared scale, the module derives an
+integer tile size from the record's own coverage array — searching candidate
+sizes and both origin roundings — and reports the best fraction of pixels that
+disagree. A geometry that reproduces at most 1 % of pixels wrongly is accepted;
+otherwise seam measurement is refused with `geometry_unverified`, because a
+measured step on a guessed geometry would be a fabricated number.
+
+For an accepted geometry it reports, per tile edge, the mean absolute intensity
+step across that edge and a control step from three interior positions of the
+same tile. The report gives medians and p95 values for both. The comparison is
+what makes it interpretable: a step is reported relative to that tile's own
+within-tile variation, not as an absolute quality verdict. Because a mosaic
+averages overlapping tiles, a boundary step is the residual mismatch after
+averaging, not the raw tile disagreement.
+
+On the recorded 5×5 mosaic the geometry search is refused (the best equal-tile
+model still misses about 99 % of pixels, and the coverage array's counts cluster
+at multiples of five), so the tool records `geometry_unverified` instead of
+measuring seams on it. Synthetic fixtures with known geometry are measured
+exactly — a two-tile step of 1.0 against a control of 0.0, a blended overlap
+edge of 0.5, and a vertical edge of 2.0 — which is what the module's own tests
+assert.
 ## Usage
 
 ```powershell
@@ -85,3 +112,4 @@ array, unregistered/unreadable records and the CLI. On 2026-10-27 the suite
 passed and `ruff format --check` / `ruff check --select E,F,I` were clean. The
 full record is
 [2026-10-27 reconstruction quality](../../08_session_logs/20261027T_reconstruction_quality_q06/README.md).
+

@@ -107,13 +107,33 @@ transitions, timestamps, readback and, for a timeout, `timed_out: true` with `ou
 that cannot supply a field must say so with a refusal reason or a drop mark rather than omitting the
 row.
 
+## Example emitted by an application
+
+[`examples/stepped-onset-ledger.example.json`](examples/stepped-onset-ledger.example.json) is not a
+fixture written here: the Redsun stepped-onset binding produced it in a hardware-free RunEngine run,
+with one frame row per captured frame (camera arrival, host pose-read time, their measured offset),
+one `move_to_point` and one `capture_frame` action row per frame, and one traverse-level row.
+`test_the_stepped_onset_emitter_document_is_accepted` validates it, so the producer is checked against
+this contract without importing the application. It is accepted with the single retained issue
+`clock_uncertainty_missing`: the camera frame clock is a service arrival, its mapping uncertainty is
+unknown, and the ledger says so rather than assuming zero.
+
+[`examples/stepped-onset-interrupted-ledger.example.json`](examples/stepped-onset-interrupted-ledger.example.json)
+comes from the same binding when a capture fails part-way. It is accepted with two retained issues —
+`clock_uncertainty_missing` and `completed_without_observation` — and shows the failed capture and the
+traverse as `outcome_unknown` with an error and no completion time, while the move that succeeded keeps
+a `completed` row whose pose read never happened. That second warning is the contract doing its job:
+a completed move with no observed response is a claim, and it stays visible instead of disappearing
+into a green summary.
+
 ## What this does not establish
 
 - **Not physical acceptance.** No ledger here came from an instrument with this contract in place; the
   adapter reads what an older recorder wrote and states the gaps.
-- **No action evidence exists yet.** The 2026-10-24 recorder wrote no per-action rows, so the action
-  rules are exercised by fixtures only. That is why `no_action_records` is informational rather than
-  a pass.
+- **No device-level action timing.** The 2026-10-24 recorder wrote no per-action rows. The stepped
+  example now carries per-frame move and capture rows, but their times are host issue and
+  status-completion times, so per-move device timing and any exposure association remain
+  unestablished. That is why `no_action_records` stays informational rather than a pass.
 - **No clock mapping beyond the declared one.** The recorder declares the host monotonic clock and no
   uncertainty; the validator reports the missing uncertainty instead of assuming zero.
 - **No real-time claim.** Timestamps bound latency; they do not make Python control hard real-time.
@@ -127,8 +147,12 @@ $env:PYTEST_DISABLE_PLUGIN_AUTOLOAD = '1'; $env:PYTHONUTF8 = '1'
 & "$root\03_external\redsun-searching-is-imaging\.venv\Scripts\python.exe" `
     -m pytest 04_code\acquisition_ledger\test_ledger.py -q `
     -p no:cacheprovider --basetemp 04_code\acquisition_ledger\.pytest-tmp
-# 21 passed
+# 23 passed
 ```
 
-`ruff format --check` and `ruff check --select E,F,I` are clean on both modules. The full record is
-[2026-10-27 acquisition ledger](../../08_session_logs/20261027T_acquisition_ledger_q02/README.md).
+`ruff format --check` is clean on both modules. `ruff check --select E,F,I` reports one pre-existing
+import-order finding in `test_ledger.py` (the local `ledger` import grouped with third-party imports);
+it is left as is rather than silently reformatted in an unrelated change. The full record is
+[2026-10-27 acquisition ledger](../../08_session_logs/20261027T_acquisition_ledger_q02/README.md), and the
+emitter that produced the example is recorded in
+[2026-10-27 stepped-onset binding](../../08_session_logs/20261027T_stepped_onset_binding_q04/README.md).

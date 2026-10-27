@@ -15,6 +15,23 @@ area-throughput come from the installed planner. The matrix adds the binding
 checks the planner cannot know: stage speed ceiling, sensor field, illumination
 footprint, ROI pixel alignment and exposure against the frame period.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Specification
 
 | Field | Meaning |
@@ -31,6 +48,23 @@ footprint, ROI pixel alignment and exposure against the frame period.
 `limits.provisional` never changes a verdict; it adds a finding so a design matrix
 cannot be read as measurement acceptance.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Refusal codes
 
 | Code | Raised when |
@@ -47,6 +81,23 @@ Each row also carries `warnings` (`psf_blur_is_a_proxy`,
 `frame_period_below_declared_camera_floor`) that qualify the numbers without
 refusing the point.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Output
 
 ```text
@@ -59,6 +110,23 @@ of refusal reasons. `not_computed` names `valid_area`, `local_support_duration`,
 the dependency that would supply it: registered support, a recorded run, a
 measured PSF, or per-frame timing from Q02/Q04.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Observed comparison
 
 `compare_observed(matrix, run_dir, commanded_speed_um_s, exposure_ms, width_um)`
@@ -86,6 +154,23 @@ rather than a measurement.
 # writes ix71-design-v1.observed.json beside the matrix
 ```
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Design matrix, 2026-10-27
 
 `spec.ix71-design-v1.json` composes the camera mode and sampling from the
@@ -111,6 +196,23 @@ The 625-to-79 frame spread across the speed axis is the predicted retained-frame
 range for one 781 um strip; it is a prediction from declared values, not a
 measurement.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Usage
 
 ```powershell
@@ -125,6 +227,23 @@ $env:PYMM_LOG_FILE = "$root\.pva-tmp\pymmcore-plus.log"; $env:PYTHONUTF8 = '1'
 Exit codes: `0` when at least one row is feasible, `1` when none is, `2` for a
 refused specification.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## What this does not establish
 
 - **Not acceptance.** The limits are provisional design placeholders and the
@@ -137,6 +256,23 @@ refused specification.
   request; whether a binding can execute it is Q04's qualification.
 - **No observation of the specimen.** The matrix is a plan, not data.
 
+## Frozen limits check
+
+`limits.py` accepts an author-declared limits document (`ix71.frozen-limits.v1`)
+and marks every matrix row within or outside the declared bounds, with one typed
+violation per failed comparison (`<quantity>_above_max`, `_below_min`,
+`_missing_in_row`, `_not_numeric`). Two rules keep it honest: a bound may only be
+declared for a quantity the rows carry, because a bound nothing is compared
+against would look checked; and a `provisional` declaration is retained as
+information, never presented as the instrument's frozen decision. The check adds
+violations and removes nothing — a row the matrix already refused stays refused.
+
+On the shipped 120-row design matrix, an **illustrative provisional** declaration
+(speed ≤ 500 µm/s, exposure 2–20 ms, period ≥ 0.05 s, width 2–120 µm, ≤ 2000
+frames) reports **75 rows within and 45 outside**, all 45 because the declared
+120 µm width cap is exceeded, and **18 of those 45 were matrix-feasible**. The
+illustrative file is not an instrument decision and exists to exercise the
+mechanism; the author's declaration replaces it.
 ## Verification
 
 Twenty-five hardware-free tests cover every refusal code, the planner equality
@@ -147,3 +283,4 @@ arithmetic, a missing interval, a missing strip record and one recorded run). On
 2026-10-27 the suite passed **31 tests** and `ruff format --check` / `ruff check
 --select E,F,I` were clean. The full record is [2026-10-27 operating
 matrix](../../08_session_logs/20261027T_operating_matrix_q05/README.md).
+

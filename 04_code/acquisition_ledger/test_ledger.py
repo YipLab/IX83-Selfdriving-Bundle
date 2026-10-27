@@ -397,3 +397,76 @@ def test_recording_adapter_retains_the_two_unposed_frames() -> None:
 
     report = ledger.validate_document(document)
     assert report.summary["frames_total"] == 282
+
+
+def test_the_stepped_onset_emitter_document_is_accepted() -> None:
+    """The Redsun binding's emitted ledger is accepted by this contract.
+
+    The example is written by ``tests/test_acquisition_stepped_onset.py`` in the
+    application repository, so this checks the producer against the consumer
+    without importing the application here.
+    """
+
+    path = Path(__file__).with_name("examples") / "stepped-onset-ledger.example.json"
+    document = json.loads(path.read_text(encoding="utf-8"))
+
+    report = ledger.validate_document(document)
+
+    assert report.accepted is True
+    assert _codes(report) == {"clock_uncertainty_missing": ledger.WARNING}
+    assert report.summary["frames_total"] == 4
+    assert report.summary["action_rows"] == 9
+    assert report.summary["stores"] == {
+        "stepped-onset": {
+            "frames": 4,
+            "frame_id_first": 1,
+            "frame_id_last": 4,
+        }
+    }
+    assert report.summary["declared_pose_semantics"] == "camera_receipt"
+    assert report.summary["declared_exposure_association"] == "none"
+    assert report.summary["pose_offsets_measured"] == 4
+    actions = [row for row in document["rows"] if row.get("kind") == "action"]
+    assert [row["request_id"] for row in actions[-1:]] == [
+        "stepped-onset-stepped-test"
+    ]
+    moves = [row for row in actions if row["action"] == "move_to_point"]
+    captures = [row for row in actions if row["action"] == "capture_frame"]
+    assert len(moves) == len(captures) == 4
+    assert {row["state"] for row in (*moves, *captures)} == {"completed"}
+    traverse = actions[-1]
+    assert traverse["state"] == "completed"
+    assert traverse["observed_ns"] == document["rows"][0]["arrival_ns"]
+
+
+def test_the_interrupted_stepped_onset_document_retains_the_failed_action() -> None:
+    """A failed capture leaves an outcome_unknown row, not a silent gap.
+
+    The example is emitted by the application's interruption test, so this also
+    checks that the emitter does not turn a failed action into a completed one.
+    """
+
+    path = (
+        Path(__file__).with_name("examples")
+        / "stepped-onset-interrupted-ledger.example.json"
+    )
+    document = json.loads(path.read_text(encoding="utf-8"))
+
+    report = ledger.validate_document(document)
+
+    assert report.accepted is True
+    assert _codes(report) == {
+        "clock_uncertainty_missing": ledger.WARNING,
+        "completed_without_observation": ledger.WARNING,
+    }
+    assert report.summary["frames_total"] == 1
+    assert report.summary["action_rows"] == 5
+    actions = [row for row in document["rows"] if row.get("kind") == "action"]
+    captures = [row for row in actions if row["action"] == "capture_frame"]
+    assert [row["state"] for row in captures] == ["completed", "outcome_unknown"]
+    assert captures[1]["error"] == "camera trigger failed"
+    assert captures[1]["completed_ns"] is None
+    traverse = actions[-1]
+    assert traverse["state"] == "outcome_unknown"
+    assert "camera refused the trigger" in traverse["error"]
+    assert traverse["timed_out"] is False

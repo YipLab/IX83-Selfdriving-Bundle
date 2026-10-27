@@ -1,0 +1,14 @@
+{
+  "schema": "ix71.frozen-limits.v1",
+  "author": "illustrative placeholder - not an instrument decision",
+  "date": "2026-10-27",
+  "status": "provisional",
+  "rationale": "Illustrative bounds chosen to exercise the check on the design matrix. They are not measurements, not the instrument owner's frozen limits, and must be replaced by an author declaration before any row is cited as accepted.",
+  "bounds": {
+    "speed_um_s": {"max": 500.0},
+    "exposure_ms": {"min": 2.0, "max": 20.0},
+    "frame_period_s": {"min": 0.05},
+    "width_um": {"min": 2.0, "max": 120.0},
+    "retained_frames_per_strip": {"max": 2000}
+  }
+}
