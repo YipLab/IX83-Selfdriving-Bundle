@@ -1,6 +1,6 @@
 # IX83 acquisition baseline
 
-Small local package for camera/XYZ-stage devices and acquisition lifecycle, used before introducing a RedSun device bundle. Processing and GUI behavior remain owned by RTASPT and its frontend.
+Small local package for camera/XYZ-stage devices and acquisition lifecycle, used before introducing a Redsun device bundle. Processing and GUI behavior remain owned by RTASPT and its frontend.
 
 ## Environment
 

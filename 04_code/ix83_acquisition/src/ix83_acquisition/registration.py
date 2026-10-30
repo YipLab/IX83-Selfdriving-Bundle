@@ -19,6 +19,20 @@ from planner.geometry import Calibration
 STAGE_REGISTRATION_SCHEMA = "planner-stage-registration-v1"
 
 
+def clamp_correlation(value: float) -> float:
+    """Clamp a normalized correlation to its mathematical ``[-1, 1]`` range.
+
+    A zero-mean cosine similarity is in ``[-1, 1]`` by definition, but the
+    dot-product and norm reductions can overshoot by one or two units in the
+    last place when two images match almost exactly. The overshoot depends on
+    the BLAS reduction order and therefore on thread count, so an unclamped
+    value can fail downstream range validators (for example the planner's
+    hand-eye pair check) on some machines and not others. Clamp at the
+    producer rather than widening those validators.
+    """
+    return min(1.0, max(-1.0, float(value)))
+
+
 @dataclass(frozen=True)
 class TranslationFit:
     """Translation placing the moving image in reference-image coordinates."""
@@ -273,7 +287,9 @@ def estimate_translation(
     moving_values -= moving_values.mean()
     denominator = np.linalg.norm(reference_values) * np.linalg.norm(moving_values)
     aligned_correlation = (
-        float(np.dot(reference_values, moving_values) / denominator) if denominator > 0 else -1.0
+        clamp_correlation(float(np.dot(reference_values, moving_values) / denominator))
+        if denominator > 0
+        else -1.0
     )
     fit = TranslationFit(dx, dy, aligned_correlation, overlap)
     if fit.correlation < min_correlation:

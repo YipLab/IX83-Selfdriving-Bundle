@@ -1,0 +1,1054 @@
+{
+  "schema": "ix71.declared-digest-audit.v1",
+  "root": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle",
+  "files": [
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_declared_digest_audit_s1\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_handoff_contract_s2\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_ring_consumer_q04\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_rehearsal_audit\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_release_pin_s5\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_run_evidence_q01\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_q04\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+    "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261029T_t1_route_pass_01\\README.md"
+  ],
+  "declared": 102,
+  "counts": {
+    "historical_mismatch": 9,
+    "verified": 93
+  },
+  "ok": true,
+  "findings": [
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 47,
+      "link": "../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/presenter/planner.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\presenter\\planner.py",
+      "inside_root": true,
+      "expected_sha256": "0a13f3120b0716a76b5641cdae2d5d07db578d3697443d3f5cc9f6a32cda99ca",
+      "actual_sha256": "a114ff9dd62bc2583ad689a8e3edf9de063042038b23932d50afc8f073005e64",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 48,
+      "link": "../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/acquisition/mmcore_broom.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\acquisition\\mmcore_broom.py",
+      "inside_root": true,
+      "expected_sha256": "489ea8dfc9528cf793ff3d4e7ed9f64eb034afcb613bb80381c1de6564f5c5a8",
+      "actual_sha256": "489ea8dfc9528cf793ff3d4e7ed9f64eb034afcb613bb80381c1de6564f5c5a8",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 49,
+      "link": "../03_external/sample_search/src/planner/adaptive_broom.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\src\\planner\\adaptive_broom.py",
+      "inside_root": true,
+      "expected_sha256": "5a5a304669d1cdc4d129a1b8e1c2bb650c700b0530b26fd83b7032e0c1de4e5c",
+      "actual_sha256": "5a5a304669d1cdc4d129a1b8e1c2bb650c700b0530b26fd83b7032e0c1de4e5c",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 50,
+      "link": "../03_external/sample_search/src/planner/acquisition_space.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\src\\planner\\acquisition_space.py",
+      "inside_root": true,
+      "expected_sha256": "71fde9efbb2e248268ec199b3ee315dc5da95fd32251bf07c30e8ae66f369474",
+      "actual_sha256": "71fde9efbb2e248268ec199b3ee315dc5da95fd32251bf07c30e8ae66f369474",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 51,
+      "link": "../03_external/Realtime-Anisotropy-SPT-Analysis/src/rtaspt/diffusion.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\Realtime-Anisotropy-SPT-Analysis\\src\\rtaspt\\diffusion.py",
+      "inside_root": true,
+      "expected_sha256": "1d8cf14382dd1248fae5e766e488fc8b0bc5e995e8c65e377690d2ae5d79a6f8",
+      "actual_sha256": "a060e0438440012769c7d05b68373fc1965ffb30b36aeca7c04f20eff1f21a10",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\Stage_Scanning_TIRF_Implementation_Work_Packages.md",
+      "line": 52,
+      "link": "../04_code/redsun_rtaspt_handoff/verify_product.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\redsun_rtaspt_handoff\\verify_product.py",
+      "inside_root": true,
+      "expected_sha256": "12b72d09ff1f5065471f359fa4b98469f29ec9c83b2d867d83771106f7174dde",
+      "actual_sha256": "12b72d09ff1f5065471f359fa4b98469f29ec9c83b2d867d83771106f7174dde",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 7,
+      "link": "../../04_code/acquisition_ledger/ledger.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\ledger.py",
+      "inside_root": true,
+      "expected_sha256": "0c079052ab620f1d98ef8aa63391298fdfe3edd41ec51ab7a4b9bd8055865f12",
+      "actual_sha256": "0c079052ab620f1d98ef8aa63391298fdfe3edd41ec51ab7a4b9bd8055865f12",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 8,
+      "link": "../../04_code/acquisition_ledger/test_ledger.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\test_ledger.py",
+      "inside_root": true,
+      "expected_sha256": "1318bca073c6315b8b961952503250e9994cfdde4793a36acfd1270ff03c8e01",
+      "actual_sha256": "1318bca073c6315b8b961952503250e9994cfdde4793a36acfd1270ff03c8e01",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 9,
+      "link": "../../04_code/acquisition_ledger/records/ix71-snake-06.ledger.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\records\\ix71-snake-06.ledger.json",
+      "inside_root": true,
+      "expected_sha256": "a483a77e40531b5522a84da81180e2e24152840f74efbeb3079c65b4b5aab45a",
+      "actual_sha256": "a483a77e40531b5522a84da81180e2e24152840f74efbeb3079c65b4b5aab45a",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 10,
+      "link": "../../04_code/acquisition_ledger/records/ix71-snake-06.ledger-report.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\records\\ix71-snake-06.ledger-report.json",
+      "inside_root": true,
+      "expected_sha256": "37dd6d855e7d8ed7d7d3d40b9dc27af94aadfa87a14a875cc7e26ff936f65dea",
+      "actual_sha256": "37dd6d855e7d8ed7d7d3d40b9dc27af94aadfa87a14a875cc7e26ff936f65dea",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 11,
+      "link": "../../04_code/acquisition_ledger/records/ix71-snake-05.ledger.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\records\\ix71-snake-05.ledger.json",
+      "inside_root": true,
+      "expected_sha256": "e97dc9037c0a238b533ce8df33e4c10ab5abd34b6b71dfb2dbff1c0d9159c797",
+      "actual_sha256": "e97dc9037c0a238b533ce8df33e4c10ab5abd34b6b71dfb2dbff1c0d9159c797",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_acquisition_ledger_q02\\README.md",
+      "line": 12,
+      "link": "../../04_code/acquisition_ledger/records/ix71-snake-05.ledger-report.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\records\\ix71-snake-05.ledger-report.json",
+      "inside_root": true,
+      "expected_sha256": "86215fc4182865045f96f7f1ace06d755bd15926190765d1ced113ad06c7a38e",
+      "actual_sha256": "86215fc4182865045f96f7f1ace06d755bd15926190765d1ced113ad06c7a38e",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_declared_digest_audit_s1\\README.md",
+      "line": 7,
+      "link": "../../04_code/rehearsal_audit/declared_digests.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\declared_digests.py",
+      "inside_root": true,
+      "expected_sha256": "d53d8b90f95281cabea1fd1c39469f5b2ee56bcede321c58780c1cbafa940bab",
+      "actual_sha256": "d53d8b90f95281cabea1fd1c39469f5b2ee56bcede321c58780c1cbafa940bab",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_declared_digest_audit_s1\\README.md",
+      "line": 8,
+      "link": "../../04_code/rehearsal_audit/test_declared_digests.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\test_declared_digests.py",
+      "inside_root": true,
+      "expected_sha256": "50ec738659a0ed88fd565eaa0ae72dcd7fbd6d1f60fe89a65ae3bcfc8ee52f63",
+      "actual_sha256": "50ec738659a0ed88fd565eaa0ae72dcd7fbd6d1f60fe89a65ae3bcfc8ee52f63",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_declared_digest_audit_s1\\README.md",
+      "line": 9,
+      "link": "../../04_code/rehearsal_audit/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\README.md",
+      "inside_root": true,
+      "expected_sha256": "c93e67347792318799b01af291b84d4e5d369e5cd50940eb42cbee8da425b33a",
+      "actual_sha256": "c93e67347792318799b01af291b84d4e5d369e5cd50940eb42cbee8da425b33a",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 7,
+      "link": "../../04_code/figure_build/figure.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\figure_build\\figure.py",
+      "inside_root": true,
+      "expected_sha256": "815760b480e6789aa9e3af919b914da754becbdb80095a7b3bf4b1d2068617dd",
+      "actual_sha256": "815760b480e6789aa9e3af919b914da754becbdb80095a7b3bf4b1d2068617dd",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 8,
+      "link": "../../04_code/figure_build/test_figure.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\figure_build\\test_figure.py",
+      "inside_root": true,
+      "expected_sha256": "a4a0bd479a1d89eb3969fbb5398ae535716314b5b3b2e599e7e3dc54af0d1a98",
+      "actual_sha256": "a4a0bd479a1d89eb3969fbb5398ae535716314b5b3b2e599e7e3dc54af0d1a98",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 9,
+      "link": "../../04_code/figure_build/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\figure_build\\README.md",
+      "inside_root": true,
+      "expected_sha256": "414deef9a0ed485451d7e99733aeade31d7bd68224f93d2d8f86a6dd53e0e82d",
+      "actual_sha256": "414deef9a0ed485451d7e99733aeade31d7bd68224f93d2d8f86a6dd53e0e82d",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 10,
+      "link": "placement_residuals.csv",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\placement_residuals.csv",
+      "inside_root": true,
+      "expected_sha256": "6e969f0b18a3e59f85f965688c8cb2b8acf233f9df8555dffc0914285b25b26d",
+      "actual_sha256": "6e969f0b18a3e59f85f965688c8cb2b8acf233f9df8555dffc0914285b25b26d",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 11,
+      "link": "placement_residuals.svg",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\placement_residuals.svg",
+      "inside_root": true,
+      "expected_sha256": "aea39605963b17aa72a84bbd4e045d3bfa6e8849d0de9eaae8186abdc211d384",
+      "actual_sha256": "aea39605963b17aa72a84bbd4e045d3bfa6e8849d0de9eaae8186abdc211d384",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\README.md",
+      "line": 12,
+      "link": "provenance.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_build_q12\\provenance.json",
+      "inside_root": true,
+      "expected_sha256": "ef92c9242e396a7c653cf298a3c8513c37363cc0bbc72d0b30c57f47eafd262d",
+      "actual_sha256": "ef92c9242e396a7c653cf298a3c8513c37363cc0bbc72d0b30c57f47eafd262d",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 7,
+      "link": "../../04_code/export_manifest/export.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\export.py",
+      "inside_root": true,
+      "expected_sha256": "63f5a10c7667d38616b3c73cf6a937376b038339c904a87c42730cf76a7fece8",
+      "actual_sha256": "63f5a10c7667d38616b3c73cf6a937376b038339c904a87c42730cf76a7fece8",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 8,
+      "link": "../../04_code/export_manifest/test_export_manifest.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\test_export_manifest.py",
+      "inside_root": true,
+      "expected_sha256": "68062585291f44d684d1a31e1f2f5bcb856f8d9e2424471a73e7752792d2ce22",
+      "actual_sha256": "68062585291f44d684d1a31e1f2f5bcb856f8d9e2424471a73e7752792d2ce22",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 9,
+      "link": "../../04_code/export_manifest/records/figure-2.sources.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\records\\figure-2.sources.json",
+      "inside_root": true,
+      "expected_sha256": "1288921d0cfd1a2ddfdf9aba60bc9b1ecf8d00476b56b26794caa5cdd8026df1",
+      "actual_sha256": "1288921d0cfd1a2ddfdf9aba60bc9b1ecf8d00476b56b26794caa5cdd8026df1",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 10,
+      "link": "../../04_code/export_manifest/records/figure-2.manifest.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\records\\figure-2.manifest.json",
+      "inside_root": true,
+      "expected_sha256": "558729479327f7dc7e3380eae5bd6072e4993d72d904773ee3b924f184fa39ac",
+      "actual_sha256": "558729479327f7dc7e3380eae5bd6072e4993d72d904773ee3b924f184fa39ac",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 11,
+      "link": "../../04_code/export_manifest/records/example_inputs/revisit_and_registration.csv",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\records\\example_inputs\\revisit_and_registration.csv",
+      "inside_root": true,
+      "expected_sha256": "c39a2508e771ca5467723186c1e13ddf871f56d843fec8850f61a4805af684a7",
+      "actual_sha256": "c39a2508e771ca5467723186c1e13ddf871f56d843fec8850f61a4805af684a7",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_figure_export_q12\\README.md",
+      "line": 12,
+      "link": "../../04_code/export_manifest/records/example_inputs/analysis_config.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\export_manifest\\records\\example_inputs\\analysis_config.json",
+      "inside_root": true,
+      "expected_sha256": "8982f02f8177b37c23231dffc4c95e1ab1f2363d71c527082af22564f5d11f4b",
+      "actual_sha256": "8982f02f8177b37c23231dffc4c95e1ab1f2363d71c527082af22564f5d11f4b",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_handoff_contract_s2\\README.md",
+      "line": 7,
+      "link": "../../02_docs_offline/redsun_rtaspt_handoff_contract.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\02_docs_offline\\redsun_rtaspt_handoff_contract.md",
+      "inside_root": true,
+      "expected_sha256": "a9fc5585b5ebc3bd6c52790af713d53bf55d72b4c47446ab67406f4a7e136f4b",
+      "actual_sha256": "a9fc5585b5ebc3bd6c52790af713d53bf55d72b4c47446ab67406f4a7e136f4b",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_handoff_contract_s2\\README.md",
+      "line": 8,
+      "link": "../../04_code/redsun_rtaspt_handoff/check_handoff.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\redsun_rtaspt_handoff\\check_handoff.py",
+      "inside_root": true,
+      "expected_sha256": "3b73941da6a7d5869977e619742cac042ad3c5bdaade3420deaa8bc8f42b4101",
+      "actual_sha256": "3b73941da6a7d5869977e619742cac042ad3c5bdaade3420deaa8bc8f42b4101",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_handoff_contract_s2\\README.md",
+      "line": 9,
+      "link": "../../04_code/redsun_rtaspt_handoff/test_check_handoff.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\redsun_rtaspt_handoff\\test_check_handoff.py",
+      "inside_root": true,
+      "expected_sha256": "5f35b18f150e30c07fa46ce744ca42e9eb6df694b763af45b75f0ad5d332b61a",
+      "actual_sha256": "5f35b18f150e30c07fa46ce744ca42e9eb6df694b763af45b75f0ad5d332b61a",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_handoff_contract_s2\\README.md",
+      "line": 10,
+      "link": "../../04_code/redsun_rtaspt_handoff/handoff-check.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\redsun_rtaspt_handoff\\handoff-check.example.json",
+      "inside_root": true,
+      "expected_sha256": "9cf9a912e3cd544294008f00d07414f95814680bf42e76f1872166cff1d385cc",
+      "actual_sha256": "9cf9a912e3cd544294008f00d07414f95814680bf42e76f1872166cff1d385cc",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+      "line": 7,
+      "link": "../../04_code/matched_comparison/comparison.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\matched_comparison\\comparison.py",
+      "inside_root": true,
+      "expected_sha256": "40838e78f5d30dcd91584d0dcce3d8663230dd67ad4a58a08c011911e2279f56",
+      "actual_sha256": "40838e78f5d30dcd91584d0dcce3d8663230dd67ad4a58a08c011911e2279f56",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+      "line": 8,
+      "link": "../../04_code/matched_comparison/test_matched_comparison.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\matched_comparison\\test_matched_comparison.py",
+      "inside_root": true,
+      "expected_sha256": "9848bca2aa4c6d3b2fba85e3feba70765fc3a2c1c97519feb67926a9de61c301",
+      "actual_sha256": "9848bca2aa4c6d3b2fba85e3feba70765fc3a2c1c97519feb67926a9de61c301",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+      "line": 9,
+      "link": "../../04_code/matched_comparison/spec.ix71-matched-v1.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\matched_comparison\\spec.ix71-matched-v1.json",
+      "inside_root": true,
+      "expected_sha256": "83a85975fda8346881a2f3115c26176cad31e5ea477a3bb0cbbaeaa536cda9d2",
+      "actual_sha256": "83a85975fda8346881a2f3115c26176cad31e5ea477a3bb0cbbaeaa536cda9d2",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+      "line": 10,
+      "link": "../../04_code/matched_comparison/events.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\matched_comparison\\events.example.json",
+      "inside_root": true,
+      "expected_sha256": "4ad7608d7cc03ca43ff7b9f71e12bd751e5bf4fc9b68b0ba8f7697085cad92c2",
+      "actual_sha256": "4ad7608d7cc03ca43ff7b9f71e12bd751e5bf4fc9b68b0ba8f7697085cad92c2",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_matched_comparison_q07\\README.md",
+      "line": 11,
+      "link": "../../04_code/matched_comparison/comparison_report.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\matched_comparison\\comparison_report.example.json",
+      "inside_root": true,
+      "expected_sha256": "05dc28144c40d759425e20e728a3d5aabb9eaa843244d89d2e25747f0d31f963",
+      "actual_sha256": "05dc28144c40d759425e20e728a3d5aabb9eaa843244d89d2e25747f0d31f963",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\README.md",
+      "line": 7,
+      "link": "../../03_external/sample_search/src/planner/onset_policy.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\src\\planner\\onset_policy.py",
+      "inside_root": true,
+      "expected_sha256": "48627bb04c1f78e66afb08930455bb138a62903cb5892ae9d153cab2f4857b9f",
+      "actual_sha256": "48627bb04c1f78e66afb08930455bb138a62903cb5892ae9d153cab2f4857b9f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\README.md",
+      "line": 8,
+      "link": "../../03_external/sample_search/tests/test_onset_policy.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\tests\\test_onset_policy.py",
+      "inside_root": true,
+      "expected_sha256": "e496e64087f40750bcb1e8e035aa6b9a6c099a06131ae7f5af09569d100cf939",
+      "actual_sha256": "e496e64087f40750bcb1e8e035aa6b9a6c099a06131ae7f5af09569d100cf939",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\README.md",
+      "line": 9,
+      "link": "replay_onset_policy.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\replay_onset_policy.py",
+      "inside_root": true,
+      "expected_sha256": "2cf1a1decbe7a495ce3e8a49b3cc0fbbf1a9d211f02bf5d4194697e8d9da9439",
+      "actual_sha256": "2cf1a1decbe7a495ce3e8a49b3cc0fbbf1a9d211f02bf5d4194697e8d9da9439",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\README.md",
+      "line": 10,
+      "link": "replay_report.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_policy_extraction\\replay_report.json",
+      "inside_root": true,
+      "expected_sha256": "bd28ec94680ac119bcfc52dbef3acd0d3b0e8f016771dea995e6595735613447",
+      "actual_sha256": "bd28ec94680ac119bcfc52dbef3acd0d3b0e8f016771dea995e6595735613447",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_ring_consumer_q04\\README.md",
+      "line": 9,
+      "link": "../../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/acquisition/onset_bands.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\acquisition\\onset_bands.py",
+      "inside_root": true,
+      "expected_sha256": "1ddfb6210edd9345ad904e9d28aa192378db41fd52f1e9a20d5b00163b4307d3",
+      "actual_sha256": "1ddfb6210edd9345ad904e9d28aa192378db41fd52f1e9a20d5b00163b4307d3",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_ring_consumer_q04\\README.md",
+      "line": 10,
+      "link": "../../03_external/redsun-searching-is-imaging/tests/test_onset_bands.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\tests\\test_onset_bands.py",
+      "inside_root": true,
+      "expected_sha256": "9f2083e2864d6a27bee4cb49c59862a93f22b7aaec0e00904b618c27205be7ff",
+      "actual_sha256": "9f2083e2864d6a27bee4cb49c59862a93f22b7aaec0e00904b618c27205be7ff",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_ring_consumer_q04\\README.md",
+      "line": 11,
+      "link": "../../03_external/redsun-searching-is-imaging/docs/broom_scan_workflow.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\docs\\broom_scan_workflow.md",
+      "inside_root": true,
+      "expected_sha256": "ebe9230e6e60327448d2d1b6db7d95c5bdfc9456389a293ece7855fc3fdabb73",
+      "actual_sha256": "dd5c5c808fb75d318e5637e4225b4d491f641698a7e4c3c02a1e9e6d3e7d4f6e",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_onset_ring_consumer_q04\\README.md",
+      "line": 12,
+      "link": "../../03_external/redsun-searching-is-imaging/changelog.d/0.added.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\changelog.d\\0.added.md",
+      "inside_root": true,
+      "expected_sha256": "218f5a74d6018a2402bbf92a46cc05d62c129fd0edb1e7867a48a0cf1171d9fe",
+      "actual_sha256": "c23c66959138623ae2a2860df544d922cc20621b5dae966e0e495a8dd69f75a4",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 7,
+      "link": "../../04_code/operating_matrix/matrix.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\matrix.py",
+      "inside_root": true,
+      "expected_sha256": "ae7d0ad53573aa73a3723b94ed5c89525eb5254c8e30cd8b59454bda3489806c",
+      "actual_sha256": "ae7d0ad53573aa73a3723b94ed5c89525eb5254c8e30cd8b59454bda3489806c",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 8,
+      "link": "../../04_code/operating_matrix/test_matrix.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\test_matrix.py",
+      "inside_root": true,
+      "expected_sha256": "d3c63c71e68830a08b3760738f688220b703b23d2d0ff88393112cdb56bedeee",
+      "actual_sha256": "d3c63c71e68830a08b3760738f688220b703b23d2d0ff88393112cdb56bedeee",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 9,
+      "link": "../../04_code/operating_matrix/spec.ix71-design-v1.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\spec.ix71-design-v1.json",
+      "inside_root": true,
+      "expected_sha256": "40aa27604b69fcc5c41e6b51a8f86c5501025b544d67e93fdb27abc4aab774a5",
+      "actual_sha256": "40aa27604b69fcc5c41e6b51a8f86c5501025b544d67e93fdb27abc4aab774a5",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 10,
+      "link": "../../04_code/operating_matrix/ix71-design-v1.matrix.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\ix71-design-v1.matrix.json",
+      "inside_root": true,
+      "expected_sha256": "71cb0701e5a724d88b7692ca98b3ce38f91d16fe777a0cd91a98f49075820786",
+      "actual_sha256": "71cb0701e5a724d88b7692ca98b3ce38f91d16fe777a0cd91a98f49075820786",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 11,
+      "link": "../../04_code/operating_matrix/limits.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\limits.py",
+      "inside_root": true,
+      "expected_sha256": "7e3957a4ca921b2d9f6fe55d2fd3b2911145e3e1a293c9e454166eff9307118f",
+      "actual_sha256": "7e3957a4ca921b2d9f6fe55d2fd3b2911145e3e1a293c9e454166eff9307118f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 12,
+      "link": "../../04_code/operating_matrix/test_limits.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\test_limits.py",
+      "inside_root": true,
+      "expected_sha256": "399b81ad8029d65794322121beb523177c6c88f4f6bbf0ed0c2cc31119165d60",
+      "actual_sha256": "399b81ad8029d65794322121beb523177c6c88f4f6bbf0ed0c2cc31119165d60",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 13,
+      "link": "../../04_code/operating_matrix/ix71-design-v1.limits.illustrative.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\ix71-design-v1.limits.illustrative.json",
+      "inside_root": true,
+      "expected_sha256": "8f7981ff202320f46a5130e418b2cf3dbf2959215e21e096f2e0f92fb9f8736a",
+      "actual_sha256": "8f7981ff202320f46a5130e418b2cf3dbf2959215e21e096f2e0f92fb9f8736a",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 14,
+      "link": "../../04_code/operating_matrix/ix71-design-v1.limits-check.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\ix71-design-v1.limits-check.json",
+      "inside_root": true,
+      "expected_sha256": "c16e110a2730d0f549a37ee2f816157a8ee85e35457d8484ea73a16806e3c4d0",
+      "actual_sha256": "c16e110a2730d0f549a37ee2f816157a8ee85e35457d8484ea73a16806e3c4d0",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 15,
+      "link": "../../04_code/operating_matrix/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\README.md",
+      "inside_root": true,
+      "expected_sha256": "f1e6da1c3d366d02024de7aa9f38277bae2c9ddf34728375e0dbd77b4f2ee327",
+      "actual_sha256": "f1e6da1c3d366d02024de7aa9f38277bae2c9ddf34728375e0dbd77b4f2ee327",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_operating_matrix_q05\\README.md",
+      "line": 16,
+      "link": "../../04_code/operating_matrix/ix71-design-v1.observed-snake-06.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\operating_matrix\\ix71-design-v1.observed-snake-06.json",
+      "inside_root": true,
+      "expected_sha256": "25730842b5bba48f2fbff6774ce9e018d773aed0277e70078924cd8f581d3a38",
+      "actual_sha256": "25730842b5bba48f2fbff6774ce9e018d773aed0277e70078924cd8f581d3a38",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 7,
+      "link": "../../04_code/reconstruction_quality/quality.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\quality.py",
+      "inside_root": true,
+      "expected_sha256": "effd2b8d48de546540e3276bf94f029512f8602b028ad7f21a9b86e2abddd984",
+      "actual_sha256": "effd2b8d48de546540e3276bf94f029512f8602b028ad7f21a9b86e2abddd984",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 8,
+      "link": "../../04_code/reconstruction_quality/test_quality.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\test_quality.py",
+      "inside_root": true,
+      "expected_sha256": "4e4eb5a2a7f1f88375abcf142ca27e96bccac74f6f16b363e61058b7fdb2c467",
+      "actual_sha256": "4e4eb5a2a7f1f88375abcf142ca27e96bccac74f6f16b363e61058b7fdb2c467",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 9,
+      "link": "../../04_code/reconstruction_quality/seams.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\seams.py",
+      "inside_root": true,
+      "expected_sha256": "6509fc46135e9797fcde3fb11aa30ae0c3109c472d236eb92fd33408f0cc8bb1",
+      "actual_sha256": "6509fc46135e9797fcde3fb11aa30ae0c3109c472d236eb92fd33408f0cc8bb1",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 10,
+      "link": "../../04_code/reconstruction_quality/test_seams.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\test_seams.py",
+      "inside_root": true,
+      "expected_sha256": "4318a22dc0bcd4d727a89b1405460c882a453a3a33774ca3030f882e2c2e508e",
+      "actual_sha256": "4318a22dc0bcd4d727a89b1405460c882a453a3a33774ca3030f882e2c2e508e",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 11,
+      "link": "../../04_code/reconstruction_quality/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\README.md",
+      "inside_root": true,
+      "expected_sha256": "14358219550befc29212acc6c549908b6b8bb2e128bcbd1c5fdc43be0f8c2433",
+      "actual_sha256": "14358219550befc29212acc6c549908b6b8bb2e128bcbd1c5fdc43be0f8c2433",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_reconstruction_quality_q06\\README.md",
+      "line": 12,
+      "link": "../../04_code/reconstruction_quality/records/ix71-5x5-quality.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\reconstruction_quality\\records\\ix71-5x5-quality.json",
+      "inside_root": true,
+      "expected_sha256": "bfcda3a099d8e3132cacc32fd1f970281420d67406d3ed6c2c3434a6232cb2ae",
+      "actual_sha256": "bfcda3a099d8e3132cacc32fd1f970281420d67406d3ed6c2c3434a6232cb2ae",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_rehearsal_audit\\README.md",
+      "line": 8,
+      "link": "../../04_code/rehearsal_audit/audit.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\audit.py",
+      "inside_root": true,
+      "expected_sha256": "93bd9d9fb8991edfec4de3c31b9f752a003b6c14c2907f204aa20dc7c465698e",
+      "actual_sha256": "93bd9d9fb8991edfec4de3c31b9f752a003b6c14c2907f204aa20dc7c465698e",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_rehearsal_audit\\README.md",
+      "line": 9,
+      "link": "../../04_code/rehearsal_audit/test_audit.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\test_audit.py",
+      "inside_root": true,
+      "expected_sha256": "4e4b8538500ed519115e18225a38769d5b3f7f43ad42bf51f9ab968a07ccbe9b",
+      "actual_sha256": "4e4b8538500ed519115e18225a38769d5b3f7f43ad42bf51f9ab968a07ccbe9b",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_rehearsal_audit\\README.md",
+      "line": 10,
+      "link": "../../04_code/rehearsal_audit/records/rehearsal-audit-20261027.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\records\\rehearsal-audit-20261027.json",
+      "inside_root": true,
+      "expected_sha256": "aa4a63a66abd06a28a865c6008b7a469f38c8cd2b26f703e715b1cbb281b5be0",
+      "actual_sha256": "aa4a63a66abd06a28a865c6008b7a469f38c8cd2b26f703e715b1cbb281b5be0",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_release_pin_s5\\README.md",
+      "line": 7,
+      "link": "../../04_code/release_evidence/build_release_candidate.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\release_evidence\\build_release_candidate.py",
+      "inside_root": true,
+      "expected_sha256": "1128d61f089c7610dfc7d421c05d14405f31f0b286c3c0d0627eef25238d5c95",
+      "actual_sha256": "1128d61f089c7610dfc7d421c05d14405f31f0b286c3c0d0627eef25238d5c95",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_release_pin_s5\\README.md",
+      "line": 8,
+      "link": "../../04_code/release_evidence/test_release_candidate.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\release_evidence\\test_release_candidate.py",
+      "inside_root": true,
+      "expected_sha256": "810bddc500c6169bb0c6ef86a40bdc1878567ec733563bca9c023ae45a684cd7",
+      "actual_sha256": "810bddc500c6169bb0c6ef86a40bdc1878567ec733563bca9c023ae45a684cd7",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_release_pin_s5\\README.md",
+      "line": 9,
+      "link": "../../04_code/release_evidence/ix71_release_candidate.20261027.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\release_evidence\\ix71_release_candidate.20261027.json",
+      "inside_root": true,
+      "expected_sha256": "7aa86e043334ccb51a065fef8c41e189a88912a5646d9fafa8d89c9009b8356c",
+      "actual_sha256": "7aa86e043334ccb51a065fef8c41e189a88912a5646d9fafa8d89c9009b8356c",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_run_evidence_q01\\README.md",
+      "line": 7,
+      "link": "../../04_code/run_evidence/build_run_evidence.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\run_evidence\\build_run_evidence.py",
+      "inside_root": true,
+      "expected_sha256": "d17d2ef387c34787802db14b55a68152837b8c30c935840e516911a2426772e6",
+      "actual_sha256": "d17d2ef387c34787802db14b55a68152837b8c30c935840e516911a2426772e6",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_run_evidence_q01\\README.md",
+      "line": 8,
+      "link": "../../04_code/run_evidence/test_build_run_evidence.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\run_evidence\\test_build_run_evidence.py",
+      "inside_root": true,
+      "expected_sha256": "03430c656a4f00395c52e5872b55d6010e791008683dd75cda04ec1f0e6ad297",
+      "actual_sha256": "03430c656a4f00395c52e5872b55d6010e791008683dd75cda04ec1f0e6ad297",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_run_evidence_q01\\README.md",
+      "line": 9,
+      "link": "../../04_code/run_evidence/records/ix71-snake-06.run-evidence.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\run_evidence\\records\\ix71-snake-06.run-evidence.json",
+      "inside_root": true,
+      "expected_sha256": "31a2168e0d09d20c36d2e8fb34062f1d48f20039e2d50ff4bb859d6034794fb6",
+      "actual_sha256": "31a2168e0d09d20c36d2e8fb34062f1d48f20039e2d50ff4bb859d6034794fb6",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_run_evidence_q01\\README.md",
+      "line": 10,
+      "link": "../../04_code/run_evidence/records/ix71-snake-05.run-evidence.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\run_evidence\\records\\ix71-snake-05.run-evidence.json",
+      "inside_root": true,
+      "expected_sha256": "b3248831b7f65fd789e7992d796e3bc070d2111c53931f7b231f8b962a76010c",
+      "actual_sha256": "b3248831b7f65fd789e7992d796e3bc070d2111c53931f7b231f8b962a76010c",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+      "line": 7,
+      "link": "../../04_code/rehearsal_report/build_report.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_report\\build_report.py",
+      "inside_root": true,
+      "expected_sha256": "49cfc256b4020f20684137e1c7b3c2da2dc06cacd25e1b10522625fad4e2fe4c",
+      "actual_sha256": "49cfc256b4020f20684137e1c7b3c2da2dc06cacd25e1b10522625fad4e2fe4c",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+      "line": 8,
+      "link": "../../04_code/rehearsal_report/test_build_report.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_report\\test_build_report.py",
+      "inside_root": true,
+      "expected_sha256": "fe8a722ae8d60e6bb64aa982b7391c787856d6660c8fb98326703f36fd6c812e",
+      "actual_sha256": "fe8a722ae8d60e6bb64aa982b7391c787856d6660c8fb98326703f36fd6c812e",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+      "line": 9,
+      "link": "../../04_code/rehearsal_report/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_report\\README.md",
+      "inside_root": true,
+      "expected_sha256": "8739f2f83a74cafea47ea791de33b4707a14321e7c5e3854dfb1992ce6c897dd",
+      "actual_sha256": "8739f2f83a74cafea47ea791de33b4707a14321e7c5e3854dfb1992ce6c897dd",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+      "line": 10,
+      "link": "declaration.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\declaration.json",
+      "inside_root": true,
+      "expected_sha256": "ef60881d8ac4e1967abc14fd7ead90996983c6a928b6936a566046adc394ffcf",
+      "actual_sha256": "ef60881d8ac4e1967abc14fd7ead90996983c6a928b6936a566046adc394ffcf",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\README.md",
+      "line": 11,
+      "link": "rehearsal_report.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_software_rehearsal_report\\rehearsal_report.json",
+      "inside_root": true,
+      "expected_sha256": "61993f7d247577b4637a725efe7d429c63b06caceb9bcb0a09e36bdd6d0836f6",
+      "actual_sha256": "61993f7d247577b4637a725efe7d429c63b06caceb9bcb0a09e36bdd6d0836f6",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 11,
+      "link": "../../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/acquisition/stepped_onset.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\acquisition\\stepped_onset.py",
+      "inside_root": true,
+      "expected_sha256": "812746c63f7a0caf13abf5ec6c8f20663be8b61d5dcdc2d0fdbd3d382532585f",
+      "actual_sha256": "812746c63f7a0caf13abf5ec6c8f20663be8b61d5dcdc2d0fdbd3d382532585f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 12,
+      "link": "../../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/acquisition/stepped_onset_capture.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\acquisition\\stepped_onset_capture.py",
+      "inside_root": true,
+      "expected_sha256": "4c2b2c8e4c06cb9589374a8c1aae93e5b9b5a04863211205336df4470e6ab9ae",
+      "actual_sha256": "4c2b2c8e4c06cb9589374a8c1aae93e5b9b5a04863211205336df4470e6ab9ae",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 13,
+      "link": "../../03_external/redsun-searching-is-imaging/tests/test_stepped_onset_capture.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\tests\\test_stepped_onset_capture.py",
+      "inside_root": true,
+      "expected_sha256": "7024c251e13120a9d82e8d928154231d56973fd683eaee60d3bcc42a61fda740",
+      "actual_sha256": "7024c251e13120a9d82e8d928154231d56973fd683eaee60d3bcc42a61fda740",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 14,
+      "link": "../../03_external/redsun-searching-is-imaging/tests/test_acquisition_stepped_onset.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\tests\\test_acquisition_stepped_onset.py",
+      "inside_root": true,
+      "expected_sha256": "d79203e6c69f4aca51156a06ebba071b20767840fec1ce6894822dec407c6be0",
+      "actual_sha256": "d79203e6c69f4aca51156a06ebba071b20767840fec1ce6894822dec407c6be0",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 15,
+      "link": "../../03_external/redsun-searching-is-imaging/src/redsun_searching_is_imaging/presenter/planner.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\src\\redsun_searching_is_imaging\\presenter\\planner.py",
+      "inside_root": true,
+      "expected_sha256": "dd18124e9d4b7f4653daef2ec7f3520263f358a54ed645fa67a34f911da4f704",
+      "actual_sha256": "a114ff9dd62bc2583ad689a8e3edf9de063042038b23932d50afc8f073005e64",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 16,
+      "link": "../../03_external/redsun-searching-is-imaging/docs/broom_scan_workflow.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\docs\\broom_scan_workflow.md",
+      "inside_root": true,
+      "expected_sha256": "ebe9230e6e60327448d2d1b6db7d95c5bdfc9456389a293ece7855fc3fdabb73",
+      "actual_sha256": "dd5c5c808fb75d318e5637e4225b4d491f641698a7e4c3c02a1e9e6d3e7d4f6e",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 17,
+      "link": "../../03_external/redsun-searching-is-imaging/changelog.d/0.added.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\redsun-searching-is-imaging\\changelog.d\\0.added.md",
+      "inside_root": true,
+      "expected_sha256": "218f5a74d6018a2402bbf92a46cc05d62c129fd0edb1e7867a48a0cf1171d9fe",
+      "actual_sha256": "c23c66959138623ae2a2860df544d922cc20621b5dae966e0e495a8dd69f75a4",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 18,
+      "link": "../../04_code/acquisition_ledger/examples/stepped-onset-ledger.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\examples\\stepped-onset-ledger.example.json",
+      "inside_root": true,
+      "expected_sha256": "dac3f875b8adf4db28a2cafa82b36c610a913fe7a0d608813a6bffc9f5517561",
+      "actual_sha256": "dac3f875b8adf4db28a2cafa82b36c610a913fe7a0d608813a6bffc9f5517561",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 19,
+      "link": "../../04_code/acquisition_ledger/examples/stepped-onset-interrupted-ledger.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\examples\\stepped-onset-interrupted-ledger.example.json",
+      "inside_root": true,
+      "expected_sha256": "09925bdb3fe422b3f166ed99f04756bd1cacc9f41322abd140f2dcfcc14c205f",
+      "actual_sha256": "09925bdb3fe422b3f166ed99f04756bd1cacc9f41322abd140f2dcfcc14c205f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 20,
+      "link": "../../04_code/acquisition_ledger/test_ledger.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\test_ledger.py",
+      "inside_root": true,
+      "expected_sha256": "1318bca073c6315b8b961952503250e9994cfdde4793a36acfd1270ff03c8e01",
+      "actual_sha256": "1318bca073c6315b8b961952503250e9994cfdde4793a36acfd1270ff03c8e01",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_binding_q04\\README.md",
+      "line": 21,
+      "link": "../../04_code/acquisition_ledger/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\acquisition_ledger\\README.md",
+      "inside_root": true,
+      "expected_sha256": "686045e86ee9fb5a01f81bb1ed5cfa893d01112c41777aea9217c1ee706d6c96",
+      "actual_sha256": "686045e86ee9fb5a01f81bb1ed5cfa893d01112c41777aea9217c1ee706d6c96",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_q04\\README.md",
+      "line": 9,
+      "link": "../../03_external/sample_search/src/planner/stepped_onset.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\src\\planner\\stepped_onset.py",
+      "inside_root": true,
+      "expected_sha256": "24f955c1976bb7204ca631bf712e1467557847d5a6828a67e2f28a4804aceb64",
+      "actual_sha256": "c4ae5fc70fb2ba23eecfb115cba4f9729e5b9441a2ddffc9fe52635418889a17",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_q04\\README.md",
+      "line": 10,
+      "link": "../../03_external/sample_search/tests/test_stepped_onset.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\tests\\test_stepped_onset.py",
+      "inside_root": true,
+      "expected_sha256": "14c225f9e121c145f7d1f60cd23cf462ebcfd0db40808c1da042948bec8ac46b",
+      "actual_sha256": "3ca34eae97aa114f6e2eb4de8cea304459ae6ed6306f42ff29afd0b9cadb1e28",
+      "status": "historical_mismatch"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_stepped_onset_q04\\README.md",
+      "line": 11,
+      "link": "../../03_external/sample_search/src/planner/onset_policy.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\03_external\\sample_search\\src\\planner\\onset_policy.py",
+      "inside_root": true,
+      "expected_sha256": "48627bb04c1f78e66afb08930455bb138a62903cb5892ae9d153cab2f4857b9f",
+      "actual_sha256": "48627bb04c1f78e66afb08930455bb138a62903cb5892ae9d153cab2f4857b9f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 7,
+      "link": "../../04_code/throughput_accounting/account.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\account.py",
+      "inside_root": true,
+      "expected_sha256": "4a4e44801dd6dbd4473d50696342a87a9007817edd9c0f73f58b96add41d8b0a",
+      "actual_sha256": "4a4e44801dd6dbd4473d50696342a87a9007817edd9c0f73f58b96add41d8b0a",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 8,
+      "link": "../../04_code/throughput_accounting/test_account.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\test_account.py",
+      "inside_root": true,
+      "expected_sha256": "c5f42e46278ceb350eb84272b24f7526c4991f661c4a0ebb9e3d9a32bf04cb9f",
+      "actual_sha256": "c5f42e46278ceb350eb84272b24f7526c4991f661c4a0ebb9e3d9a32bf04cb9f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 9,
+      "link": "../../04_code/throughput_accounting/consumer.example.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\consumer.example.json",
+      "inside_root": true,
+      "expected_sha256": "fc9664feb34cd94472ffeeaee3528d65804b2438f2d6d67e7362648dccd398b4",
+      "actual_sha256": "fc9664feb34cd94472ffeeaee3528d65804b2438f2d6d67e7362648dccd398b4",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 10,
+      "link": "../../04_code/throughput_accounting/consumer.example.accounting.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\consumer.example.accounting.json",
+      "inside_root": true,
+      "expected_sha256": "f842023d996fe52fc7506f8529708dbe88c1bb15f9f6d65a1a651322e8ec97c0",
+      "actual_sha256": "f842023d996fe52fc7506f8529708dbe88c1bb15f9f6d65a1a651322e8ec97c0",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 11,
+      "link": "../../04_code/throughput_accounting/ix71-snake-06.accounting.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\ix71-snake-06.accounting.json",
+      "inside_root": true,
+      "expected_sha256": "8fb1719d82131171f8cfb6c767511bae8c50d1a83a8c043df2fb86742658b8c6",
+      "actual_sha256": "8fb1719d82131171f8cfb6c767511bae8c50d1a83a8c043df2fb86742658b8c6",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_throughput_accounting_q09\\README.md",
+      "line": 12,
+      "link": "../../04_code/throughput_accounting/ix71-snake-05.accounting.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\throughput_accounting\\ix71-snake-05.accounting.json",
+      "inside_root": true,
+      "expected_sha256": "d75acd961f10d9602e20987aba039576971e139e44daa00b2cf413cd4c5e11f1",
+      "actual_sha256": "d75acd961f10d9602e20987aba039576971e139e44daa00b2cf413cd4c5e11f1",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+      "line": 7,
+      "link": "../../04_code/track_export/tracks.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\track_export\\tracks.py",
+      "inside_root": true,
+      "expected_sha256": "f72885e401c1c80cd82148c3487529fab5c971ad8d8f49656861ab2219d73883",
+      "actual_sha256": "f72885e401c1c80cd82148c3487529fab5c971ad8d8f49656861ab2219d73883",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+      "line": 8,
+      "link": "../../04_code/track_export/test_tracks.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\track_export\\test_tracks.py",
+      "inside_root": true,
+      "expected_sha256": "39b5dfcda6a75c514ad704d354489cdf811d5b61464cea29eb173eb24b8fbeac",
+      "actual_sha256": "39b5dfcda6a75c514ad704d354489cdf811d5b61464cea29eb173eb24b8fbeac",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+      "line": 9,
+      "link": "../../04_code/track_export/adapter.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\track_export\\adapter.py",
+      "inside_root": true,
+      "expected_sha256": "ead8bba854049e47c60d89c4228ca199e78add878027d116d0bbccb90126fbef",
+      "actual_sha256": "ead8bba854049e47c60d89c4228ca199e78add878027d116d0bbccb90126fbef",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+      "line": 10,
+      "link": "../../04_code/track_export/test_adapter.py",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\track_export\\test_adapter.py",
+      "inside_root": true,
+      "expected_sha256": "6265ce9e5d8b3c156a140cd4bd2bf2dc7aba6b4b2e617de47d16252bf443d11f",
+      "actual_sha256": "6265ce9e5d8b3c156a140cd4bd2bf2dc7aba6b4b2e617de47d16252bf443d11f",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261027T_track_export_q08\\README.md",
+      "line": 11,
+      "link": "../../04_code/track_export/README.md",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\track_export\\README.md",
+      "inside_root": true,
+      "expected_sha256": "ceb382ab477044e99a2a1e4b6878c7a226215ae75b3d8fbf60158b50a05048c0",
+      "actual_sha256": "ceb382ab477044e99a2a1e4b6878c7a226215ae75b3d8fbf60158b50a05048c0",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261029T_t1_route_pass_01\\README.md",
+      "line": 94,
+      "link": "../../04_code/rehearsal_audit/records/rehearsal-audit-20261029.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\records\\rehearsal-audit-20261029.json",
+      "inside_root": true,
+      "expected_sha256": "68e1d90dd71fafa7b59970e7a1ea55052a796eedac868196d14076db8d1de508",
+      "actual_sha256": "68e1d90dd71fafa7b59970e7a1ea55052a796eedac868196d14076db8d1de508",
+      "status": "verified"
+    },
+    {
+      "source": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\08_session_logs\\20261029T_t1_route_pass_01\\README.md",
+      "line": 95,
+      "link": "../../04_code/rehearsal_audit/records/declared-digests-20261029.json",
+      "target": "C:\\Users\\yipgroup\\Documents\\IX83-Selfdriving-Bundle\\04_code\\rehearsal_audit\\records\\declared-digests-20261029.json",
+      "inside_root": true,
+      "expected_sha256": "1dc564272cfbdd89971da6195db4999606666bf16da93385dc16a5728fe59a2b",
+      "actual_sha256": "1dc564272cfbdd89971da6195db4999606666bf16da93385dc16a5728fe59a2b",
+      "status": "verified"
+    }
+  ]
+}

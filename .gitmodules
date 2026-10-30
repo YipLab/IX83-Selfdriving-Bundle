@@ -7,3 +7,6 @@
 [submodule "03_external/sample_search"]
 	path = 03_external/sample_search
 	url = https://github.com/deanziyangyu/redsun-planner.git
+[submodule "03_external/aaopto-aotf"]
+	path = 03_external/aaopto-aotf
+	url = https://github.com/AllenNeuralDynamics/aaopto-aotf.git

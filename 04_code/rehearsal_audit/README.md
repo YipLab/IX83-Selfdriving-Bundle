@@ -16,6 +16,36 @@ It knows the three record shapes in use:
 A prose `record` (for example the anisotropy stage's "no analyser in this light
 path…") is kept as a note, not counted as a missing file.
 
+## Generating the report (T7)
+
+`assemble_report.py` writes the record this audit verifies. It takes **one run root**
+and derives each of the ten stage statuses from the artifacts that exist under it:
+
+```powershell
+& $py "$root\04_code\rehearsal_audit\assemble_report.py" `
+    --run-root "$root\08_session_logs\20261029T_t2_chain_01\run08" `
+    --output <run>/rehearsal_report.json `
+    --specimen-id ix71-fixed-sample-20261015 --calibration <record>.json `
+    --profile ix71_asi_pvcam_sapphire.yaml --profile-revision 2026-10-28 `
+    --authorization "<who, when, which envelope>" --attempt t2chain08
+```
+
+It emits `ix83.rehearsal-report/v3`: the Close-out names per stage (`status`,
+`artifact`, `measured`, `criterion`, `verdict`, `notes`) plus the `state` /
+`artifact_check` mirror this audit's `rehearsal-report-v2` collector reads, so the
+loop assemble → audit is closed. Statuses are `completed` (artifact inside the root
+and a figure read from it), `unknown` (present but unreadable, partial, or outside the
+root), `not_applied` (absent, with the reason) and `failed` (the artifact's own record
+says the step failed).
+
+**It refuses the one-session claim** when the root carries more than one session log
+with a plan completion marker, naming each session; a preflight session that launched
+no plan is reported as idle and does not count. `--check <report>` re-hashes every
+declared artifact.
+
+Exit codes: `0` claim stands, `1` claim refused, `2` run root unusable. Its tests are
+in `test_assemble_report.py`.
+
 ## Declared-digest audit across records
 
 `declared_digests.py` audits the digests that Markdown records declare for their
@@ -53,8 +83,6 @@ table was corrected after it had printed one digest for three different files.
 
 The record is never edited. A missing file does not prove the acquisition never
 happened; it means the evidence can no longer be re-verified from this checkout.
-
-## Declared-digest audit across records
 
 `declared_digests.py` audits the digests that Markdown records declare for their
 artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
@@ -96,8 +124,6 @@ both records without a declared digest, so the change cannot be attributed. The
 full record is
 [2026-10-27 rehearsal audit](../../08_session_logs/20261027T_rehearsal_audit/README.md).
 
-## Declared-digest audit across records
-
 `declared_digests.py` audits the digests that Markdown records declare for their
 artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
 against the record, recomputes the digest and reports `verified`, `missing`,
@@ -137,8 +163,6 @@ $py = "$root\03_external\redsun-searching-is-imaging\.venv\Scripts\python.exe"
 Exit codes: `0` when no blocking finding, `1` when one exists, `2` for an
 unreadable or unrecognised record.
 
-## Declared-digest audit across records
-
 `declared_digests.py` audits the digests that Markdown records declare for their
 artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target
 against the record, recomputes the digest and reports `verified`, `missing`,
@@ -172,8 +196,6 @@ table was corrected after it had printed one digest for three different files.
 - **No discovery of undeclared evidence.** A file nobody declared is invisible
   here.
 - **No physical state.** Nothing contacts a device.
-
-## Declared-digest audit across records
 
 `declared_digests.py` audits the digests that Markdown records declare for their
 artifacts. It reads `| file link | `sha256` |` rows, including rows that annotate the link (for example `(new)`), resolves each target

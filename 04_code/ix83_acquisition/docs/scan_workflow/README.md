@@ -17,7 +17,7 @@ Real executor-backed search runs require a durable JSONL action journal. Importi
 either module opens no hardware connection.
 
 The library publishes `WorkflowRecipe` and `StageScanRecipe` descriptors and pure
-geometry/detection/review calculations; it imports no IX83, RedSun or RTASPT host.
+geometry/detection/review calculations; it imports no IX83, Redsun or RTASPT host.
 Survey images declare uppercase `YX` axes. Recorded datasets use typed references
 with storage format, named axes, shape, dtype, verified count, terminal state and
 manifest checksum. Survey/revisit and explicit scans use the same host-side dataset
@@ -77,7 +77,7 @@ explicit planner-development override, not how the host normally imports `planne
 See [scan usage](../../../../03_external/sample_search/docs/scanning_usage.md) for real
 device selection and target lists. This CLI is an acquisition-host launcher.
 The library does not orchestrate the flow. Typed host requests and results now define
-the bundle execution seam; a future RedSun host can bind those recipe/data contracts
+the bundle execution seam; a future Redsun host can bind those recipe/data contracts
 through its own adapter while keeping one command authority.
 The separate, snap-only [Bluesky/Pycro-Manager binding](bluesky_pycromanager_adapter.md)
 wraps a caller-owned Core and is currently fake-Core tested; it is not a

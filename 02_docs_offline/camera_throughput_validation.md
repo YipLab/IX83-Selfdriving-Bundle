@@ -35,10 +35,10 @@ Increasing the buffer to 512 MB allowed this 256-frame burst to complete. It did
 
 The implemented native sequence baseline now uses the operator's revised 50 ms exposure/20 fps target and the concurrent writer described below. Preserve declared producer/consumer rates, buffer bounds and an explicit overflow policy. Hardware frame numbers/timestamps, requested/received/written counts and the completion reason must remain inspectable. A short acquisition reports failure or cancellation. Complete recording stays independent of lossy preview and expensive processing. Increasing RAM alone cannot establish a stable queue when the average consumer is slower than the producer; camera-rate 43.6 fps storage remains unqualified.
 
-For another operator-authorized, fixed-position sequence measurement from the package directory, using its separate Python 3.12 environment with both `rtaspt-controller-check` and `pycromanager` extras:
+For another operator-authorized, fixed-position sequence measurement from the package directory, using its Python 3.12 environment with both `rtaspt-controller-check` and `pycromanager` extras synced into `.venv`:
 
 ```powershell
-.venv-integration/Scripts/python.exe scripts/camera_throughput_check.py --allow-real --frames 256 --sequence-only --buffer-mb 512 --defer-hashing
+.venv/Scripts/python.exe scripts/camera_throughput_check.py --allow-real --frames 256 --sequence-only --buffer-mb 512 --defer-hashing
 ```
 
 The buffer change in that stress benchmark is temporary.

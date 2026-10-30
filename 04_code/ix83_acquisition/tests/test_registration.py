@@ -6,6 +6,7 @@ import pytest
 cv2 = pytest.importorskip("cv2", reason="the registration extra installs opencv-python-headless")
 
 from ix83_acquisition.registration import (  # noqa: E402
+    clamp_correlation,
     estimate_feature_translation,
     estimate_translation,
     stitch_sequence,
@@ -82,3 +83,15 @@ def test_registration_rejects_invalid_shapes_and_single_image_stitch():
         estimate_translation(np.zeros((32, 32)), np.zeros((32, 31)))
     with pytest.raises(ValueError, match="at least two"):
         stitch_sequence([np.zeros((32, 32))])
+
+
+def test_clamped_correlation_keeps_normalized_scores_in_range():
+    # A zero-mean cosine similarity can overshoot +-1 by one unit in the last
+    # place, depending on the BLAS reduction order. The planner hand-eye pair
+    # validator requires the mathematical range, so the producer clamps.
+    overshoot = 1.0 + 2.0**-52
+    undershoot = -1.0 - 2.0**-52
+    assert overshoot > 1.0 and undershoot < -1.0
+    assert clamp_correlation(overshoot) == 1.0
+    assert clamp_correlation(undershoot) == -1.0
+    assert clamp_correlation(0.9813549655887565) == 0.9813549655887565
