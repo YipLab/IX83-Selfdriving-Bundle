@@ -205,9 +205,9 @@ def _illumination(sidecar: Path) -> tuple[str | None, str | None, str | None]:
         return (
             f"{exposure} ms exposure recorded per frame",
             "unknown",
-            "the sidecar carries the exposure but not the illumination device or "
+            ("the sidecar carries the exposure but not the illumination device or "
             "setpoint, so 'exposure and setpoint recorded per frame' is not established "
-            "by this artifact",
+            "by this artifact"),
         )
     return (
         f"{exposure} ms exposure at {setpoint} mW on {device}",
@@ -291,6 +291,65 @@ def _products(path: Path) -> tuple[str | None, str | None, str | None]:
     if not frames:
         return None, "unknown", "the dataset record names no frame count"
     return f"{frames} frames processed", None, None
+
+
+def _search_product(path: Path) -> tuple[str | None, str | None, str | None]:
+    """Read an RTASPT search-scan product against the stage-8 criterion.
+
+    The owning document - the rehearsal skill's stage table - says this stage's artifact is
+    "``search_scan.json`` plus its tables, the product written from this run and its coverage
+    identity matching the saved tiles". A ``dataset_record.json`` is the *other* RTASPT
+    product, the one a time-series ``process`` run writes, so matching only that name made a
+    run with a complete search-scan product read as `not_applied` (measured 2026-10-29 on the
+    T2 one-session root, where 36 tiles and 70 objects existed and the report said the stage
+    was absent). This reader checks the criterion rather than the filename.
+    """
+    record = _read_json(path)
+    if not isinstance(record, dict):
+        return None, "unknown", "the search-scan product is not readable JSON"
+    if record.get("schema") != "rtaspt-search-product-v1":
+        return None, "unknown", f"unexpected search-scan schema {record.get('schema')!r}"
+    if record.get("kind") != "settled":
+        return None, "unknown", f"search-scan kind is {record.get('kind')!r}, not settled"
+    counts = record.get("counts") or {}
+    tiles = counts.get("tiles")
+    if not isinstance(tiles, int) or tiles < 1:
+        return None, "unknown", "the search-scan product names no tile count"
+    coverage = record.get("coverage") or {}
+    canvas = coverage.get("canvas_shape")
+    covered = coverage.get("covered_pixels")
+    if (
+        not isinstance(canvas, list)
+        or len(canvas) != 2
+        or not isinstance(covered, int)
+        or covered < 1
+    ):
+        return None, "unknown", "the search-scan product carries no coverage identity"
+    missing = [
+        name
+        for name in ("tiles.csv", "detections.csv", "objects.csv")
+        if not (path.parent / name).is_file()
+    ]
+    if missing:
+        return None, "unknown", "search-scan tables missing: " + ", ".join(missing)
+    return (
+        (f"{tiles} tiles, {counts.get('objects')} object(s), coverage "
+        f"{canvas[0]}x{canvas[1]} ({covered} px)"),
+        None,
+        None,
+    )
+
+
+def _reconstruction(path: Path) -> tuple[str | None, str | None, str | None]:
+    """Read whichever RTASPT product this stage found, by its own contract.
+
+    Two products can establish the reconstruction stage: the search-scan product the owning
+    document names, and the dataset record a time-series ``process`` run writes. Each is read
+    against its own schema rather than against the other's.
+    """
+    if path.name == "search_scan.json":
+        return _search_product(path)
+    return _products(path)
 
 
 def _anisotropy(path: Path) -> tuple[str | None, str | None, str | None]:
@@ -384,12 +443,14 @@ def _stages(attempt: str) -> list[dict[str, Any]]:
         {
             "number": 8,
             "stage": "reconstruction",
-            "patterns": ["**/dataset_record.json"],
+            "patterns": ["**/search_scan.json", "**/dataset_record.json"],
             "criterion": (
                 "the product is written from this run and its coverage identity matches"
             ),
-            "reader": _products,
-            "reason": "no RTASPT dataset record under the run root",
+            "reader": _reconstruction,
+            "reason": (
+                "no RTASPT search-scan product (or dataset record) under the run root"
+            ),
         },
         {
             "number": 9,

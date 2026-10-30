@@ -13,7 +13,6 @@ import json
 from pathlib import Path
 
 import pytest
-
 from assemble_report import assemble, verify
 
 
@@ -352,3 +351,71 @@ def test_a_partial_registration_graph_is_unknown_not_completed(tmp_path: Path) -
     registration = report["stages"][2]
     assert registration["status"] == "unknown"
     assert "not 'complete'" in registration["notes"]
+
+def _search_scan_product(root: Path, *, with_tables: bool = True) -> Path:
+    """Write an RTASPT search-scan product, the stage-8 artifact the skill names."""
+    directory = root / "rtaspt" / "searchscan"
+    _write(
+        directory / "search_scan.json",
+        {
+            "schema": "rtaspt-search-product-v1",
+            "kind": "settled",
+            "counts": {"tiles": 36, "detections": 70, "objects": 70},
+            "coverage": {"canvas_shape": [2783, 2762], "covered_pixels": 7587961},
+        },
+    )
+    if with_tables:
+        for name in ("tiles.csv", "detections.csv", "objects.csv"):
+            (directory / name).write_text("a,b\n1,2\n", encoding="utf-8")
+    return directory / "search_scan.json"
+
+
+def test_a_search_scan_product_completes_the_reconstruction_stage(
+    tmp_path: Path,
+) -> None:
+    """Stage 8's artifact is the search-scan product the skill names, not only a dataset record.
+
+    The owning document says "``search_scan.json`` plus its tables ... coverage identity
+    matching the saved tiles". Matching only ``dataset_record.json`` made a run with a
+    complete search-scan product read as `not_applied` (measured 2026-10-29).
+    """
+    root = _complete_run_root(tmp_path)
+    (root / "rtaspt" / "process" / "dataset_record.json").unlink()
+    _search_scan_product(root)
+
+    report = assemble(
+        root,
+        rehearsal="test",
+        specimen_id="specimen",
+        calibration_id="cal",
+        profile="profile",
+        profile_revision="rev",
+        authorization="test",
+        attempt="t8-searchscan",
+    )
+
+    stage = next(entry for entry in report["stages"] if entry["number"] == 8)
+    assert stage["status"] == "completed"
+    assert "36 tiles" in stage["measured"]
+    assert "7587961" in stage["measured"]
+
+
+def test_a_search_scan_product_without_its_tables_is_unknown(tmp_path: Path) -> None:
+    root = _complete_run_root(tmp_path)
+    (root / "rtaspt" / "process" / "dataset_record.json").unlink()
+    _search_scan_product(root, with_tables=False)
+
+    report = assemble(
+        root,
+        rehearsal="test",
+        specimen_id="specimen",
+        calibration_id="cal",
+        profile="profile",
+        profile_revision="rev",
+        authorization="test",
+        attempt="t8-searchscan-missing-tables",
+    )
+
+    stage = next(entry for entry in report["stages"] if entry["number"] == 8)
+    assert stage["status"] == "unknown"
+    assert "tables missing" in (stage.get("notes") or "")
