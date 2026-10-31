@@ -7,6 +7,7 @@ A skill is guidance for how to approach a class of task. It is not a recipe, a r
 | Skill | Use when |
 | --- | --- |
 | [headless-pipeline-rehearsal](headless-pipeline-rehearsal/SKILL.md) | Continuing the canonical Q01–Q12 implementation backlog, recorded-data/software work or authorized headless stationary-sample rehearsal, with manuscript outputs mapped to code owners and evidence gates. |
+| [evidence-harvest](evidence-harvest/SKILL.md) | Mining `07_experiment_notebook/` and `08_session_logs/` for reusable images, data products and canonical values, and keeping the [02_docs_offline catalogue](../02_docs_offline/canonical_values.md) current — run status kept separate from acceptance, no re-analysis. |
 
 ## Adding a skill
 

@@ -177,6 +177,110 @@ Five things decide whether this works, and each one cost a run to learn:
   that really was one session.
 
 
+### The live-cell run card: what to run, in order (2026-10-30)
+
+The four rows the checklist still holds open - **A9/T3** bleaching, **T4** focus drift, **R5**'s
+tracking quality and **C5**'s live-mode scale - all need the specimen lit. Run this order, and read
+the numbers each step prints before spending the next few minutes of light.
+
+**0. Is there light?** One 2x2 snap, then the p99-minus-median test the plans now use:
+
+```powershell
+.\scripts\run_session.ps1 acquire-plan --plan execute_bounded_snap_grid --session-config src\redsun_searching_is_imaging\configurations\ix71_asi_pvcam_sapphire.yaml --param-json '{"stage":"asi_stage","camera":"mmcamera","confirmation_id":"light-check","rows":2,"columns":2,"step_x_um":50,"step_y_um":50,"relative_envelope_um":100}' --timeout 300
+```
+
+Measured on this instrument: a **closed** light path reads median **100 DN**, p99 **104 DN** (4 DN of
+"signal" against the dark floor), a lit live field reads median **102 DN**, p99 **130 DN** (28 DN).
+Below 10 DN of p99-minus-median, stop: the laser can measure 1.02 mW at the head while nothing reaches
+the sample, and eighteen passes were once recorded before anyone noticed. The repeat-strip plan now
+refuses that case by itself (`abort_if_dark`, default on), and **the survey plans do too**: after the
+grid and the `2HB` restore they read the survey's own store and refuse with `survey refused: ...`
+instead of building a mosaic that ends at "no candidate targets".
+
+**1. T2, the one-session chain** - the command in the section above. On the live sample it measured
+127/240 pairs (connected), 12 targets, 12/12 accepted, revisit **12/12 within 2 um**.
+
+**2. T3 and T4, one series and one measurement.** The series is a single strip scanned back and forth;
+the measurement reads its pass stores in order:
+
+```powershell
+.\scripts\run_session.ps1 acquire-plan --plan execute_broom_repeat_strip_at_current_position --param-json <series.json> --timeout 2400
+.\scripts\run_session.ps1 run-plan --plan measure_series_bleach_and_focus --param-json <measure.json>
+```
+
+Use the longest strip the sample allows: the imaging duty cycle measured **6 %** at 300 um and **16 %**
+at 1 mm, because every pass pays a preflight, a settle, a capture open/close and an anchor return.
+T3 passes when the decay is bounded (the checklist's example is under 20 % over the route duration);
+T4 passes when the focus change is stated and either stays inside the depth of field or records an
+autofocus decision. The measurement's time axis is **nominal** - say so in the record.
+
+**When the host is tight, split the T2 chain.** The survey plan builds its mosaic in the same process
+that just ran the session, and that half is memory-heavy: on 2026-10-30 a survey that ran fine could not
+build it (`OpenCV: Failed to allocate 12960000 bytes`) with 8.7 GB of commit headroom left. Pass
+`prepare_review: false` to the survey, then build the review offline in a fresh process:
+
+```powershell
+.\scripts\run_session.ps1 acquire-plan --plan execute_asi_snap_coverage_survey_and_prepare_review --param-json <survey.json>
+.\scripts\run_session.ps1 run-plan --plan prepare_snap_review_checkpoint --param-json <checkpoint.json>
+.\scripts\run_session.ps1 run-plan --plan prepare_snap_review_decision --param-json <decision.json>
+.\scripts\run_session.ps1 acquire-plan --plan execute_asi_reviewed_snap_revisit_from_decision --param-json <revisit.json>
+```
+
+A checkpoint that refuses with "registration graph is disconnected" is not a memory problem, and
+the fix is not a parameter guess. Read `checkpoint_mosaic/registration.json` first: 2026-10-30 on a live
+field, 415 pairs gave **72 passed and 343 failed**, and every failure carried `correlation: null` with a
+`pcc_peak` of **0.02-0.31** - the frames do not correlate, which is a **content** problem (a sparse or
+dim field), not a play or overlap one. Two step/play combinations (60 um with 16 um play, 40 um with
+8 um play) both gave disconnected graphs on that field, while the original region with 60 um / 16 um
+gave 127/240 connected pairs. Survey a field with cells, and check the PCC peaks before touching the
+play compensation.
+
+**Finding a field with cells costs no extra hardware.** A recorded series' own per-frame `p99_dn`, binned
+by its x position, maps the signal along the line: on 2026-10-30 it put two clusters at p99 185 and 178
+against 108-124 at the ends, and the survey centred there reached 94/238 registered pairs with a single
+isolated tile instead of a 7-component graph. **`outcome='unknown'` is a trace, not a flag.** The service
+sets it whenever a move does not settle: its traverse task catches the exception and writes `unknown`, so a
+timeout - the stage landing short, or the settle check never agreeing - is what produces it, and a jog can
+produce it too because a jog is a move. From then on a survey takes all its frames and then refuses its
+anchor return (`busy=False, outcome='unknown'`), and the review rejects the run as "requires a successfully
+completed run", so the frames are lost. Position with absolute moves, **check the state before a survey with
+`report_stage_position`** (`stage_motion_busy`, `stage_motion_outcome`, `stage_motion_terminal`), and treat a
+non-terminal state as "the last move did not settle" rather than as a mode the controller is stuck in.
+There is no plan-level stop to clear it - `AsiSerialStage` is a readable, not a stoppable - and the state
+clears when a later move does settle. On 2026-10-30 the underlying cause was measured: an absolute move
+stopped **67-88 um short** and reported idle, with the direct read and the telemetry agreeing to the count
+(the treadmill record has the numbers). That is an instrument question before it is a plan question.
+**3. R5's tracking quality.** `execute_bounded_snap_series` (parked, N frames at the camera's own
+cadence), then `export_raw_frames_tiff`, `rtaspt process`, `rtaspt track`, then
+`rtaspt.diffusion --stationary-control`; the fixed-sample baseline is 4 026 tracks and 99 633 spots
+over 300 frames, with the control releasing `no_motion`.
+
+```powershell
+.\scripts\run_session.ps1 acquire-plan --plan execute_bounded_snap_series --param-json <parked.json> --timeout 900
+.\scripts\run_session.ps1 run-plan --plan export_raw_frames_tiff --param-json <export.json>
+```
+
+A 300-frame series at 20 ms and 1.0 mW takes about 18 s of capture; the manifest it writes carries the
+store, the frame count, the interval, the anchor and the brightness, so the analysis does not guess any
+of them. **The series must be a parked field, not a
+broom strip.** Measured 2026-10-30: a 2 mm strip over 200 frames moves the content **54.5 px per
+frame** against a 6 px tracker search range, so every track is a coincidence - 2 520 tracks with a
+median length of 2 frames and 99 % "Too short". On a parked field the same detector and tracker gave
+**4 218 tracks over 300 frames at 0.0612 s** (410 back-and-forth, 300 confined, 30 Brownian) and the
+control released `no_motion` at 0.1718 µm, against the fixed-sample baseline's 4 026 tracks at the same
+cadence. Two traps: the capture only starts after **`bps.stage`** (the service's acquire/capture logic -
+without it `complete` times out on `IX71-CAM1:Captured`), and the prepare must ask for **one event more
+than the frames requested** (the detector counts the collection it opens with, so 300 kickoffs against a
+300-event prepare end at `Kickoff requested 300:301`).
+
+**The failure modes that cost a run each, and where they are written down:** a per-field detection
+floor (a fixed-sample `minimum_adu 800` cannot see a field whose corrected mosaic peaks at 509 - see
+[the T2 live record](../../08_session_logs/20261030T_t2_live_01/README.md)); a gated median on a dim,
+sparse field, which must take `derive_flat: false` (7/11 joins against 3/11); `2HB` 16 um for a 60 um
+survey, restored by the plan; a slit factor the store can serve (see the slit section below); and the
+anchor-return loop for the revisit.
+
+
 ### First reproduce a known-good chain on the current tree (2026-10-28)
 
 Before blaming a new dataset for a broken product, run the *same* plan on a recorded input that
@@ -244,10 +348,14 @@ Do not invent a driver. These entry points exist in the app and cover the rehear
 $app = "C:\Users\yipgroup\Documents\IX83-Selfdriving-Bundle\03_external\redsun-searching-is-imaging"
 
 # 1. Launch a session on a named profile. The first argument is the command, the rest is passed
-#    through. No argument means the managed demo broom session, which declares a simulated broom
-#    only: no camera, no laser, no stage. That is not a rehearsal session.
+#    through. No argument is the instrument session: `ix71-asi-sapphire` declares the PVCAM
+#    Camera-1, the native ASI XY and the 488 Sapphire, so a bare launch is a rehearsal session.
+#    The simulated broom is a named choice - `managed-demo-broom` has no camera, no laser and no
+#    stage, so every plan that needs one is dropped from the chooser. It was the default until
+#    2026-10-30 and a session started that way looks ready while being unable to acquire.
+.\scripts\run_session.ps1                       # PVCAM Camera-1 + ASI XY + 488 Sapphire
 .\scripts\run_session.ps1 ix71-asi --session-config src\redsun_searching_is_imaging\configurations\ix71_asi_pvcam.yaml
-.\scripts\run_session.ps1 ix71-asi-sapphire    # real camera + 488 Sapphire
+.\scripts\run_session.ps1 managed-demo-broom    # simulated broom only: no hardware
 
 # 2. Run one plan headlessly with a JSON parameter file (offline/recorded-data plans).
 .\scripts\run_plan_offline.ps1 -Plan <plan_name> -ParamsJson <file.json> -WorkDirectory <dir> -SkipBackendCheck
@@ -257,16 +365,50 @@ $app = "C:\Users\yipgroup\Documents\IX83-Selfdriving-Bundle\03_external\redsun-s
 
 # 4. Guard the plan/annotation catalog after any presenter edit. The catalog embeds planner
 #    source line numbers, so a docstring that shifts lines invalidates it until regenerated.
+#    Run it with the source tree on PYTHONPATH: both the parsed planner and the classification
+#    mapping come from the imported package, and this checkout's venv holds a stale copy, so
+#    without it --check passes while describing a file nobody edited, and a stale mapping put
+#    3 plans in a different category (2026-10-30).
+$env:PYTHONPATH = "<shim>;$app\src"
 & "$app\.venv\Scripts\python.exe" scripts\plan_catalog.py --check
 & "$app\.venv\Scripts\python.exe" scripts\plan_catalog.py --write
 
-# 5. The full app suite on the host (preferred over an ad-hoc pytest line).
+# 5. The live-cell time budget, as a pair of app plans. The repeat strip scans one line back and
+#    forth for a bounded number of passes and writes a repeat manifest naming each pass's store;
+#    the measurement reads those stores in order and reports the bleach fraction and the Tenengrad
+#    focus trend, with the time axis declared nominal. Both are in the plan map (2026-10-30).
+.\scripts\run_session.ps1 acquire-plan --plan execute_broom_repeat_strip_at_current_position --param-json <file.json> --timeout 2400
+.\scripts\run_session.ps1 run-plan --plan measure_series_bleach_and_focus --param-json <file.json>
+
+# 5b. The parked series that tracking needs. It does not move the stage; the camera captures N
+#     frames at its own cadence (300 frames at 20 ms took 18 s), and the manifest records the
+#     store, interval, anchor and brightness. Stage it, prepare for N+1 events, trigger N times.
+.\scripts\run_session.ps1 acquire-plan --plan execute_bounded_snap_series --param-json <parked.json> --timeout 900
+
+# 6. The full app suite on the host (preferred over an ad-hoc pytest line).
 .\scripts\run_full_test_suite.ps1
 ```
 
 A plan name that appears in a plan map but not in the chooser is not broken: the presenter drops
 any plan whose device annotation the session cannot satisfy, and logs "Leaving out <plan>". Read
 that line before concluding a plan is missing from the code.
+
+### Two traps that cost a day (2026-10-30)
+
+**A service child imports the installed package unless `src` is on PYTHONPATH.** `run_session.ps1` used to
+set `PYTHONPATH` to the temp shim alone, so the session process (which the runner puts on `src`) and its
+managed service children (launched with `-m` and that environment) imported *different copies* of the app.
+A diagnostic added to `device/asi/_stage.py` never appeared in the ASI service's own timeout message. The
+launcher now sets `PYTHONPATH=<shim>;<repo>\src`, so both import the checkout. **Before believing a
+device-layer change is active, check that the service's own output shows it.**
+
+**The ASI lands short and says it is idle.** An absolute move commanded through the service stops **67-88 um
+short** of its target, reports `busy=False`, and leaves the traverse to time out. The direct position read
+and the last telemetry sample agree to the count, so this is not a stale read: the stage is where it says
+it is, and it is not where it was told to go. The frame poses of a strip reach within ~9 um of the target
+while the settle check sees the shortfall, so the motion and the report diverge late. Treat it as an
+instrument/controller question (limits, ramp, encoder) before changing plan code.
+
 ### When something disagrees
 
 - **Markers offset but the landing is right** - the page and the coordinate chain are separate
@@ -280,9 +422,24 @@ that line before concluding a plan is missing from the code.
   measurement. The 16 um backlash and the 449.5 px crop-centre term were both that.
 - **A control is missing from the GUI** - it is built from what the running session declares, so
   check the profile before the code. The managed demo session declares a simulated broom only: no
-  camera, no laser, no stage, so nothing that needs one can be shown. Since 2026-10-28 a device
-  parameter whose role has no session device renders an empty control naming the role instead of
-  vanishing; if it is still absent, the plan is not listed for that session at all.
+  camera, no laser, no stage, so nothing that needs one can be shown. A bare `run_session.ps1` is
+  the PVCAM + ASI + 488 Sapphire session since 2026-10-30, so reaching the demo means naming it.
+  Since 2026-10-28 a device parameter whose role has no session device renders an empty control
+  naming the role instead of vanishing; if it is still absent, the plan is not listed for that
+  session at all.
+- **A plan form opens on zeros and refuses them** - a parameter with no default renders as `0`, an
+  empty box or `.`, and the plan rejects it, so the form cannot run until every field is typed. The
+  `execute_*` family carries defaults for the values an operator tunes (the survey grid geometry,
+  the jog, the laser name, the revisit envelope, the broom operating point; 2026-10-30). Paths, the
+  confirmation token and the corner readbacks stay operator-supplied on purpose, and
+  `tests/test_plan_defaults.py` fails if a new `execute_*` parameter opens empty.
+- **The cells vanish and the background mottles** - the pooled gated median is being used where it
+  cannot work. It estimates illumination only while the field is bright and dense; on a dim, sparse
+  live field it is mostly its own noise, and dividing by it pushes the background negative while
+  amplifying a few cells. Measure the raw p99 over the dark first (2026-10-30: **6 DN** at 10 ms),
+  then compose with `derive_flat: false`: the same 12-lane route went from **3/11 joins and 0.498
+  coverage to 7/11 and 0.805**. The flag is on `prepare_corrected_stack`,
+  `prepare_flatfield_corrected_stack` and `prepare_broom_mosaic_from_recorded_run`.
 - **A service refuses all writes after one failure** - read the message before restarting. A
   channel that reports a fault and asks for a restart is a latch: since 2026-10-28 the optics
   service records the failed request and re-initialises the transport on the next one, so one
@@ -425,6 +582,25 @@ Consequences to apply:
   not a new defect — check the parameter before diagnosing the pipeline.
 - Widening is a real trade, not a free fix. The band and the sharpness cost are both measured, so pick
   deliberately and record which was paid.
+
+**Pick the factor the route needs, then keep it (2026-10-30).** The 3.0 default came from the slit
+gap/seam investigation, which is **deferred**: its premise was that a wider slit would feather the seams
+the stitcher left. It does widen them, but on a live twelve-lane route the builder's own sweep showed
+`1.0` repeats no row (0 % overlap, coverage 0.9936, 38 blank rows), **`1.25` covers every row** (20 %
+overlap, coverage 1.0000, no blank rows), and `1.5`, `2.0`, `3.0` and `4.0` buy overlaps of 33-75 % for
+progressively less sharpness. So pass the smallest factor that covers the recorded advances and state
+the overlap it bought (`08_session_logs/20261030T_slit_store_01/slit_overlap_sweep.json`); treat the
+`mode_validated: true` at 3.0 as that investigation's setting, not a requirement of the route.
+
+Once a store holds only its slit band (`store_form: slit_band`, `acquisition.slit_store`), the rebuild
+factor **cannot exceed the factor the band was recorded with** - the builder refuses by name rather
+than clipping rows - so the band, the compose and any later chain must agree on one number. The
+after-the-fact path is `compact_broom_stores_to_slit`, or
+`prepare_broom_mosaic_from_recorded_run(compact_slit_store=True)`; both measure the advance on the full
+frames before cropping, and a banded store rebuilt without that recorded advance drifts 40-250 rows
+because the band has so little along-overlap for ECC to fit. On this route the band made the chain
+**58.9 s against 343.5 s** with every strip identical, so slit-band storage is the default for a
+static-sample broom recording, not an optimization to reach for later.
 
 ## Close-out
 
