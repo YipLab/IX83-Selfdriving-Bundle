@@ -1,5 +1,54 @@
 # IX83-Automation device bundle setup plan
 
+## IX83 and APR software handoff (2026-11-18)
+
+The bundle pins the searching/imaging app at
+`b14879bf8e61809cbd194207efbaf0bebff99d9a` on
+`feat/device_bundle_composition` and RTASPT at
+`a774530ba9a7624fc6cf9c5aba24059c9ce002d5` on
+`refactor/refactor_core`. Both revisions are local commits. Publish both
+software branches before another host retrieves the bundle pin.
+
+The app includes the split planner, Redsun 0.17 camera/stage/storage contracts,
+PI Z support, recorded temporal APR and the parallel IX83 native Ludl/Sapphire
+session. Follow the [IX83 profile guide](../03_external/redsun-searching-is-imaging/docs/ix83_ludl_sapphire.md).
+IX83 uses its Sapphire 488 on COM6 at 19,200 baud with the operator-confirmed
+20–190 mW command range from `LaserUI.bsh`. Its optics service owns the
+Arduino shutter. Complete the local shutter port, acknowledgement mode and
+protocol/wiring record, Ludl mapping/envelope, camera mode and storage root.
+Supply IX83's calibrated unbinned specimen sampling through
+`snap_unbinned_pixel_size_um`; preserve sensor pitch, objective/relay
+magnification, live ROI/binning and calibration identity with the deployment.
+IX71 retains its ASI, VMM-D1 and optional PI composition.
+
+RTASPT owns the experimental array-only APR estimator. The Redsun
+[recorded-data host](../03_external/redsun-searching-is-imaging/docs/temporal_apr.md)
+owns explicit source/reference identity, support checks, accepted layout and
+composition. The plan defaults to disabled and remains experimental.
+Use explicit full-frame corrected capture/reference manifests and a fresh
+output directory. Compacted slit data cannot supply the estimator's required
+image support. These software checks do not qualify temporal biological fidelity.
+
+Handoff verification used Python 3.12.13. RTASPT's venv launcher refers to a
+missing ARH Python executable. The existing managed base interpreter with
+RTASPT's own site-packages passed all 21 synthetic APR tests, targeted Ruff,
+targeted mypy and compilation. The environment was not rebuilt.
+Redsun's host runner passed 55 focused tests for APR, the plan catalog and IX83
+profile; after adding the real-estimator replay regression, the full APR
+module passed 23 tests with no skips. That replay used the real RTASPT
+estimator and slit compositor and verified source files remained intact.
+Earlier strip-builder checks had eight GPU-backend-unavailable failures that
+also reproduced on the pre-feature baseline. GPU processing and IX83 physical
+commissioning remain separately unverified by this handoff.
+
+On IX83, check out this bundle revision, initialize the pinned submodules,
+and use each package's lock and named environment to install it. Confirm that
+`rtaspt.temporal_apr` resolves to the pinned RTASPT source or installed build
+before running the host tests. The development checks used an explicit RTASPT
+source path; an older installed RTASPT distribution will lack this API.
+Re-run the offline profile and APR tests on that host before separately
+authorized camera, shutter and bounded stage commissioning.
+
 ## Primary acquisition foundation (2026-10-15)
 
 **AOTF calibration preparation (2026-10-23):** the parent bundle now contains

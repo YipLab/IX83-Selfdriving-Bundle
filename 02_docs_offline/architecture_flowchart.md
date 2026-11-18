@@ -168,6 +168,18 @@ flowchart TB
         end
         ix71profile["ix71_asi_democam and ix71_asi_pvcam profiles<br/>ASI stage; DemoCamera or PVCAM<br/>no Ludl or IX83 optics service"]
         ix71sapphire["ix71_asi_pvcam_sapphire profile<br/>same ASI stage and PVCAM<br/>+ laser488 light device"]
+        ix83sapphire["IX83 native Ludl ASCII + PVCAM<br/>Sapphire 488 + Arduino shutter<br/>instrument-owned optical calibration"]
+        piezodevice["PI E-709 Z piezo"]
+        piezoservice["Managed PI GCS 2 Z service<br/>PIPython serial owner"]
+        ix71sapphire -. "operator profile opt-in" .-> piezoservice
+        piezoservice --> piezodevice
+        profilecheck["Redsun headless profile<br/>YAML services and clients"]
+        profilecheck -. "PI Z declaration" .-> piezoservice
+        ahtcontracts["Shared MMCore contracts<br/>camera capabilities and stage limits/stop"]
+        capturemanifest["Zarr v3 camera capture<br/>AHT v2 checksum manifest"]
+        ahtcontracts --> capturemanifest
+        runidentity["Bluesky run and detector identity"]
+        runidentity --> capturemanifest
         asiaccept["First ix71 ASI + DemoCamera 2x2 snap<br/>limited mechanical evidence; no absolute scale"]
         ix71profile --> asidevice
         ix71sapphire --> asidevice
@@ -250,6 +262,18 @@ flowchart TB
     speedproposal -. live binding planned; host validates actions .-> host
     speedproposal -. in-motion Speed qualification separate from live policy .-> finite
     processing["RTASPT processing<br/>reconstruction, anisotropy, tracking<br/>optional space-time identity"]
+    aprScripts["Offline APR script caller<br/>recorded frames + explicit references"]
+    temporalApr["RTASPT temporal_apr<br/>experimental image-placement estimate"]
+    aprGeometry["Portable correction/status metadata<br/>host applies placement and records support"]
+    aprPresenter["Experimental Redsun offline APR plan<br/>disabled by default; no device commands"]
+    aprHost["Redsun recorded-data host<br/>hash/ROI/identity and reference validation"]
+    aprCompose["Existing slit compositor and blend<br/>accepted layout; baseline and controls"]
+    aprProducts["Derived TYX stacks and geometry<br/>provenance and support records"]
+    aprScripts --> temporalApr --> aprGeometry
+    aprPresenter --> aprHost
+    aprHost -->|"explicit arrays and references"| temporalApr
+    aprGeometry --> aprHost
+    aprHost --> aprCompose --> aprProducts
     inputs -->|recorded YXPlane handoff checked| processing
     processing --> observations
     otsu -. channel intensity observations .-> observations
